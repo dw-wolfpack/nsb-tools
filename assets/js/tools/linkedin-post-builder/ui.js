@@ -8,7 +8,14 @@
     if (!form || !out) return;
     function run() {
       if (!window.NSB_CAN_GENERATE(true)) { window.NSB_OPEN_UPGRADE(); return; }
-      const inputs = { stance: (form.querySelector("[name=stance]")||{}).value||"", topic: (form.querySelector("[name=topic]")||{}).value||"", length: (form.querySelector("[name=length]")||{}).value||"medium" };
+      const inputs = {
+        stance: (form.querySelector("[name=stance]")||{}).value||"",
+        topic: (form.querySelector("[name=topic]")||{}).value||"",
+        length: (form.querySelector("[name=length]")||{}).value||"medium",
+        tone: (form.querySelector("[name=tone]")||{}).value||"clean",
+        stanceStyle: (form.querySelector("[name=stanceStyle]")||{}).value||"agree",
+        audience: (form.querySelector("[name=audience]")||{}).value||""
+      };
       const res = window.NSB_LINKEDIN.generate(inputs, window.NSB_UTILS.hash(JSON.stringify(inputs) + Date.now()));
       out.textContent = res.full; out.dataset.raw = res.full;
       if (window.NSB_INCREMENT_GEN) window.NSB_INCREMENT_GEN();
