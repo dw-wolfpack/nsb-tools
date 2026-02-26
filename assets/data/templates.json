@@ -1,0 +1,53 @@
+{
+  "usernames": [
+    "{adj}{noun}",
+    "{adj}_{noun}",
+    "{noun}_{adj}",
+    "the{adj}{noun}",
+    "{adj}{noun}{num}"
+  ],
+  "hooks": {
+    "curiosity": [
+      "Nobody talks about this...",
+      "The one thing that changed everything...",
+      "What they don't tell you about {topic}...",
+      "The secret behind {topic}..."
+    ],
+    "contrarian": [
+      "Unpopular opinion: {topic}",
+      "Stop doing {topic}. Do this instead.",
+      "Forget what you heard about {topic}.",
+      "The truth about {topic} nobody wants to hear."
+    ],
+    "authority": [
+      "After 10 years in {topic}, here's what I learned...",
+      "I've seen hundreds of {topic}. Here's what works.",
+      "As someone who does {topic} daily..."
+    ],
+    "story": [
+      "Last year I was struggling with {topic}...",
+      "I used to think {topic} until...",
+      "Here's what happened when I tried {topic}..."
+    ]
+  },
+  "linkedinOpeners": [
+    "Quick thought:",
+    "Hot take:",
+    "Story time:",
+    "Here's the thing:",
+    "Real talk:"
+  ],
+  "captionCTAs": [
+    "Drop a comment below",
+    "What would you add?",
+    "Save this for later",
+    "Tag someone who needs this",
+    "Follow for more"
+  ],
+  "headlineStyles": {
+    "howto": ["How to {topic} in {n} Steps", "How to {topic} (Complete Guide)", "How I {topic}"],
+    "list": ["{n} Ways to {topic}", "Top {n} {topic} Tips", "{n} {topic} Ideas"],
+    "contrarian": ["Stop {topic}. Start This.", "Why {topic} Is Overrated", "The {topic} Myth"],
+    "story": ["What {topic} Taught Me", "My {topic} Journey", "The Day I Discovered {topic}"]
+  }
+}

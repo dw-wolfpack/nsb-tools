@@ -1,0 +1,25 @@
+{
+  "adjectives": [
+    "bold", "clear", "keen", "quick", "bright", "calm", "true", "wise",
+    "prime", "pure", "swift", "lucid", "apt", "brave", "fresh", "sharp"
+  ],
+  "nouns": [
+    "mind", "path", "flow", "craft", "pulse", "mark", "line", "core",
+    "base", "edge", "drive", "wave", "node", "lane", "plot", "voice"
+  ],
+  "verbs": [
+    "build", "create", "launch", "grow", "learn", "think", "share", "start"
+  ],
+  "tones": ["professional", "casual", "friendly", "bold", "warm", "direct", "playful"],
+  "hookTypes": ["curiosity", "contrarian", "authority", "story"],
+  "platforms": ["instagram", "tiktok", "linkedin", "twitter", "youtube"],
+  "contentFormats": ["carousel", "reel", "story", "post", "thread", "video", "article"],
+  "redFlagKeywords": [
+    "as-is", "no warranty", "contingent", "seller financing required",
+    "off-market", "undisclosed", "material adverse", "best efforts"
+  ],
+  "actionVerbs": [
+    "Led", "Managed", "Increased", "Reduced", "Developed", "Implemented",
+    "Achieved", "Streamlined", "Optimized", "Launched", "Coordinated"
+  ]
+}

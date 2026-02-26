@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>Business / Finance Tools | NSB Tools</title>
+  <meta name="description" content="Business tools: deal teaser analyzer, SBA payment estimator, LOI outline generator. Free, client-side tools.">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/categories/business/">
+  <meta property="og:title" content="Business / Finance Tools | NSB Tools">
+  <meta property="og:description" content="Business tools: deal teaser analyzer, SBA payment estimator, LOI outline generator.">
+  <meta property="og:url" content="https://tools.nextstepsbeyond.online/categories/business/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Business / Finance Tools | NSB Tools">
+  <meta name="twitter:description" content="Business tools: deal teaser analyzer, SBA payment estimator, LOI outline generator.">
+  <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"},{"@type":"ListItem","position":2,"name":"Categories","item":"https://tools.nextstepsbeyond.online/categories/"},{"@type":"ListItem","position":3,"name":"Business / Finance","item":"https://tools.nextstepsbeyond.online/categories/business/"}]}</script>
+</head>
+<body>
+  <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
+  <header id="nsb-header"></header>
+  <main class="layout">
+    <nav class="breadcrumb"><a href="/">Home</a><span>/</span> Business / Finance</nav>
+    <h1>Business / Finance</h1>
+    <p class="category-intro">Business and finance tools: analyze deal teasers, estimate SBA payments, and generate LOI outlines.</p>
+    <section class="section"><h2>Tools</h2><div id="nsb-tools" class="tool-grid"></div></section>
+    <section class="section">
+      <h2>FAQ about this category</h2>
+      <h3>Is the SBA estimator accurate?</h3>
+      <p>It provides ballpark figures. Consult a lender or advisor for actual terms.</p>
+      <h3>What is a deal teaser?</h3>
+      <p>A brief summary of a business or asset for sale, used in M&A and acquisitions.</p>
+    </section>
+  </main>
+  <footer id="nsb-footer"></footer>
+  <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/components/tool-card.js" defer></script>
+  <script src="/assets/js/components/modal.js" defer></script>
+  <script src="/assets/js/components/toast.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const R = window.NSB_REGISTRY;
+      const el = document.getElementById("nsb-tools");
+      if (el && R && window.NSB_TOOL_CARD) el.innerHTML = R.getToolsByCategory("business").map(t => window.NSB_TOOL_CARD.render(t)).join("");
+    });
+  </script>
+</body>
+</html>

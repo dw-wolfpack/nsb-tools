@@ -1,0 +1,10 @@
+{
+  "name": "NSB Tools",
+  "short_name": "NSB Tools",
+  "description": "Fast, client-side tools for creators, writers, and professionals.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#2563eb",
+  "icons": []
+}

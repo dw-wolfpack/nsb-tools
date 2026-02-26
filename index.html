@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>NSB Tools | Free Creator, Writing, Career, and Business Tools</title>
+  <meta name="description" content="Fast, client-side tools for creators, writers, and professionals. Username generator, hooks, scripts, LinkedIn posts, resume help, and more. No signup required.">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/">
+  <meta property="og:title" content="NSB Tools | Free Creator, Writing, Career, and Business Tools">
+  <meta property="og:description" content="Fast, client-side tools for creators, writers, and professionals. No signup required.">
+  <meta property="og:url" content="https://tools.nextstepsbeyond.online/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NSB Tools | Free Creator, Writing, Career, and Business Tools">
+  <meta name="twitter:description" content="Fast, client-side tools for creators, writers, and professionals. No signup required.">
+  <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"}]}</script>
+</head>
+<body>
+  <div class="banner">
+    NSB Tools (beta) - <a href="/updates/">Get updates</a>
+  </div>
+  <header id="nsb-header"></header>
+  <main class="layout">
+    <div class="home-layout">
+      <section class="hero">
+        <div class="hero-inner">
+          <h1 class="hero-title"><span class="hero-title-brand">NSB</span> <span class="hero-title-highlight">Tools</span></h1>
+          <p class="hero-subtitle">Fast client-side tools for creators, writers, and operators. No signup. Just output.</p>
+          <div class="hero-search">
+            <label for="nsb-hero-search" class="visually-hidden">Search tools</label>
+            <input type="search" id="nsb-hero-search" placeholder="Search tools by name, tag, or description..." aria-label="Search tools">
+          </div>
+          <div class="chip-row" role="group" aria-label="Filter by category">
+            <button type="button" class="chip" data-category="" aria-pressed="true">All</button>
+            <button type="button" class="chip" data-category="social" aria-pressed="false">Social</button>
+            <button type="button" class="chip" data-category="writing" aria-pressed="false">Writing</button>
+            <button type="button" class="chip" data-category="career" aria-pressed="false">Career</button>
+            <button type="button" class="chip" data-category="business" aria-pressed="false">Business</button>
+            <button type="button" class="chip" data-category="repurpose" aria-pressed="false">Repurpose</button>
+          </div>
+          <p class="hero-trust">Runs locally. Your data stays on-device.</p>
+        </div>
+      </section>
+
+      <aside class="home-sidebar">
+        <div class="recent-card">
+          <h3>Recently Used</h3>
+          <ul id="nsb-recent-list" class="recent-list">
+            <li class="search-no-results">Use a tool to see it here.</li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="home-main">
+        <section class="section section--tight start-here">
+          <h2 class="visually-hidden">Start here</h2>
+          <div class="start-here-grid">
+            <a href="/tools/hook-generator/" class="start-tile">
+              <span class="start-tile-label">Hooks</span>
+              <span class="start-tile-desc">Stop the scroll</span>
+              <span class="start-tile-cta">Open</span>
+            </a>
+            <a href="/tools/short-script-writer/" class="start-tile">
+              <span class="start-tile-label">Short script</span>
+              <span class="start-tile-desc">30-sec video beats</span>
+              <span class="start-tile-cta">Open</span>
+            </a>
+            <a href="/tools/linkedin-post-builder/" class="start-tile">
+              <span class="start-tile-label">LinkedIn post</span>
+              <span class="start-tile-desc">Thought leadership drafts</span>
+              <span class="start-tile-cta">Open</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="section section--tight">
+          <h2>Featured Tools</h2>
+          <div id="nsb-featured" class="tool-grid tool-grid--featured"></div>
+        </section>
+
+        <section class="section section--tight">
+          <h2>Categories</h2>
+          <div id="nsb-categories" class="grid-4"></div>
+        </section>
+
+        <section class="section section--tight">
+          <div class="section-header-row">
+            <h2 class="section-title">All Tools</h2>
+            <div class="view-toggle" role="group" aria-label="View mode">
+              <button type="button" id="nsb-view-all" aria-pressed="true">All tools</button>
+              <button type="button" id="nsb-view-category" aria-pressed="false">By category</button>
+            </div>
+          </div>
+          <div id="nsb-all-tools" class="tool-grid"></div>
+          <div id="nsb-by-category" style="display: none;"></div>
+        </section>
+
+        <p class="small muted"><a href="/changelog/">Latest updates &rarr; changelog</a></p>
+
+        <section class="section section--tight how-it-works">
+          <h2>How it works</h2>
+          <div class="how-it-works-grid">
+            <div class="how-card">
+              <span class="how-card-step">1</span>
+              <h3>Generate</h3>
+              <p>Pick a tool. Punch in your input. Hit generate.</p>
+            </div>
+            <div class="how-card">
+              <span class="how-card-step">2</span>
+              <h3>Copy</h3>
+              <p>Copy output. Paste where you need it. Done.</p>
+            </div>
+            <div class="how-card">
+              <span class="how-card-step">3</span>
+              <h3>Ship</h3>
+              <p>Use it. No signup, no waiting, no tracking.</p>
+            </div>
+          </div>
+          <p class="how-it-works-link"><a href="/faq/">FAQ</a></p>
+        </section>
+      </div>
+    </div>
+  </main>
+  <footer id="nsb-footer"></footer>
+
+  <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/components/tool-card.js" defer></script>
+  <script src="/assets/js/components/modal.js" defer></script>
+  <script src="/assets/js/components/toast.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script>
+    (function() {
+      const base = "https://tools.nextstepsbeyond.online";
+
+      function waitForDeps(maxMs, cb) {
+        var start = Date.now();
+        function check() {
+          if (window.NSB_REGISTRY && window.NSB_TOOL_CARD) {
+            cb(window.NSB_REGISTRY);
+            return;
+          }
+          if (Date.now() - start < maxMs) {
+            setTimeout(check, 50);
+          } else {
+            cb(null);
+          }
+        }
+        check();
+      }
+
+      function getFeaturedTools(R) {
+        if (!R || !R.TOOLS) return [];
+        var featured = (R.FEATURED_TOOLS || []).map(function(s) { return R.getToolBySlug(s); }).filter(Boolean);
+        return featured.length ? featured : R.TOOLS.slice(0, 6);
+      }
+
+      function filterTools(R, query, categoryFilter) {
+        if (!R || !R.TOOLS) return [];
+        var list = R.TOOLS;
+        var searchQ = (query || "").trim();
+
+        if (searchQ) {
+          var lower = searchQ.toLowerCase();
+          var catMatch = /^category:(\w+)$/i.exec(lower);
+          if (catMatch) {
+            list = R.getToolsByCategory(catMatch[1]) || [];
+            searchQ = "";
+          } else {
+            list = list.filter(function(t) {
+              return (t.name || "").toLowerCase().indexOf(lower) >= 0 ||
+                (t.description || "").toLowerCase().indexOf(lower) >= 0 ||
+                (t.tags || []).some(function(tag) { return tag.toLowerCase().indexOf(lower) >= 0; });
+            });
+          }
+        }
+
+        if (categoryFilter && categoryFilter.trim()) {
+          list = list.filter(function(t) { return t.category === categoryFilter.trim(); });
+        }
+
+        return list;
+      }
+
+      function renderTools(tools, container) {
+        if (!container) return;
+        if (!window.NSB_TOOL_CARD || !window.NSB_TOOL_CARD.render) {
+          container.innerHTML = '<p class="search-no-results">Registry not loaded. Check console.</p>';
+          return;
+        }
+        container.innerHTML = tools.length
+          ? tools.map(function(t) { return window.NSB_TOOL_CARD.render(t); }).join("")
+          : '<p class="search-no-results">No tools match your search.</p>';
+      }
+
+      function renderByCategory(R) {
+        var container = document.getElementById("nsb-by-category");
+        if (!container || !R) return;
+        var query = (window.NSB_SEARCH_QUERY || "").trim();
+        var categoryFilter = window.NSB_CATEGORY_FILTER || "";
+
+        var tools = R.TOOLS;
+        if (query) {
+          var lower = query.toLowerCase();
+          tools = tools.filter(function(t) {
+            return (t.name || "").toLowerCase().indexOf(lower) >= 0 ||
+              (t.description || "").toLowerCase().indexOf(lower) >= 0 ||
+              (t.tags || []).some(function(tag) { return tag.toLowerCase().indexOf(lower) >= 0; });
+          });
+        }
+        if (categoryFilter) {
+          tools = tools.filter(function(t) { return t.category === categoryFilter; });
+        }
+
+        var byCat = {};
+        (R.CATEGORIES || []).forEach(function(c) {
+          var catTools = tools.filter(function(t) { return t.category === c.slug; });
+          if (catTools.length) byCat[c.slug] = { cat: c, tools: catTools };
+        });
+
+        container.innerHTML = Object.keys(byCat).map(function(key) {
+          var item = byCat[key];
+          return '<div class="category-section"><h3>' + item.cat.name + '</h3><div class="tool-grid">' +
+            item.tools.map(function(t) { return window.NSB_TOOL_CARD.render(t); }).join("") + '</div></div>';
+        }).join("");
+      }
+
+      function applyFilters(R) {
+        var query = (window.NSB_SEARCH_QUERY || "").trim();
+        var categoryFilter = window.NSB_CATEGORY_FILTER || "";
+        var allEl = document.getElementById("nsb-all-tools");
+        var byCatEl = document.getElementById("nsb-by-category");
+        var featuredEl = document.getElementById("nsb-featured");
+        var viewCatBtn = document.getElementById("nsb-view-category");
+
+        var isByCategory = viewCatBtn && viewCatBtn.getAttribute("aria-pressed") === "true";
+        var filtered = filterTools(R, query, categoryFilter);
+
+        if (featuredEl && R) {
+          featuredEl.style.display = (query || categoryFilter) ? "none" : "";
+          if (!query && !categoryFilter) {
+            var featured = getFeaturedTools(R);
+            featuredEl.innerHTML = featured.length ? featured.map(function(t) { return window.NSB_TOOL_CARD.render(t); }).join("") : '<p class="search-no-results">Registry not loaded. Check console.</p>';
+          }
+        }
+
+        if (isByCategory && byCatEl && R) {
+          if (allEl) allEl.style.display = "none";
+          byCatEl.style.display = "";
+          renderByCategory(R);
+        } else {
+          if (allEl) {
+            allEl.style.display = "";
+            renderTools(filtered, allEl);
+          }
+          if (byCatEl) byCatEl.style.display = "none";
+        }
+      }
+
+      function runHomeInit(R) {
+        if (!R) {
+          var errMsg = '<p class="search-no-results">Registry not loaded. Check console.</p>';
+          var fe = document.getElementById("nsb-featured");
+          var ce = document.getElementById("nsb-categories");
+          var ae = document.getElementById("nsb-all-tools");
+          if (fe) fe.innerHTML = errMsg;
+          if (ce) ce.innerHTML = errMsg;
+          if (ae) ae.innerHTML = errMsg;
+          return;
+        }
+
+        var featured = getFeaturedTools(R);
+        var featuredEl = document.getElementById("nsb-featured");
+        if (featuredEl) {
+          featuredEl.innerHTML = featured.length ? featured.map(function(t) { return window.NSB_TOOL_CARD.render(t); }).join("") : '<p class="search-no-results">No featured tools.</p>';
+        }
+
+        window.NSB_ON_SEARCH = function() { applyFilters(R); };
+        window.NSB_ON_SEARCH();
+
+        var cats = R.CATEGORIES || [];
+        var catsEl = document.getElementById("nsb-categories");
+        if (catsEl) {
+          catsEl.innerHTML = cats.length ? cats.map(function(c) {
+            var count = (R.getToolsByCategory(c.slug) || []).length;
+            return '<a href="/categories/' + c.slug + '/" class="category-tile" data-category="' + c.slug + '">' +
+              '<div class="category-tile-header"><span class="category-tile-name">' + c.name + '</span><span class="badge">' + count + '</span></div>' +
+              '<p class="category-tile-desc">' + (c.description || "") + '</p>' +
+              '<div class="category-tile-footer"><span class="category-tile-link">Browse &rarr;</span></div></a>';
+          }).join("") : '<p class="search-no-results">No categories.</p>';
+        }
+
+        var recentEl = document.getElementById("nsb-recent-list");
+        if (recentEl) {
+          var recent = (window.NSB_UTILS && window.NSB_UTILS.storage) ? window.NSB_UTILS.storage.get("nsb_recent", []) : [];
+          var recentHtml = recent.length ? recent.slice(0, 5).map(function(s) {
+            var t = R.getToolBySlug(s);
+            return t ? '<li><a href="' + t.path + '">' + t.name + '</a></li>' : "";
+          }).filter(Boolean).join("") : "";
+          recentEl.innerHTML = recentHtml || '<li class="search-no-results">Use a tool to see it here.</li>';
+        }
+
+        var heroSearch = document.getElementById("nsb-hero-search");
+        if (heroSearch) {
+          heroSearch.value = window.NSB_SEARCH_QUERY || "";
+          (function() {
+            var debounced = (window.NSB_UTILS && window.NSB_UTILS.debounce) ? window.NSB_UTILS.debounce(function() {
+              window.NSB_SEARCH_QUERY = heroSearch.value.trim();
+              if (typeof window.NSB_ON_SEARCH === "function") window.NSB_ON_SEARCH();
+              var hs = document.getElementById("nsb-search");
+              if (hs && hs.value !== heroSearch.value) hs.value = heroSearch.value;
+            }, 300) : function() {
+              window.NSB_SEARCH_QUERY = heroSearch.value.trim();
+              if (typeof window.NSB_ON_SEARCH === "function") window.NSB_ON_SEARCH();
+            };
+            heroSearch.addEventListener("input", debounced);
+          })();
+        }
+
+        var chipBtns = document.querySelectorAll(".chip-row .chip");
+        for (var i = 0; i < chipBtns.length; i++) {
+          chipBtns[i].addEventListener("click", function() {
+            var row = document.querySelectorAll(".chip-row .chip");
+            for (var j = 0; j < row.length; j++) row[j].setAttribute("aria-pressed", "false");
+            this.setAttribute("aria-pressed", "true");
+            window.NSB_CATEGORY_FILTER = this.getAttribute("data-category") || "";
+            if (typeof window.NSB_ON_SEARCH === "function") window.NSB_ON_SEARCH();
+          });
+        }
+
+        var viewAllBtn = document.getElementById("nsb-view-all");
+        var viewCatBtn = document.getElementById("nsb-view-category");
+        if (viewAllBtn) viewAllBtn.addEventListener("click", function() {
+          viewAllBtn.setAttribute("aria-pressed", "true");
+          if (viewCatBtn) viewCatBtn.setAttribute("aria-pressed", "false");
+          var allToolsEl = document.getElementById("nsb-all-tools");
+          var byCatEl = document.getElementById("nsb-by-category");
+          if (allToolsEl) allToolsEl.style.display = "";
+          if (byCatEl) byCatEl.style.display = "none";
+          applyFilters(R);
+        });
+        if (viewCatBtn) viewCatBtn.addEventListener("click", function() {
+          viewCatBtn.setAttribute("aria-pressed", "true");
+          if (viewAllBtn) viewAllBtn.setAttribute("aria-pressed", "false");
+          var allToolsEl = document.getElementById("nsb-all-tools");
+          var byCatEl = document.getElementById("nsb-by-category");
+          if (allToolsEl) allToolsEl.style.display = "none";
+          if (byCatEl) byCatEl.style.display = "";
+          renderByCategory(R);
+        });
+
+        var headerSearch = document.getElementById("nsb-search");
+        if (headerSearch) {
+          headerSearch.addEventListener("input", function() {
+            var heroSearch = document.getElementById("nsb-hero-search");
+            if (heroSearch && heroSearch.value !== headerSearch.value) heroSearch.value = headerSearch.value;
+          });
+        }
+
+        var ld = {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "NSB Tools",
+          "url": base + "/",
+          "description": "Fast, client-side tools for creators, writers, and professionals.",
+          "potentialAction": { "@type": "SearchAction", "target": base + "/?q={search_term_string}", "query-input": "required name=search_term_string" }
+        };
+        var ldScript = document.createElement("script");
+        ldScript.type = "application/ld+json";
+        ldScript.textContent = JSON.stringify(ld);
+        document.head.appendChild(ldScript);
+      }
+
+      function domReady() {
+        waitForDeps(1000, function(R) {
+          runHomeInit(R);
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", domReady);
+      } else {
+        domReady();
+      }
+    })();
+  </script>
+</body>
+</html>
