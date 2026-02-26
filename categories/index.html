@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>Categories | NSB Tools</title>
+  <meta name="description" content="Browse NSB Tools by category: Social, Writing, Career, Business, Repurpose.">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/categories/">
+  <meta property="og:title" content="Categories | NSB Tools">
+  <meta property="og:description" content="Browse tools by category.">
+  <meta property="og:url" content="https://tools.nextstepsbeyond.online/categories/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Categories | NSB Tools">
+  <meta name="twitter:description" content="Browse tools by category.">
+  <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"},{"@type":"ListItem","position":2,"name":"Categories","item":"https://tools.nextstepsbeyond.online/categories/"}]}</script>
+</head>
+<body>
+  <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
+  <header id="nsb-header"></header>
+  <main class="layout">
+    <nav class="breadcrumb"><a href="/">Home</a><span>/</span> Categories</nav>
+    <h1>Categories</h1>
+    <p>Browse tools by category.</p>
+    <div id="nsb-categories" style="margin-top: 1.5rem;"></div>
+  </main>
+  <footer id="nsb-footer"></footer>
+  <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/components/modal.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const R = window.NSB_REGISTRY;
+      const el = document.getElementById("nsb-categories");
+      if (el && R) {
+        el.innerHTML = R.CATEGORIES.map(c => `
+          <div class="card" style="margin-bottom: 1rem;">
+            <h3><a href="/categories/${c.slug}/">${c.name}</a></h3>
+            <p>${c.description}</p>
+            <p><a href="/categories/${c.slug}/">View ${R.getToolsByCategory(c.slug).length} tools</a></p>
+          </div>
+        `).join("");
+      }
+    });
+  </script>
+</body>
+</html>

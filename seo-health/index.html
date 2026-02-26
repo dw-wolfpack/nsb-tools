@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>SEO Health | NSB Tools</title>
+  <meta name="description" content="Client-side SEO validation for NSB Tools. Run checks before deploy.">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/seo-health/">
+  <meta property="og:title" content="SEO Health | NSB Tools">
+  <meta property="og:description" content="Client-side SEO validation for NSB Tools.">
+  <meta property="og:url" content="https://tools.nextstepsbeyond.online/seo-health/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SEO Health | NSB Tools">
+  <meta name="twitter:description" content="Client-side SEO validation for NSB Tools.">
+  <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
+  <header id="nsb-header"></header>
+  <main class="layout layout--narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span> SEO Health</nav>
+    <h1>SEO Health</h1>
+    <p>Run client-side SEO checks before deploy. Fetches homepage, FAQ, a sample tool, category page, sitemap, and robots.txt from the same origin.</p>
+    <section class="section">
+      <h2>Checks</h2>
+      <ul>
+        <li>Single H1</li>
+        <li>Title 10-70 chars</li>
+        <li>Meta description 50-160 chars</li>
+        <li>Canonical starts with https://tools.nextstepsbeyond.online/</li>
+        <li>OG tags: title, description, url, image</li>
+        <li>Twitter tags: card, title, description, image</li>
+        <li>JSON-LD: SoftwareApplication + BreadcrumbList on tools; BreadcrumbList on FAQ/categories</li>
+        <li>Sitemap: urlset, /, /categories/, at least one tool, /faq/</li>
+        <li>robots.txt: Sitemap URL</li>
+      </ul>
+    </section>
+    <div class="btn-group" style="margin-bottom: 1rem;">
+      <button type="button" class="btn btn-primary" id="seo-run">Run checks</button>
+    </div>
+    <div id="seo-output" class="card" aria-live="polite">
+      <p class="search-no-results">Click Run checks to validate.</p>
+    </div>
+  </main>
+  <footer id="nsb-footer"></footer>
+  <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/seo-check.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const btn = document.getElementById("seo-run");
+      const out = document.getElementById("seo-output");
+      if (!btn || !out) return;
+      btn.addEventListener("click", async function () {
+        btn.disabled = true;
+        btn.textContent = "Running...";
+        out.innerHTML = "<p>Running checks...</p>";
+        try {
+          const results = await window.NSB_SEO_CHECK.run();
+          let html = "";
+          results.forEach(function (group) {
+            html += "<h3>" + (group.pageLabel || "Unknown") + "</h3>";
+            if (group.error) {
+              html += "<p class=\"seo-error\">" + group.error + "</p>";
+            } else if (group.results && group.results.length) {
+              html += "<ul class=\"seo-results\">";
+              group.results.forEach(function (r) {
+                const icon = r.pass ? '<span class="seo-pass" aria-label="pass">&#x2713;</span>' : '<span class="seo-fail" aria-label="fail">&#x2717;</span>';
+                html += "<li>" + icon + " " + r.label + ": " + (r.value || "") + "</li>";
+              });
+              html += "</ul>";
+            } else {
+              html += "<p>No results</p>";
+            }
+          });
+          out.innerHTML = html;
+        } catch (e) {
+          out.innerHTML = "<p class=\"seo-error\">Error: " + (e.message || "Unknown") + "</p>";
+        }
+        btn.disabled = false;
+        btn.textContent = "Run checks";
+      });
+    });
+  </script>
+</body>
+</html>

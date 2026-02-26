@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>Content Calendar Generator | NSB Tools</title>
+  <meta name="description" content="Generate a 1-week content calendar with post types and angles. Export to CSV. Free tool.">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/tools/content-calendar/">
+  <meta property="og:title" content="Content Calendar Generator | NSB Tools">
+  <meta property="og:description" content="Generate a 1-week content calendar. Export to CSV.">
+  <meta property="og:url" content="https://tools.nextstepsbeyond.online/tools/content-calendar/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Content Calendar Generator | NSB Tools">
+  <meta name="twitter:description" content="Generate a 1-week content calendar.">
+  <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Content Calendar Generator","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","url":"https://tools.nextstepsbeyond.online/tools/content-calendar/","description":"Generate 1-week content calendar."}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"},{"@type":"ListItem","position":2,"name":"Repurpose","item":"https://tools.nextstepsbeyond.online/categories/repurpose/"},{"@type":"ListItem","position":3,"name":"Content Calendar Generator","item":"https://tools.nextstepsbeyond.online/tools/content-calendar/"}]}</script>
+</head>
+<body>
+  <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
+  <header id="nsb-header"></header>
+  <main class="layout">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/repurpose/">Repurpose</a><span> / </span> Content Calendar Generator</nav>
+    <h1>Content Calendar Generator</h1>
+    <p>Generate a 1-week calendar table with post types/angles; export CSV.</p>
+    <div class="card" style="margin-top: 1.5rem;">
+      <h2>Inputs</h2>
+      <form id="nsb-form">
+        <div class="form-group">
+          <label for="niche">Niche / theme</label>
+          <input type="text" id="niche" name="niche" placeholder="productivity">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
+          <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
+        </div>
+      </form>
+    </div>
+    <div class="card" style="margin-top: 1rem;">
+      <h2>Output</h2>
+      <div id="nsb-output" class="output-area"></div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
+        <button type="button" class="btn btn-secondary" id="nsb-csv">Export CSV</button>
+        <button type="button" class="btn btn-secondary" id="nsb-save">Save output</button>
+        <button type="button" class="btn btn-secondary" id="nsb-clear">Clear</button>
+        <button type="button" class="btn btn-secondary" id="nsb-share">Share link</button>
+      </div>
+    </div>
+    <section class="pro-section"><h3>Pro features (coming soon)</h3><p>Pro unlocks 2-week and monthly calendars.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    <div id="nsb-tool-sections"></div>
+  </main>
+  <footer id="nsb-footer"></footer>
+  <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/components/tool-page-sections.js" defer></script>
+  <script src="/assets/js/components/modal.js" defer></script>
+  <script src="/assets/js/components/toast.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/tools/content-calendar/logic.js" defer></script>
+  <script src="/assets/js/tools/content-calendar/ui.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.NSB_TOOL_PAGE_SECTIONS) {
+        window.NSB_TOOL_PAGE_SECTIONS.inject("nsb-tool-sections", "content-calendar");
+      }
+    });
+  </script>
+</body>
+</html>
