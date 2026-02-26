@@ -300,9 +300,9 @@ const TOOL_PAGE_CONTENT = {
     relatedSlugs: ["hook-generator", "content-calendar", "repurpose-pack", "caption-generator"]
   },
   "linkedin-post-builder": {
-    whatItDoes: "Generates LinkedIn post drafts in short, medium, or long format with opener variants. Uses stance and topic to create professional, scroll-stopping posts.",
-    howToUse: ["Enter your stance or take.", "Enter the topic.", "Choose length (short, medium, long).", "Click Generate.", "Copy and edit for your voice."],
-    examples: ["Stance: remote work boosts productivity. Short: Remote work boosts productivity. That is it.", "Stance: meetings drain focus. Medium: Includes opener, body, CTA."],
+    whatItDoes: "Generates LinkedIn post drafts in short, medium, or long format with opener variants. Uses stance, topic, tone, stance style, and optional audience to create professional, scroll-stopping posts.",
+    howToUse: ["Enter your stance or take.", "Enter the topic.", "Choose length (short, medium, long).", "Pick tone (clean, professional, edgy, funny) and stance style (agree or contrarian).", "Optionally add audience (e.g. engineering leaders, founders).", "Click Generate.", "Copy and edit for your voice."],
+    examples: ["Stance: remote work boosts productivity. Tone: clean. Result: Quick thought opener, body, CTA.", "Stance: meetings drain focus. Stance style: contrarian. Result: Hot take or Unpopular opinion opener, punchy body.", "Audience: engineering leaders. Result: Topic tailored for that audience."],
     faq: [
       { q: "What length should I use?", a: "Short for quick takes; medium for thought leadership; long for deep dives." },
       { q: "Are the openers varied?", a: "Yes. Each generation uses different opener styles." },

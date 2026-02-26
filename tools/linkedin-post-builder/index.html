@@ -48,6 +48,26 @@
             <option value="long">Long</option>
           </select>
         </div>
+        <div class="form-group">
+          <label for="tone">Tone</label>
+          <select id="tone" name="tone">
+            <option value="clean" selected>Clean</option>
+            <option value="professional">Professional</option>
+            <option value="edgy">Edgy</option>
+            <option value="funny">Funny</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="stanceStyle">Stance style</label>
+          <select id="stanceStyle" name="stanceStyle">
+            <option value="agree" selected>Agree</option>
+            <option value="contrarian">Contrarian</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="audience">Audience (optional)</label>
+          <input type="text" id="audience" name="audience" placeholder="engineering leaders, founders, creators">
+        </div>
         <div class="btn-group">
           <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
           <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
