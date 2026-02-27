@@ -41,6 +41,21 @@ the commit on any failure.
 
 Domain: tools.nextstepsbeyond.online
 
+## Verifying cache headers (Cloudflare Pages)
+
+After deploy, confirm `_headers` is applied by checking response headers:
+
+```bash
+curl -I https://tools.nextstepsbeyond.online/assets/css/styles.css
+curl -I https://tools.nextstepsbeyond.online/assets/js/main.js
+```
+
+Expected: `Cache-Control: public, max-age=31536000, immutable` for `/assets/*`.
+
+For HTML: `curl -I https://tools.nextstepsbeyond.online/` should show `Cache-Control: public, max-age=300`. For embeds: `/embed/*` uses `max-age=3600`.
+
+See [Cloudflare hardening](docs/cloudflare-hardening/) for WAF and security recommendations (docs only; no config in repo).
+
 ## SEO checklist
 
 - Update `sitemap.xml` when adding new tools or pages.

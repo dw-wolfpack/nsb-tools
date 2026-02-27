@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>Cloudflare hardening | NSB Tools</title>
+  <meta name="description" content="Recommended WAF rules and security settings for tools.nextstepsbeyond.online on Cloudflare Pages.">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/docs/cloudflare-hardening/">
+  <meta property="og:title" content="Cloudflare hardening | NSB Tools">
+  <meta property="og:description" content="Recommended WAF rules for tools.nextstepsbeyond.online.">
+  <meta property="og:url" content="https://tools.nextstepsbeyond.online/docs/cloudflare-hardening/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cloudflare hardening | NSB Tools">
+  <meta name="twitter:description" content="Recommended WAF rules for tools.nextstepsbeyond.online.">
+  <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
+  <header id="nsb-header"></header>
+  <main class="layout layout--narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span> Docs <span> / </span> Cloudflare hardening</nav>
+    <h1>Cloudflare hardening</h1>
+    <p>We cannot configure Cloudflare from this repo. Use the dashboard to add the following. All rules use <strong>Managed Challenge</strong> (not block) so real browsers can pass.</p>
+
+    <h2>Rule 1: Challenge common bot user agents</h2>
+    <p>Reduces junk traffic and protects the origin from scripted hits.</p>
+    <ul>
+      <li><strong>If</strong> (http.user_agent contains "curl" OR "python" OR "wget" OR "scrapy" OR "httpclient") AND hostname equals <code>tools.nextstepsbeyond.online</code></li>
+      <li><strong>Then</strong> Managed Challenge</li>
+    </ul>
+
+    <h2>Rule 2: Challenge common exploit paths</h2>
+    <p>These paths do not exist on this site. Challenging them reduces noise and blocks automated probes.</p>
+    <ul>
+      <li><strong>If</strong> URI path matches one of: <code>/wp-admin</code>, <code>/wp-login.php</code>, <code>/.env</code>, <code>/phpmyadmin</code>, <code>/server-status</code>, <code>/xmlrpc.php</code></li>
+      <li><strong>Then</strong> Managed Challenge</li>
+    </ul>
+
+    <p><a href="/">Back to tools</a></p>
+  </main>
+  <footer id="nsb-footer"></footer>
+  <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/components/modal.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

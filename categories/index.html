@@ -43,13 +43,17 @@
       const R = window.NSB_REGISTRY;
       const el = document.getElementById("nsb-categories");
       if (el && R) {
-        el.innerHTML = R.CATEGORIES.map(c => `
+        el.innerHTML = R.CATEGORIES.map(c => {
+          var list = R.getToolsByCategory(c.slug) || [];
+          var count = list.filter(function(t) { return window.NSB_DEBUG_HIDDEN || !t.isHidden; }).length;
+          return `
           <div class="card" style="margin-bottom: 1rem;">
             <h3><a href="/categories/${c.slug}/">${c.name}</a></h3>
             <p>${c.description}</p>
-            <p><a href="/categories/${c.slug}/">View ${R.getToolsByCategory(c.slug).length} tools</a></p>
+            <p><a href="/categories/${c.slug}/">View ${count} tools</a></p>
           </div>
-        `).join("");
+        `;
+        }).join("");
       }
     });
   </script>

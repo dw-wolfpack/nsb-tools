@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "seo:audit": "node scripts/seo-audit.mjs"
   }
 }
