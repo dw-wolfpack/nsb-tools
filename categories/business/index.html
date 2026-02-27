@@ -51,7 +51,7 @@
     document.addEventListener("DOMContentLoaded", function() {
       const R = window.NSB_REGISTRY;
       const el = document.getElementById("nsb-tools");
-      if (el && R && window.NSB_TOOL_CARD) el.innerHTML = R.getToolsByCategory("business").map(t => window.NSB_TOOL_CARD.render(t)).join("");
+      if (el && R && window.NSB_TOOL_CARD) el.innerHTML = R.getToolsByCategory("business").filter(function(t) { return !t.isHidden; }).map(function(t) { return window.NSB_TOOL_CARD.render(t); }).join("");
     });
   </script>
 </body>

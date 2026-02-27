@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>Freelance Rate Calculator | NSB Tools</title>
+  <meta name="description" content="Calculate freelance hourly, day, and project rates from income goals and billable hours. Free career tool.">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/tools/freelance-rate-calculator/">
+  <meta property="og:title" content="Freelance Rate Calculator | NSB Tools">
+  <meta property="og:description" content="Calculate freelance rates from income goals.">
+  <meta property="og:url" content="https://tools.nextstepsbeyond.online/tools/freelance-rate-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Freelance Rate Calculator | NSB Tools">
+  <meta name="twitter:description" content="Calculate freelance rates from income goals.">
+  <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Freelance Rate Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Web","url":"https://tools.nextstepsbeyond.online/tools/freelance-rate-calculator/","description":"Calculate freelance rates from income goals."}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"},{"@type":"ListItem","position":2,"name":"Career","item":"https://tools.nextstepsbeyond.online/categories/career/"},{"@type":"ListItem","position":3,"name":"Freelance Rate Calculator","item":"https://tools.nextstepsbeyond.online/tools/freelance-rate-calculator/"}]}</script>
+</head>
+<body>
+  <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
+  <header id="nsb-header"></header>
+  <main class="layout">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/career/">Career</a><span> / </span> Freelance Rate Calculator</nav>
+    <h1>Freelance Rate Calculator</h1>
+    <p>Calculate hourly, day, and project rates from desired income and billable hours.</p>
+    <div class="card" style="margin-top: 1.5rem;">
+      <h2>Inputs</h2>
+      <form id="nsb-form">
+        <div class="form-group">
+          <label for="desiredAnnualIncome">Desired annual income (after tax) $</label>
+          <input type="number" id="desiredAnnualIncome" name="desiredAnnualIncome" placeholder="80000" min="0" step="1000">
+        </div>
+        <div class="form-group">
+          <label for="annualExpenses">Annual expenses $</label>
+          <input type="number" id="annualExpenses" name="annualExpenses" placeholder="15000" min="0" step="1000">
+        </div>
+        <div class="form-group">
+          <label for="billableHoursPerWeek">Billable hours per week</label>
+          <input type="number" id="billableHoursPerWeek" name="billableHoursPerWeek" placeholder="25" min="1" max="80" step="0.5">
+        </div>
+        <div class="form-group">
+          <label for="vacationWeeks">Vacation weeks</label>
+          <input type="number" id="vacationWeeks" name="vacationWeeks" value="3" min="0" max="20">
+        </div>
+        <div class="form-group">
+          <label for="utilizationRate">Utilization rate <button type="button" class="tip-btn" data-tooltip-key="utilization" aria-label="What is utilization rate?">?</button> %</label>
+          <input type="number" id="utilizationRate" name="utilizationRate" value="70" min="20" max="100" step="5">
+        </div>
+        <div class="form-group">
+          <label for="bufferPercent">Buffer <button type="button" class="tip-btn" data-tooltip-key="buffer" aria-label="What is buffer?">?</button> % (optional)</label>
+          <input type="number" id="bufferPercent" name="bufferPercent" value="20" min="0" max="50" step="5">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="nsb-generate">Calculate</button>
+        </div>
+      </form>
+    </div>
+    <div class="card" style="margin-top: 1rem;">
+      <h2>Output</h2>
+      <div id="nsb-output" class="output-area"></div>
+      <div id="nsb-benchmarks" class="benchmarks"></div>
+      <p class="disclaimer">Rough estimator only. Not tax advice.</p>
+    </div>
+    <div id="nsb-scenarios"></div>
+    <div id="nsb-share-embed"></div>
+    <section class="pro-section"><h3>Pro features (coming soon)</h3><p>Pro unlocks unlimited saved scenarios and compare up to 4.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    <div id="nsb-tool-sections"></div>
+  </main>
+  <footer id="nsb-footer"></footer>
+  <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/components/scenario-builder.js" defer></script>
+  <script src="/assets/js/components/share-embed.js" defer></script>
+  <script src="/assets/js/components/tool-page-sections.js" defer></script>
+  <script src="/assets/js/components/modal.js" defer></script>
+  <script src="/assets/js/components/toast.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/glossary.js" defer></script>
+  <script src="/assets/js/components/tooltip.js" defer></script>
+  <script src="/assets/js/tools/freelance-rate-calculator/logic.js" defer></script>
+  <script src="/assets/js/tools/freelance-rate-calculator/ui.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.NSB_TOOL_PAGE_SECTIONS) {
+        window.NSB_TOOL_PAGE_SECTIONS.inject("nsb-tool-sections", "freelance-rate-calculator");
+      }
+      if (window.NSB_TOOLTIP) window.NSB_TOOLTIP.attach(document);
+    });
+  </script>
+</body>
+</html>

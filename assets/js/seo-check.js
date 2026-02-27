@@ -142,11 +142,13 @@
     const hasCategories = text.includes(BASE + "/categories/");
     const hasTool = /\/tools\/[^/]+\//.test(text);
     const hasFaq = text.includes(BASE + "/faq/");
-    const ok = hasUrlset && hasRoot && hasCategories && hasTool && hasFaq;
+    const hasGlossary = text.includes(BASE + "/glossary/");
+    const noEmbed = !text.includes(BASE + "/embed/");
+    const ok = hasUrlset && hasRoot && hasCategories && hasTool && hasFaq && hasGlossary && noEmbed;
     return {
       pass: ok,
-      label: "Sitemap (urlset, /, /categories/, tool URL, /faq/)",
-      value: ok ? "All required URLs present" : [hasUrlset ? "" : "urlset", hasRoot ? "" : "/", hasCategories ? "" : "categories", hasTool ? "" : "tool", hasFaq ? "" : "faq"].filter(Boolean).join(", ") || "OK",
+      label: "Sitemap (urlset, /, /categories/, tool, /faq/, /glossary/, no /embed/)",
+      value: ok ? "All required URLs present" : [hasUrlset ? "" : "urlset", hasRoot ? "" : "/", hasCategories ? "" : "categories", hasTool ? "" : "tool", hasFaq ? "" : "faq", hasGlossary ? "" : "glossary", noEmbed ? "" : "exclude embed"].filter(Boolean).join(", ") || "OK",
       details: text.slice(0, 200) + "..."
     };
   }

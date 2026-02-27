@@ -10,6 +10,26 @@ python -m http.server 8000
 
 Then open http://localhost:8000/
 
+## Unit tests
+
+One test file per calculator under `tests/`. Requires Node 18+, no external dependencies.
+
+```bash
+npm test
+```
+
+Uses Node's built-in `node --test` runner. Logic files (browser-style IIFEs) are loaded
+via `tests/load-logic.js`, which stubs `globalThis.window.NSB_UTILS` before each import.
+
+## Pre-commit hook (one-time setup per clone)
+
+```bash
+bash scripts/setup-githooks.sh
+```
+
+Configures `core.hooksPath=.githooks`. The pre-commit hook runs `npm test` and blocks
+the commit on any failure.
+
 ## Deploy to Cloudflare Pages
 
 1. Connect your repo to Cloudflare Pages.

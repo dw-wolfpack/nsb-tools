@@ -57,9 +57,9 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const R = window.NSB_REGISTRY;
-      const tools = R ? R.getToolsByCategory("social") : [];
+      const tools = R ? R.getToolsByCategory("social").filter(function(t) { return !t.isHidden; }) : [];
       const el = document.getElementById("nsb-tools");
-      if (el && window.NSB_TOOL_CARD) el.innerHTML = tools.map(t => window.NSB_TOOL_CARD.render(t)).join("");
+      if (el && window.NSB_TOOL_CARD) el.innerHTML = tools.map(function(t) { return window.NSB_TOOL_CARD.render(t); }).join("");
       const ld = { "@context": "https://schema.org", "@type": "CollectionPage", "name": "Social / Creator Tools", "url": "https://tools.nextstepsbeyond.online/categories/social/" };
       const s = document.createElement("script"); s.type = "application/ld+json"; s.textContent = JSON.stringify(ld); document.head.appendChild(s);
     });

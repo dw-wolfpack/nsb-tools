@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/tools/burn-rate-runway-calculator/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="embed-page">
+  <div class="embed-header"><h2>Burn Rate Runway Calculator</h2><a href="https://tools.nextstepsbeyond.online/tools/burn-rate-runway-calculator/">Open full tool</a></div>
+  <main class="layout">
+    <div class="card"><h3>Inputs</h3>
+      <form id="nsb-form">
+        <div class="form-group"><label>Cash on hand $</label><input type="number" name="cashOnHand" placeholder="100000" min="0"></div>
+        <div class="form-group"><label>Monthly revenue $</label><input type="number" name="monthlyRevenue" placeholder="5000" min="0"></div>
+        <div class="form-group"><label>Monthly expenses $</label><input type="number" name="monthlyExpenses" placeholder="15000" min="0"></div>
+        <div class="form-group"><label>Revenue growth %</label><input type="number" name="revenueGrowthRate" placeholder="0" min="0"></div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+      </form>
+    </div>
+    <div class="card"><h3>Output</h3><div id="nsb-output" class="output-area"></div></div>
+    <p style="font-size:12px;margin-top:8px;"><a href="https://tools.nextstepsbeyond.online/tools/burn-rate-runway-calculator/">Calculator by NSB Tools</a></p>
+  </main>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/tools/burn-rate-runway-calculator/logic.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("nsb-form");
+      var out = document.getElementById("nsb-output");
+      var u = window.NSB_UTILS || {};
+      var fmt = u.formatCurrency || function (n) { return "$" + Math.round(n).toLocaleString(); };
+      function run() {
+        var inp = {}; ["cashOnHand","monthlyRevenue","monthlyExpenses","revenueGrowthRate"].forEach(function(k){ var e=form.querySelector("[name="+k+"]"); inp[k]=e?e.value:""; });
+        var res = window.NSB_BURN_RATE && window.NSB_BURN_RATE.calculate(inp);
+        if (!res || res.error) { out.innerHTML = res && res.error ? res.error : "Enter cash and expenses."; return; }
+        out.innerHTML = "Net burn: " + fmt(res.netBurn) + "/mo | Runway: " + (res.runwayLabel || (res.runwayMonths != null ? res.runwayMonths.toFixed(1) + " months" : "∞"));
+      }
+      form.addEventListener("submit", function(e){ e.preventDefault(); run(); });
+      form.addEventListener("input", u.debounce ? u.debounce(run, 400) : run);
+      if (u.decodeParams) { var q = u.decodeParams(window.location.search); if (Object.keys(q).length) { Object.keys(q).forEach(function(k){ var e=form.querySelector("[name="+k+"]"); if (e) e.value = q[k]; }); run(); } }
+    });
+  </script>
+</body>
+</html>

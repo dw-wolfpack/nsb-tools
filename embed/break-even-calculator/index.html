@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/tools/break-even-calculator/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="embed-page">
+  <div class="embed-header"><h2>Break-even Calculator</h2><a href="https://tools.nextstepsbeyond.online/tools/break-even-calculator/">Open full tool</a></div>
+  <main class="layout">
+    <div class="card"><h3>Inputs</h3>
+      <form id="nsb-form">
+        <div class="form-group"><label>Mode</label><select name="mode"><option value="service">Service</option><option value="ecommerce">Ecommerce</option><option value="saas">SaaS</option></select></div>
+        <div class="form-group mode-svc"><label>Fixed costs $/mo</label><input type="number" name="fixedCostsPerMonth" placeholder="5000" min="0"></div>
+        <div class="form-group mode-svc"><label>Variable cost/unit $</label><input type="number" name="variableCostPerUnit" placeholder="20" min="0"></div>
+        <div class="form-group mode-svc"><label>Price/unit $</label><input type="number" name="pricePerUnit" placeholder="80" min="0"></div>
+        <div class="form-group mode-saas" style="display:none"><label>Gross margin %</label><input type="number" name="grossMargin" value="80"></div>
+        <div class="form-group mode-saas" style="display:none"><label>ARPA $/mo</label><input type="number" name="arpa" placeholder="50" min="0"></div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+      </form>
+    </div>
+    <div class="card"><h3>Output</h3><div id="nsb-output" class="output-area"></div></div>
+    <p style="font-size:12px;margin-top:8px;"><a href="https://tools.nextstepsbeyond.online/tools/break-even-calculator/">Calculator by NSB Tools</a></p>
+  </main>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/tools/break-even-calculator/logic.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("nsb-form");
+      var out = document.getElementById("nsb-output");
+      var m = form.querySelector("[name=mode]");
+      function toggleMode(){ var isSaas = m&&m.value==="saas"; form.querySelectorAll(".mode-svc").forEach(function(el){ el.style.display=isSaas?"none":"block"; }); form.querySelectorAll(".mode-saas").forEach(function(el){ el.style.display=isSaas?"block":"none"; }); }
+      if(m) { m.addEventListener("change", toggleMode); toggleMode(); }
+      var u = window.NSB_UTILS || {};
+      var fmt = u.formatCurrency || function (n) { return "$" + Math.round(n).toLocaleString(); };
+      function run() {
+        var inp = {}; ["mode","fixedCostsPerMonth","variableCostPerUnit","pricePerUnit","grossMargin","arpa"].forEach(function(k){ var e=form.querySelector("[name="+k+"]"); inp[k]=e?e.value:""; });
+        var res = window.NSB_BREAKEVEN && window.NSB_BREAKEVEN.calculate(inp);
+        if (!res || res.error) { out.innerHTML = res?res.error:"Enter inputs."; return; }
+        if (res.mode==="saas") out.innerHTML = "Customers: " + res.customersToBreakEven + " | MRR: " + fmt(res.mrrToBreakEven);
+        else out.innerHTML = "Units: " + res.unitsToBreakEven + " | Revenue: " + fmt(res.revenueToBreakEven);
+      }
+      form.addEventListener("submit", function(e){ e.preventDefault(); run(); });
+      form.addEventListener("input", u.debounce ? u.debounce(run, 400) : run);
+      if (u.decodeParams) { var q = u.decodeParams(window.location.search); if (Object.keys(q).length) { Object.keys(q).forEach(function(k){ var e=form.querySelector("[name="+k+"]"); if (e) e.value = q[k]; }); toggleMode(); run(); } }
+    });
+  </script>
+</body>
+</html>

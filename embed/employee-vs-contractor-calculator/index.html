@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/tools/employee-vs-contractor-calculator/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="embed-page">
+  <div class="embed-header"><h2>Employee vs Contractor Cost Calculator</h2><a href="https://tools.nextstepsbeyond.online/tools/employee-vs-contractor-calculator/">Open full tool</a></div>
+  <main class="layout">
+    <div class="card"><h3>Inputs</h3>
+      <form id="nsb-form">
+        <input type="hidden" name="employeeMode" value="salary">
+        <div class="form-group"><label>Employee salary $</label><input type="number" name="employeeSalary" placeholder="80000" min="0"></div>
+        <div class="form-group"><label>Annual hours</label><input type="number" name="annualHours" value="2000" min="0"></div>
+        <div class="form-group"><label>Benefits %</label><input type="number" name="benefitsPercent" value="25"></div>
+        <div class="form-group"><label>Payroll tax %</label><input type="number" name="payrollTaxPercent" value="7.65"></div>
+        <div class="form-group"><label>Overhead %</label><input type="number" name="overheadPercent" value="10"></div>
+        <div class="form-group"><label>Contractor hourly $</label><input type="number" name="contractorHourlyRate" placeholder="120" min="0"></div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+      </form>
+    </div>
+    <div class="card"><h3>Output</h3><div id="nsb-output" class="output-area"></div></div>
+    <p style="font-size:12px;margin-top:8px;"><a href="https://tools.nextstepsbeyond.online/tools/employee-vs-contractor-calculator/">Calculator by NSB Tools</a></p>
+  </main>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/tools/employee-vs-contractor-calculator/logic.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("nsb-form");
+      var out = document.getElementById("nsb-output");
+      var u = window.NSB_UTILS || {};
+      var fmt = u.formatCurrency || function (n) { return "$" + Math.round(n).toLocaleString(); };
+      function run() {
+        var inp = {}; ["employeeMode","employeeSalary","annualHours","benefitsPercent","payrollTaxPercent","overheadPercent","contractorHourlyRate"].forEach(function(k){ var e=form.querySelector("[name="+k+"]"); inp[k]=e?e.value:""; });
+        var res = window.NSB_EMPLOYEE_CONTRACTOR && window.NSB_EMPLOYEE_CONTRACTOR.calculate(inp);
+        if (!res || res.error) { out.innerHTML = res && res.error ? res.error : "Enter inputs."; return; }
+        out.innerHTML = "Employee cost: " + fmt(res.trueEmployeeAnnualCost) + " | Contractor: " + fmt(res.contractorAnnualCost) + " | Breakeven: " + (res.breakevenHours ? Math.round(res.breakevenHours) + " hrs" : "-");
+      }
+      form.addEventListener("submit", function(e){ e.preventDefault(); run(); });
+      form.addEventListener("input", u.debounce ? u.debounce(run, 400) : run);
+      if (u.decodeParams) { var q = u.decodeParams(window.location.search); if (Object.keys(q).length) { Object.keys(q).forEach(function(k){ var e=form.querySelector("[name="+k+"]"); if (e) e.value = q[k]; }); run(); } }
+    });
+  </script>
+</body>
+</html>
