@@ -65,13 +65,17 @@
 
         // Sample schedule: first 24 months, then yearly
         if (schedule.length < 24 || months % 12 === 0 || bal <= 0) {
+          const pay = Number(totalPay);
+          const pPaid = Number(prinPay);
+          const iPaid = Number(interestPay);
+          const eBal = Number(Math.max(0, endingBal));
           schedule.push({
             month: months,
             startingBalance: startingBal,
-            payment: totalPay,
-            principalPaid: prinPay,
-            interestPaid: interestPay,
-            endingBalance: Math.max(0, endingBal)
+            payment: pay,
+            principalPaid: pPaid,
+            interestPaid: iPaid,
+            endingBalance: eBal
           });
         }
       }

@@ -34,6 +34,7 @@
     var shareEl = document.getElementById("nsb-share-embed");
     var u = window.NSB_UTILS || {};
     var fmt = u.formatCurrency || function (n) { return "$" + Math.round(n).toLocaleString(); };
+    function moneyOrDash(v) { return Number.isFinite(v) ? fmt(v) : "—"; }
     var lastCopyable = "";
 
     function run() {
@@ -64,13 +65,19 @@
           if (res.schedule.length <= maxRows) {
             lastCopyable += "\n\nSchedule:\nMonth\tPayment\tPrincipal\tInterest\tBalance";
             res.schedule.forEach(function (r) {
-              lastCopyable += "\n" + r.month + "\t" + fmt(r.payment) + "\t" + fmt(r.principalPaid) + "\t" + fmt(r.interestPaid) + "\t" + fmt(r.endingBalance);
+              var pPaid = r.principalPaid != null ? r.principalPaid : r.principal;
+              var iPaid = r.interestPaid != null ? r.interestPaid : r.interest;
+              var bal = r.endingBalance != null ? r.endingBalance : r.balance;
+              lastCopyable += "\n" + r.month + "\t" + moneyOrDash(r.payment) + "\t" + moneyOrDash(pPaid) + "\t" + moneyOrDash(iPaid) + "\t" + moneyOrDash(bal);
             });
           } else {
             lastCopyable += "\n\nSchedule (first " + maxRows + " months):\nMonth\tPayment\tPrincipal\tInterest\tBalance";
             for (var i = 0; i < maxRows && i < res.schedule.length; i++) {
               var r = res.schedule[i];
-              lastCopyable += "\n" + r.month + "\t" + fmt(r.payment) + "\t" + fmt(r.principalPaid) + "\t" + fmt(r.interestPaid) + "\t" + fmt(r.endingBalance);
+              var pPaid = r.principalPaid != null ? r.principalPaid : r.principal;
+              var iPaid = r.interestPaid != null ? r.interestPaid : r.interest;
+              var bal = r.endingBalance != null ? r.endingBalance : r.balance;
+              lastCopyable += "\n" + r.month + "\t" + moneyOrDash(r.payment) + "\t" + moneyOrDash(pPaid) + "\t" + moneyOrDash(iPaid) + "\t" + moneyOrDash(bal);
             }
             lastCopyable += "\n... Schedule shown on page.";
           }
@@ -84,7 +91,11 @@
           if (res.schedule && res.schedule.length) {
             var tbl = '<table class="compare-table"><thead><tr><th>Month</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead><tbody>';
             res.schedule.forEach(function (row) {
-              tbl += "<tr><td>" + row.month + "</td><td>" + fmt(row.payment) + "</td><td>" + fmt(row.principalPaid) + "</td><td>" + fmt(row.interestPaid) + "</td><td>" + fmt(row.endingBalance) + "</td></tr>";
+              var pay = row.payment;
+              var pPaid = row.principalPaid != null ? row.principalPaid : row.principal;
+              var iPaid = row.interestPaid != null ? row.interestPaid : row.interest;
+              var bal = row.endingBalance != null ? row.endingBalance : row.balance;
+              tbl += "<tr><td>" + row.month + "</td><td>" + moneyOrDash(pay) + "</td><td>" + moneyOrDash(pPaid) + "</td><td>" + moneyOrDash(iPaid) + "</td><td>" + moneyOrDash(bal) + "</td></tr>";
             });
             tbl += "</tbody></table>";
             amortEl.innerHTML = tbl;
