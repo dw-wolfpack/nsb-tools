@@ -166,6 +166,11 @@ a:hover {
 }
 
 /* Header */
+#nsb-header {
+  /* Reserve space so injected header does not shift layout */
+  min-height: 3.5rem;
+}
+
 .header {
   background: rgba(6, 11, 20, 0.92);
   backdrop-filter: blur(8px);
@@ -353,6 +358,8 @@ a:hover {
   flex-wrap: wrap;
   gap: var(--space-sm);
   margin-bottom: var(--space-lg);
+  /* Keep row height stable even before JS binds filters */
+  min-height: 2.5rem;
 }
 
 .chip {
@@ -501,6 +508,15 @@ a:hover {
 
 @media (min-width: 64em) {
   .tool-grid--featured { grid-template-columns: repeat(4, 1fr); }
+}
+
+.tool-grid,
+.tool-grid--featured,
+#nsb-categories,
+#nsb-by-category,
+#nsb-tools {
+  /* Reserve vertical space for JS-injected cards to reduce CLS */
+  min-height: 8rem;
 }
 
 .tool-card {
@@ -881,6 +897,13 @@ a:hover {
   color: var(--color-text-muted);
 }
 
+/* Tool page dynamic sections */
+#nsb-scenarios,
+#nsb-share-embed {
+  /* Reserve room for scenarios and share/embed widgets */
+  min-height: 4rem;
+}
+
 .benchmark {
   margin-top: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
@@ -1188,6 +1211,32 @@ table th {
   background: linear-gradient(90deg, var(--color-border) 25%, var(--color-surface) 50%, var(--color-border) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Skeleton loading states (home, categories, etc.) */
+.skeleton-grid {
+  position: relative;
+}
+
+.skeleton-card {
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  min-height: 5rem;
+}
+
+.skeleton-card.tool-card-skeleton {
+  padding: var(--space-md) var(--space-lg);
+}
+
+.skeleton-card.category-tile-skeleton {
+  padding: var(--space-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer {
+    animation-duration: 0.01ms !important;
+  }
 }
 
 .is-busy #nsb-generate,
