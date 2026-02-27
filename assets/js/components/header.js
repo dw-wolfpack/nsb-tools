@@ -20,6 +20,7 @@
     if (path.startsWith("/faq")) return "faq";
     if (path.startsWith("/updates")) return "updates";
     if (path.startsWith("/changelog")) return "changelog";
+    if (path.startsWith("/glossary")) return "glossary";
     return "";
   }
 
@@ -50,6 +51,7 @@
               <a href="${base}faq/">FAQ</a>
               <a href="${base}updates/"${active === "updates" ? " class=\"active\"" : ""}>Updates</a>
               <a href="${base}changelog/"${active === "changelog" ? " class=\"active\"" : ""}>Changelog</a>
+              <a href="${base}glossary/"${active === "glossary" ? " class=\"active\"" : ""}>Glossary</a>
               ${proNav}
             </nav>
             <div class="header-search" role="search">

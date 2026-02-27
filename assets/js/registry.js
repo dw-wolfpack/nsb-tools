@@ -47,6 +47,7 @@ const TOOLS = [
     description: "Generate hashtag sets (broad/niche/community) from niche + keywords + content type.",
     path: "/tools/hashtag-generator/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Hashtag Generator | NSB Tools",
     seoDescription: "Generate hashtag sets for broad, niche, and community reach. Free social media tool."
@@ -59,6 +60,7 @@ const TOOLS = [
     description: "Generate captions + ethical comment prompts based on platform + tone + CTA.",
     path: "/tools/caption-generator/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Caption Generator | NSB Tools",
     seoDescription: "Generate captions and ethical comment prompts for social posts. Free creator tool."
@@ -71,6 +73,7 @@ const TOOLS = [
     description: "Generate content ideas with angles, hooks, and format suggestions.",
     path: "/tools/content-ideas/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Content Ideas Generator | NSB Tools",
     seoDescription: "Generate content ideas with angles, hooks, and format suggestions. Free creator tool."
@@ -95,6 +98,7 @@ const TOOLS = [
     description: "Generate a newsletter outline with sections, bullets, subject lines, CTAs.",
     path: "/tools/newsletter-outline/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Newsletter Outline Generator | NSB Tools",
     seoDescription: "Generate newsletter outlines with sections, subject lines, and CTAs. Free writing tool."
@@ -107,6 +111,7 @@ const TOOLS = [
     description: "Generate headline/title options grouped by style (how-to/list/contrarian/story).",
     path: "/tools/title-headline-generator/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Title + Headline Generator | NSB Tools",
     seoDescription: "Generate headlines grouped by style: how-to, list, contrarian, story. Free copywriting tool."
@@ -119,6 +124,7 @@ const TOOLS = [
     description: "Rewrite a resume bullet into stronger variants with metric placeholders.",
     path: "/tools/resume-bullet-rewriter/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Resume Bullet Rewriter | NSB Tools",
     seoDescription: "Rewrite resume bullets into stronger variants with metric placeholders. Free career tool."
@@ -131,6 +137,7 @@ const TOOLS = [
     description: "Turn notes into STAR story drafts (concise + detailed) with follow-up Qs.",
     path: "/tools/star-stories/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Interview Stories (STAR) Generator | NSB Tools",
     seoDescription: "Turn notes into STAR interview story drafts with follow-up questions. Free career tool."
@@ -143,6 +150,7 @@ const TOOLS = [
     description: "Draft 2 outreach emails (punchy + formal-ish) for recruiter/hm/broker.",
     path: "/tools/cold-outreach-email/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Cold Outreach Email Draft | NSB Tools",
     seoDescription: "Draft punchy and formal cold outreach emails for recruiters and hiring managers. Free career tool."
@@ -155,6 +163,7 @@ const TOOLS = [
     description: "Parse pasted teaser text into key fields + red flags + diligence questions.",
     path: "/tools/deal-teaser-analyzer/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Deal Teaser Analyzer | NSB Tools",
     seoDescription: "Parse deal teaser text into key fields, red flags, and diligence questions. Free business tool."
@@ -167,6 +176,7 @@ const TOOLS = [
     description: "Estimate monthly P&I, basic DSCR placeholders, quick scenario toggles.",
     path: "/tools/sba-payment-estimator/",
     isPro: false,
+    isHidden: true,
     consumesCredit: false,
     seoTitle: "Simple SBA Payment Estimator | NSB Tools",
     seoDescription: "Estimate monthly SBA loan payments, DSCR, and run quick scenarios. Free business tool."
@@ -179,6 +189,7 @@ const TOOLS = [
     description: "Generate LOI outline bullets based on asset + price + financing structure.",
     path: "/tools/loi-outline/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Offer / LOI Outline Generator | NSB Tools",
     seoDescription: "Generate LOI outline bullets for asset, price, and financing structure. Free business tool."
@@ -191,6 +202,7 @@ const TOOLS = [
     description: "Convert a source text into hooks + scripts + captions + visual ideas (heuristics only).",
     path: "/tools/repurpose-pack/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Repurpose Pack Generator | NSB Tools",
     seoDescription: "Convert source text into hooks, scripts, captions, and visual ideas. Free content repurposing tool."
@@ -203,9 +215,106 @@ const TOOLS = [
     description: "Generate a 1-week calendar table with post types/angles; export CSV.",
     path: "/tools/content-calendar/",
     isPro: false,
+    isHidden: true,
     consumesCredit: true,
     seoTitle: "Content Calendar Generator | NSB Tools",
     seoDescription: "Generate a 1-week content calendar with post types and angles. Export to CSV. Free tool."
+  },
+  {
+    slug: "freelance-rate-calculator",
+    name: "Freelance Rate Calculator",
+    category: "career",
+    tags: ["calculator", "freelance", "pricing"],
+    description: "Calculate hourly, day, and project rates from desired income and utilization.",
+    path: "/tools/freelance-rate-calculator/",
+    isPro: false,
+    consumesCredit: false,
+    seoTitle: "Freelance Rate Calculator | NSB Tools",
+    seoDescription: "Calculate freelance hourly, day, and project rates from income goals and billable hours. Free career tool."
+  },
+  {
+    slug: "project-pricing-calculator",
+    name: "Project Pricing Calculator",
+    category: "career",
+    tags: ["calculator", "freelance", "pricing"],
+    description: "Get recommended quote ranges with complexity and risk buffer.",
+    path: "/tools/project-pricing-calculator/",
+    isPro: false,
+    consumesCredit: false,
+    seoTitle: "Project Pricing Calculator | NSB Tools",
+    seoDescription: "Calculate recommended project quotes with complexity multiplier and risk buffer. Free freelance tool."
+  },
+  {
+    slug: "salary-vs-freelance-comparator",
+    name: "Salary vs Freelance Comparator",
+    category: "career",
+    tags: ["calculator", "career", "freelance"],
+    description: "Compare W2 salary to freelance income and find breakeven hourly rate.",
+    path: "/tools/salary-vs-freelance-comparator/",
+    isPro: false,
+    consumesCredit: false,
+    seoTitle: "Salary vs Freelance Comparator | NSB Tools",
+    seoDescription: "Compare W2 salary to freelance income. Find breakeven hourly rate. Free career calculator."
+  },
+  {
+    slug: "loan-debt-payoff-calculator",
+    name: "Loan / Debt Payoff Calculator",
+    category: "business",
+    tags: ["calculator", "debt", "finance"],
+    description: "Calculate payoff timeline, total interest, and savings with extra payments.",
+    path: "/tools/loan-debt-payoff-calculator/",
+    isPro: false,
+    consumesCredit: false,
+    seoTitle: "Loan Debt Payoff Calculator | NSB Tools",
+    seoDescription: "Calculate loan payoff timeline, total interest, and extra payment savings. Free business tool."
+  },
+  {
+    slug: "employee-vs-contractor-calculator",
+    name: "Employee vs Contractor Cost Calculator",
+    category: "business",
+    tags: ["calculator", "hiring", "finance"],
+    description: "Compare true employee cost to contractor cost and breakeven hours.",
+    path: "/tools/employee-vs-contractor-calculator/",
+    isPro: false,
+    consumesCredit: false,
+    seoTitle: "Employee vs Contractor Cost Calculator | NSB Tools",
+    seoDescription: "Compare true employee cost to contractor cost. Find breakeven hours. Free hiring calculator."
+  },
+  {
+    slug: "break-even-calculator",
+    name: "Break-even Calculator",
+    category: "business",
+    tags: ["calculator", "pricing", "break-even"],
+    description: "Calculate break-even units or MRR for service, ecommerce, or SaaS.",
+    path: "/tools/break-even-calculator/",
+    isPro: false,
+    consumesCredit: false,
+    seoTitle: "Break-even Calculator | NSB Tools",
+    seoDescription: "Calculate break-even units or MRR for service, ecommerce, and SaaS. Free business tool."
+  },
+  {
+    slug: "burn-rate-runway-calculator",
+    name: "Burn Rate / Runway Calculator",
+    category: "business",
+    tags: ["calculator", "startup", "runway"],
+    description: "Calculate net burn, runway, and 12-month projection.",
+    path: "/tools/burn-rate-runway-calculator/",
+    isPro: false,
+    consumesCredit: false,
+    seoTitle: "Burn Rate Runway Calculator | NSB Tools",
+    seoDescription: "Calculate burn rate, runway, and 12-month cash projection. Free startup tool."
+  },
+  {
+    slug: "saas-roi-deal-analyzer",
+    name: "SaaS ROI Deal Analyzer",
+    category: "business",
+    tags: ["calculator", "saas", "roi", "deals"],
+    description: "LTV, CAC payback, ROI for SaaS deals. Sensitivity on CAC, ARPA, churn.",
+    path: "/tools/saas-roi-deal-analyzer/",
+    isPro: false,
+    consumesCredit: false,
+    seoTitle: "SaaS ROI Deal Analyzer | NSB Tools",
+    seoDescription: "Calculate LTV, CAC payback, and ROI for SaaS. Sensitivity analysis. Free deal calculator."
   }
 ];
 
@@ -430,6 +539,110 @@ const TOOL_PAGE_CONTENT = {
       { q: "Can I get a longer calendar?", a: "Pro may unlock 2-week and monthly calendars." }
     ],
     relatedSlugs: ["repurpose-pack", "content-ideas", "hook-generator", "short-script-writer"]
+  },
+  "freelance-rate-calculator": {
+    whatItDoes: "Calculates your freelance hourly, day, and project rates based on desired after-tax income, expenses, billable hours, vacation, utilization, and buffer. Rough estimator; not tax advice.",
+    howToUse: ["Enter desired annual income (after tax).", "Enter annual expenses.", "Set billable hours per week and vacation weeks.", "Set utilization rate (default 70%).", "Optionally adjust buffer percent.", "Click Calculate.", "Review hourly, day, weekly, monthly rates and project minimums."],
+    examples: ["$80k income, $15k expenses, 25h/week, 3 weeks off, 70% util. Result: hourly, day rate, 10h/20h/40h minimums.", "Buffer 20%: Adds cushion for scope creep and unpaid work."],
+    faq: [
+      { q: "What is utilization rate?", a: "The share of your working hours that are billable. Non-billable time includes admin, marketing, learning." },
+      { q: "What is buffer for?", a: "Covers unpaid work, scope creep, and variance. 15 to 25% is common." },
+      { q: "Is this tax advice?", a: "No. This is a rough estimator. Consult a tax professional." },
+      { q: "Why project minimums?", a: "Short projects often cost more per hour due to context switching. Minimums help you price them." }
+    ],
+    relatedSlugs: ["project-pricing-calculator", "salary-vs-freelance-comparator", "resume-bullet-rewriter"],
+    collectionPath: "/collections/business-toolkit/"
+  },
+  "project-pricing-calculator": {
+    whatItDoes: "Recommends project quote ranges (low, target, high) based on estimated hours, hourly rate, complexity multiplier, risk buffer, and expenses. Includes deposit and timeline suggestions.",
+    howToUse: ["Enter estimated hours.", "Enter hourly rate.", "Set complexity multiplier (0.8 to 1.5).", "Set risk buffer (default 20%).", "Add expenses if any.", "Click Calculate.", "Review quote range and deposit suggestion."],
+    examples: ["40h at $100/h, complexity 1.2, 20% buffer. Result: low, target, high quote range.", "Expenses $500: Added to target quote."],
+    faq: [
+      { q: "What is the complexity multiplier?", a: "Adjusts for project risk. Simple = 0.8 to 1; complex = 1.2 to 1.5." },
+      { q: "Why a risk buffer?", a: "Scope creep, revisions, unknowns. Under 15% is risky." },
+      { q: "What deposit should I ask?", a: "30 to 50% upfront is common; use your comfort level." },
+      { q: "How do I handle scope changes?", a: "Add scope control bullets: change requests, revision limits, clear deliverables." }
+    ],
+    relatedSlugs: ["freelance-rate-calculator", "salary-vs-freelance-comparator", "cold-outreach-email"],
+    collectionPath: "/collections/business-toolkit/"
+  },
+  "salary-vs-freelance-comparator": {
+    whatItDoes: "Compares W2 salary (including benefits) to freelance income. Shows effective W2 hourly, freelance net annual and monthly, and the breakeven hourly rate to match W2.",
+    howToUse: ["Enter W2 salary.", "Enter benefits value (or percent toggle).", "Enter rough tax percent.", "Enter freelance hourly rate, utilization, and expenses.", "Click Calculate.", "Compare effective rates and breakeven."],
+    examples: ["$100k salary, $15k benefits, 25% tax. Result: effective hourly equivalent.", "Freelance $120/h, 70% util, $20k expenses. Result: net annual vs W2."],
+    faq: [
+      { q: "What is effective W2 hourly?", a: "Salary plus benefits, divided by roughly 2000 hours." },
+      { q: "How do I value benefits?", a: "Health, 401k match, PTO. Ballpark 15 to 25% of salary." },
+      { q: "What knobs can I turn?", a: "Rate, utilization, and expenses. Raising rate or utilization or lowering expenses improves freelance outcome." },
+      { q: "Is this exact?", a: "No. Use as a directional comparison; taxes and benefits vary." }
+    ],
+    relatedSlugs: ["freelance-rate-calculator", "project-pricing-calculator", "resume-bullet-rewriter"],
+    collectionPath: "/collections/business-toolkit/"
+  },
+  "loan-debt-payoff-calculator": {
+    whatItDoes: "Calculates months to payoff, total interest, and amortization table for a loan. Optionally model extra payments and see interest savings. Educational only.",
+    howToUse: ["Enter principal and interest rate.", "Enter monthly payment.", "Optionally add extra payment.", "Click Calculate.", "Review payoff timeline, total interest, and table."],
+    examples: ["$30k student loan, 6%, $350/mo. Result: months to payoff, total interest.", "$5k card, 18%, $200 + $100 extra. Result: faster payoff, interest savings."],
+    faq: [
+      { q: "Does it support multiple loans?", a: "One loan per calculation. Run separate calculations for each." },
+      { q: "What about fees?", a: "Not included. Use as a ballpark." },
+      { q: "How does extra payment work?", a: "Applied to principal each month. Reduces total interest and shortens payoff." },
+      { q: "Is this financial advice?", a: "No. Educational only. Consult a financial advisor." }
+    ],
+    relatedSlugs: ["sba-payment-estimator", "break-even-calculator", "burn-rate-runway-calculator"],
+    collectionPath: "/collections/business-toolkit/"
+  },
+  "employee-vs-contractor-calculator": {
+    whatItDoes: "Compares true annual cost of an employee (salary, benefits, payroll tax, overhead) to contractor cost. Shows breakeven hours and hourly equivalent. Informational; rule of thumb: contractor often 1.3 to 1.8x employee equivalent.",
+    howToUse: ["Enter employee salary (or hourly with hours).", "Enter benefits percent, payroll tax percent, overhead percent.", "Enter contractor hourly rate and annual hours.", "Click Calculate.", "Compare total costs and breakeven hours."],
+    examples: ["$80k salary, 25% benefits, 7.65% payroll, 10% overhead. Result: true cost.", "Contractor $120/h, 2000h. Result: $240k vs employee cost."],
+    faq: [
+      { q: "What is overhead?", a: "Space, equipment, admin. 10% is a common default." },
+      { q: "Why 1.3 to 1.8x for contractor?", a: "Rule of thumb. Contractors carry their own benefits and taxes." },
+      { q: "What is breakeven hours?", a: "Hours at which contractor cost equals employee cost." },
+      { q: "Is this binding?", a: "No. Use for ballpark comparison; actual costs vary." }
+    ],
+    relatedSlugs: ["freelance-rate-calculator", "break-even-calculator", "saas-roi-deal-analyzer"],
+    collectionPath: "/collections/business-toolkit/"
+  },
+  "break-even-calculator": {
+    whatItDoes: "Calculates break-even in units or MRR for service, ecommerce, or SaaS. Service/ecom: fixed costs, variable cost, price. SaaS: fixed costs, gross margin, ARPA.",
+    howToUse: ["Select mode: service, ecommerce, or SaaS.", "Enter inputs for that mode.", "Click Calculate.", "Review units or customers to break even and revenue."],
+    examples: ["Service: $5k fixed, $20 variable, $80 price. Result: units, revenue to break even.", "SaaS: $10k fixed, 80% margin, $50 ARPA. Result: customers, MRR."],
+    faq: [
+      { q: "What is contribution margin?", a: "Price minus variable cost per unit. Must be positive." },
+      { q: "Why does price <= variable cost fail?", a: "You lose money on each sale. Cannot break even." },
+      { q: "What is ARPA?", a: "Average revenue per account (monthly)." },
+      { q: "Is this financial advice?", a: "No. Educational only." }
+    ],
+    relatedSlugs: ["burn-rate-runway-calculator", "saas-roi-deal-analyzer", "employee-vs-contractor-calculator"],
+    collectionPath: "/collections/business-toolkit/"
+  },
+  "burn-rate-runway-calculator": {
+    whatItDoes: "Calculates net burn (expenses minus revenue), runway in months, and a 12-month projection. Optional revenue growth. Educational only.",
+    howToUse: ["Enter cash on hand.", "Enter monthly revenue and expenses.", "Optionally add monthly revenue growth rate.", "Click Calculate.", "Review burn, runway, and projection table."],
+    examples: ["$100k cash, $5k rev, $15k exp. Result: $10k burn, 10 months runway.", "5% monthly growth: Extends runway over time."],
+    faq: [
+      { q: "What is runway?", a: "Months until cash runs out at current burn." },
+      { q: "What are the benchmarks?", a: "Under 6 months red; 6 to 12 yellow; over 12 green." },
+      { q: "Does growth assume linear?", a: "Yes. Simple monthly growth applied to revenue." },
+      { q: "Is this financial advice?", a: "No. Educational only." }
+    ],
+    relatedSlugs: ["break-even-calculator", "saas-roi-deal-analyzer", "loan-debt-payoff-calculator"],
+    collectionPath: "/collections/business-toolkit/"
+  },
+  "saas-roi-deal-analyzer": {
+    whatItDoes: "Calculates LTV, CAC payback months, and ROI for SaaS. Sensitivity on CAC, ARPA, churn. If payback > 6 months, fix CAC, raise ARPA, reduce churn, or stop buying traffic. Not financial advice.",
+    howToUse: ["Enter CAC, ARPA, gross margin, churn.", "Optionally set initial customers and months.", "Click Calculate.", "Review LTV, payback, ROI, and knobs."],
+    examples: ["CAC $500, ARPA $50, 80% margin, 5% churn. Result: LTV, payback, ROI.", "Sensitivity: +10% ARPA shows biggest impact on payback."],
+    faq: [
+      { q: "What is CAC?", a: "Customer acquisition cost. Total spend to acquire one customer." },
+      { q: "What is LTV?", a: "Lifetime value. ARPA times gross margin times average lifetime (1/churn in months)." },
+      { q: "What is a good payback?", a: "Under 3 months green; 3 to 6 yellow; over 6 red." },
+      { q: "Is this financial advice?", a: "No. Use for directional analysis." }
+    ],
+    relatedSlugs: ["break-even-calculator", "burn-rate-runway-calculator", "deal-teaser-analyzer"],
+    collectionPath: "/collections/business-toolkit/"
   }
 };
 

@@ -5,6 +5,13 @@
 (function () {
   "use strict";
 
+  function parseNum(val) {
+    if (val == null || val === "") return NaN;
+    const s = String(val).replace(/,/g, "").replace(/\s/g, "");
+    const n = parseFloat(s);
+    return isNaN(n) ? NaN : n;
+  }
+
   window.NSB_UTILS = {
     /**
      * Simple hash for seeded PRNG
@@ -220,10 +227,78 @@
       const path = window.location.pathname;
       if (path === "/" || path === "/index.html") return "/";
       const parts = path.split("/").filter(Boolean);
-      if (parts[0] === "tools" || parts[0] === "categories" || parts[0] === "about" || parts[0] === "privacy" || parts[0] === "terms" || parts[0] === "changelog" || parts[0] === "updates") {
+      if (parts[0] === "tools" || parts[0] === "categories" || parts[0] === "about" || parts[0] === "privacy" || parts[0] === "terms" || parts[0] === "changelog" || parts[0] === "updates" || parts[0] === "collections" || parts[0] === "embed" || parts[0] === "link-to-us") {
         return "/";
       }
       return "/";
+    },
+
+    formatCurrency(n) {
+      const x = parseNum(n);
+      if (isNaN(x)) return "$0";
+      return "$" + Math.round(x).toLocaleString();
+    },
+
+    formatPercent(n, decimals) {
+      const x = parseNum(n);
+      if (isNaN(x)) return "0%";
+      return x.toFixed(decimals != null ? decimals : 1) + "%";
+    },
+
+    parseNumberSafe(val) {
+      return parseNum(val);
+    },
+
+    clamp(n, min, max) {
+      const x = parseNum(n);
+      if (isNaN(x)) return min;
+      return Math.max(min, Math.min(max, x));
+    },
+
+    encodeParams(obj) {
+      const parts = [];
+      Object.keys(obj || {}).forEach(function (k) {
+        const v = obj[k];
+        if (v != null && v !== "") parts.push(encodeURIComponent(k) + "=" + encodeURIComponent(String(v)));
+      });
+      return parts.join("&");
+    },
+
+    decodeParams(search) {
+      const s = search || (typeof window !== "undefined" ? window.location.search : "");
+      const out = {};
+      (s.replace(/^\?/, "") || "").split("&").forEach(function (pair) {
+        const i = pair.indexOf("=");
+        if (i > 0) {
+          out[decodeURIComponent(pair.slice(0, i))] = decodeURIComponent(pair.slice(i + 1) || "");
+        }
+      });
+      return out;
+    },
+
+    /**
+     * Update browser URL query string without reload.
+     * @param {string} basePath - e.g. "/tools/loan-debt-payoff-calculator/"
+     * @param {Object} paramsObj - key/value (strings or numbers)
+     * @param {string} mode - "replace" (default) or "push"
+     */
+    updateURLParams(basePath, paramsObj, mode) {
+      if (typeof history === "undefined" || !history.replaceState) return;
+      const filtered = {};
+      Object.keys(paramsObj || {}).forEach(function (k) {
+        const v = paramsObj[k];
+        if (v == null || v === "") return;
+        const s = String(v).trim();
+        if (s === "") return;
+        filtered[k] = s;
+      });
+      const query = this.encodeParams(filtered);
+      const url = basePath + (query ? "?" + query : "");
+      if (mode === "push" && history.pushState) {
+        history.pushState(null, "", url);
+      } else {
+        history.replaceState(null, "", url);
+      }
     }
   };
 })();

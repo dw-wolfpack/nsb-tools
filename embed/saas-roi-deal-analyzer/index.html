@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/tools/saas-roi-deal-analyzer/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="embed-page">
+  <div class="embed-header"><h2>SaaS ROI Deal Analyzer</h2><a href="https://tools.nextstepsbeyond.online/tools/saas-roi-deal-analyzer/">Open full tool</a></div>
+  <main class="layout">
+    <div class="card"><h3>Inputs</h3>
+      <form id="nsb-form">
+        <div class="form-group"><label>CAC $</label><input type="number" name="cac" placeholder="500" min="0"></div>
+        <div class="form-group"><label>ARPA $/mo</label><input type="number" name="arpa" placeholder="50" min="0"></div>
+        <div class="form-group"><label>Gross margin %</label><input type="number" name="grossMargin" value="80"></div>
+        <div class="form-group"><label>Monthly churn %</label><input type="number" name="monthlyChurn" value="5" min="0" step="0.5"></div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+      </form>
+    </div>
+    <div class="card"><h3>Output</h3><div id="nsb-output" class="output-area"></div></div>
+    <p style="font-size:12px;margin-top:8px;"><a href="https://tools.nextstepsbeyond.online/tools/saas-roi-deal-analyzer/">Calculator by NSB Tools</a></p>
+  </main>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/tools/saas-roi-deal-analyzer/logic.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("nsb-form");
+      var out = document.getElementById("nsb-output");
+      var u = window.NSB_UTILS || {};
+      var fmt = u.formatCurrency || function (n) { return "$" + Math.round(n).toLocaleString(); };
+      var pct = u.formatPercent || function (n) { return n.toFixed(1) + "%"; };
+      function run() {
+        var inp = {}; ["cac","arpa","grossMargin","monthlyChurn"].forEach(function(k){ var e=form.querySelector("[name="+k+"]"); inp[k]=e?e.value:""; });
+        var res = window.NSB_SAAS_ROI && window.NSB_SAAS_ROI.calculate(inp);
+        if (!res || res.error) { out.innerHTML = res && res.error ? res.error : "Enter CAC and ARPA."; return; }
+        out.innerHTML = "LTV: " + fmt(res.ltv) + " | Payback: " + (res.paybackMonths?res.paybackMonths.toFixed(1):"-") + " mo | ROI: " + (res.roi!=null?pct(res.roi):"-");
+      }
+      form.addEventListener("submit", function(e){ e.preventDefault(); run(); });
+      form.addEventListener("input", u.debounce ? u.debounce(run, 400) : run);
+      if (u.decodeParams) { var q = u.decodeParams(window.location.search); if (Object.keys(q).length) { Object.keys(q).forEach(function(k){ var e=form.querySelector("[name="+k+"]"); if (e) e.value = q[k]; }); run(); } }
+    });
+  </script>
+</body>
+</html>

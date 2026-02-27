@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/tools/freelance-rate-calculator/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="embed-page">
+  <div class="embed-header"><h2>Freelance Rate Calculator</h2><a href="https://tools.nextstepsbeyond.online/tools/freelance-rate-calculator/">Open full tool</a></div>
+  <main class="layout">
+    <div class="card"><h3>Inputs</h3>
+      <form id="nsb-form">
+        <div class="form-group"><label for="desiredAnnualIncome">Desired annual income $</label><input type="number" id="desiredAnnualIncome" name="desiredAnnualIncome" placeholder="80000" min="0" step="1000"></div>
+        <div class="form-group"><label for="annualExpenses">Annual expenses $</label><input type="number" id="annualExpenses" name="annualExpenses" placeholder="15000" min="0" step="1000"></div>
+        <div class="form-group"><label for="billableHoursPerWeek">Billable hours/week</label><input type="number" id="billableHoursPerWeek" name="billableHoursPerWeek" placeholder="25" min="1" max="80" step="0.5"></div>
+        <div class="form-group"><label for="vacationWeeks">Vacation weeks</label><input type="number" id="vacationWeeks" name="vacationWeeks" value="3" min="0" max="20"></div>
+        <div class="form-group"><label for="utilizationRate">Utilization %</label><input type="number" id="utilizationRate" name="utilizationRate" value="70" min="20" max="100" step="5"></div>
+        <div class="form-group"><label for="bufferPercent">Buffer %</label><input type="number" id="bufferPercent" name="bufferPercent" value="20" min="0" max="50" step="5"></div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+      </form>
+    </div>
+    <div class="card"><h3>Output</h3><div id="nsb-output" class="output-area"></div><div id="nsb-benchmarks" class="benchmarks"></div></div>
+    <p style="font-size:12px;margin-top:8px;"><a href="https://tools.nextstepsbeyond.online/tools/freelance-rate-calculator/">Calculator by NSB Tools</a></p>
+  </main>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/tools/freelance-rate-calculator/logic.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("nsb-form");
+      var out = document.getElementById("nsb-output");
+      var bench = document.getElementById("nsb-benchmarks");
+      var u = window.NSB_UTILS || {};
+      var fmt = u.formatCurrency || function (n) { return "$" + Math.round(n).toLocaleString(); };
+      function run() {
+        var inp = {}; ["desiredAnnualIncome","annualExpenses","billableHoursPerWeek","vacationWeeks","utilizationRate","bufferPercent"].forEach(function(k){ var e=form.querySelector("[name="+k+"]"); inp[k]=e?e.value:""; });
+        var res = window.NSB_FREELANCE_RATE && window.NSB_FREELANCE_RATE.calculate(inp);
+        if (!res || res.error) { out.innerHTML = res && res.error ? res.error : "Enter desired income and billable hours."; if (bench) bench.innerHTML = ""; return; }
+        out.innerHTML = "<strong>Hourly:</strong> " + fmt(res.hourlyRate) + " | <strong>Day:</strong> " + fmt(res.dayRate) + " | <strong>10h min:</strong> " + fmt(res.project10h);
+        if (bench) bench.innerHTML = res.utilization < 60 ? '<div class="benchmark benchmark-warn">Low utilization.</div>' : "";
+      }
+      form.addEventListener("submit", function(e){ e.preventDefault(); run(); });
+      form.addEventListener("input", u.debounce ? u.debounce(run, 400) : run);
+      if (u.decodeParams) { var q = u.decodeParams(window.location.search); if (Object.keys(q).length) { Object.keys(q).forEach(function(k){ var e=form.querySelector("[name="+k+"]"); if (e) e.value = q[k]; }); run(); } }
+    });
+  </script>
+</body>
+</html>

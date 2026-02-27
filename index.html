@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#2563eb">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="color-scheme" content="dark">
   <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
   <link rel="manifest" href="/assets/site.webmanifest">
   <title>NSB Tools | Free Creator, Writing, Career, and Business Tools</title>
@@ -43,6 +44,7 @@
             <button type="button" class="chip" data-category="career" aria-pressed="false">Career</button>
             <button type="button" class="chip" data-category="business" aria-pressed="false">Business</button>
             <button type="button" class="chip" data-category="repurpose" aria-pressed="false">Repurpose</button>
+            <button type="button" class="chip" data-tag="calculator" aria-pressed="false">Calculators</button>
           </div>
           <p class="hero-trust">Runs locally. Your data stays on-device.</p>
         </div>
@@ -141,6 +143,7 @@
   <script src="/assets/js/main.js" defer></script>
   <script>
     (function() {
+      window.NSB_DEBUG_HIDDEN = /[?&]debug=1/.test(window.location.search || "");
       const base = "https://tools.nextstepsbeyond.online";
 
       function waitForDeps(maxMs, cb) {
@@ -161,20 +164,21 @@
 
       function getFeaturedTools(R) {
         if (!R || !R.TOOLS) return [];
-        var featured = (R.FEATURED_TOOLS || []).map(function(s) { return R.getToolBySlug(s); }).filter(Boolean);
-        return featured.length ? featured : R.TOOLS.slice(0, 6);
+        var visible = R.TOOLS.filter(function(t) { return window.NSB_DEBUG_HIDDEN || !t.isHidden; });
+        var featured = (R.FEATURED_TOOLS || []).map(function(s) { return R.getToolBySlug(s); }).filter(function(t) { return t && (window.NSB_DEBUG_HIDDEN || !t.isHidden); });
+        return featured.length ? featured : visible.slice(0, 6);
       }
 
-      function filterTools(R, query, categoryFilter) {
+      function filterTools(R, query, categoryFilter, tagFilter) {
         if (!R || !R.TOOLS) return [];
-        var list = R.TOOLS;
+        var list = R.TOOLS.filter(function(t) { return window.NSB_DEBUG_HIDDEN || !t.isHidden; });
         var searchQ = (query || "").trim();
 
         if (searchQ) {
           var lower = searchQ.toLowerCase();
           var catMatch = /^category:(\w+)$/i.exec(lower);
           if (catMatch) {
-            list = R.getToolsByCategory(catMatch[1]) || [];
+            list = list.filter(function(t) { return t.category === catMatch[1]; });
             searchQ = "";
           } else {
             list = list.filter(function(t) {
@@ -187,6 +191,10 @@
 
         if (categoryFilter && categoryFilter.trim()) {
           list = list.filter(function(t) { return t.category === categoryFilter.trim(); });
+        }
+
+        if (tagFilter && tagFilter.trim()) {
+          list = list.filter(function(t) { return (t.tags || []).indexOf(tagFilter.trim()) >= 0; });
         }
 
         return list;
@@ -208,8 +216,9 @@
         if (!container || !R) return;
         var query = (window.NSB_SEARCH_QUERY || "").trim();
         var categoryFilter = window.NSB_CATEGORY_FILTER || "";
+        var tagFilter = window.NSB_TAG_FILTER || "";
 
-        var tools = R.TOOLS;
+        var tools = R.TOOLS.filter(function(t) { return window.NSB_DEBUG_HIDDEN || !t.isHidden; });
         if (query) {
           var lower = query.toLowerCase();
           tools = tools.filter(function(t) {
@@ -220,6 +229,9 @@
         }
         if (categoryFilter) {
           tools = tools.filter(function(t) { return t.category === categoryFilter; });
+        }
+        if (tagFilter) {
+          tools = tools.filter(function(t) { return (t.tags || []).indexOf(tagFilter) >= 0; });
         }
 
         var byCat = {};
@@ -238,17 +250,18 @@
       function applyFilters(R) {
         var query = (window.NSB_SEARCH_QUERY || "").trim();
         var categoryFilter = window.NSB_CATEGORY_FILTER || "";
+        var tagFilter = window.NSB_TAG_FILTER || "";
         var allEl = document.getElementById("nsb-all-tools");
         var byCatEl = document.getElementById("nsb-by-category");
         var featuredEl = document.getElementById("nsb-featured");
         var viewCatBtn = document.getElementById("nsb-view-category");
 
         var isByCategory = viewCatBtn && viewCatBtn.getAttribute("aria-pressed") === "true";
-        var filtered = filterTools(R, query, categoryFilter);
+        var filtered = filterTools(R, query, categoryFilter, tagFilter);
 
         if (featuredEl && R) {
-          featuredEl.style.display = (query || categoryFilter) ? "none" : "";
-          if (!query && !categoryFilter) {
+          featuredEl.style.display = (query || categoryFilter || tagFilter) ? "none" : "";
+          if (!query && !categoryFilter && !tagFilter) {
             var featured = getFeaturedTools(R);
             featuredEl.innerHTML = featured.length ? featured.map(function(t) { return window.NSB_TOOL_CARD.render(t); }).join("") : '<p class="search-no-results">Registry not loaded. Check console.</p>';
           }
@@ -292,12 +305,19 @@
         var catsEl = document.getElementById("nsb-categories");
         if (catsEl) {
           catsEl.innerHTML = cats.length ? cats.map(function(c) {
-            var count = (R.getToolsByCategory(c.slug) || []).length;
+            var count = (R.getToolsByCategory(c.slug) || []).filter(function(t) { return window.NSB_DEBUG_HIDDEN || !t.isHidden; }).length;
+            if (!count) return "";
             return '<a href="/categories/' + c.slug + '/" class="category-tile" data-category="' + c.slug + '">' +
               '<div class="category-tile-header"><span class="category-tile-name">' + c.name + '</span><span class="badge">' + count + '</span></div>' +
               '<p class="category-tile-desc">' + (c.description || "") + '</p>' +
               '<div class="category-tile-footer"><span class="category-tile-link">Browse &rarr;</span></div></a>';
           }).join("") : '<p class="search-no-results">No categories.</p>';
+        }
+
+        var repurposeCount = (R.getToolsByCategory("repurpose") || []).filter(function(t) { return window.NSB_DEBUG_HIDDEN || !t.isHidden; }).length;
+        if (!window.NSB_DEBUG_HIDDEN && repurposeCount === 0) {
+          var repurposeChip = document.querySelector(".chip-row .chip[data-category='repurpose']");
+          if (repurposeChip) repurposeChip.style.display = "none";
         }
 
         var recentEl = document.getElementById("nsb-recent-list");
@@ -316,6 +336,14 @@
           (function() {
             var debounced = (window.NSB_UTILS && window.NSB_UTILS.debounce) ? window.NSB_UTILS.debounce(function() {
               window.NSB_SEARCH_QUERY = heroSearch.value.trim();
+              if (window.NSB_SEARCH_QUERY) {
+                window.NSB_CATEGORY_FILTER = "";
+                window.NSB_TAG_FILTER = "";
+                var chips = document.querySelectorAll(".chip-row .chip");
+                for (var ci = 0; ci < chips.length; ci++) chips[ci].setAttribute("aria-pressed", "false");
+                var allChip = document.querySelector(".chip-row .chip[data-category='']");
+                if (allChip) allChip.setAttribute("aria-pressed", "true");
+              }
               if (typeof window.NSB_ON_SEARCH === "function") window.NSB_ON_SEARCH();
               var hs = document.getElementById("nsb-search");
               if (hs && hs.value !== heroSearch.value) hs.value = heroSearch.value;
@@ -334,6 +362,7 @@
             for (var j = 0; j < row.length; j++) row[j].setAttribute("aria-pressed", "false");
             this.setAttribute("aria-pressed", "true");
             window.NSB_CATEGORY_FILTER = this.getAttribute("data-category") || "";
+            window.NSB_TAG_FILTER = this.getAttribute("data-tag") || "";
             if (typeof window.NSB_ON_SEARCH === "function") window.NSB_ON_SEARCH();
           });
         }

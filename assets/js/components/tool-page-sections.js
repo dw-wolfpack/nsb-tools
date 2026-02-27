@@ -62,6 +62,10 @@
         html += "</section>";
       }
 
+      if (content.collectionPath) {
+        html += '<section class="section"><p>Part of the <a href="' + escapeHtml(content.collectionPath) + '">Business Toolkit</a>.</p></section>';
+      }
+
       if (relatedTools.length) {
         html += '<section class="section"><h2>Related tools</h2><p>';
         html += relatedTools.map(function (t) {

@@ -19,6 +19,7 @@
             <a href="${base}faq/">FAQ</a>
             <a href="${base}updates/">Updates</a>
             <a href="${base}changelog/">Changelog</a>
+            <a href="${base}glossary/">Glossary</a>
             <a href="${base}privacy/">Privacy</a>
             <a href="${base}terms/">Terms</a>
           </div>

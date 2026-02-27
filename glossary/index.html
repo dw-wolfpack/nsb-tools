@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>Glossary | NSB Tools</title>
+  <meta name="description" content="Plain-English definitions for common creator, career, and business calculator terms (CAC, LTV, churn, runway, break-even, and more).">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/glossary/">
+  <meta property="og:title" content="Glossary | NSB Tools">
+  <meta property="og:description" content="Plain-English definitions for common creator, career, and business calculator terms (CAC, LTV, churn, runway, break-even, and more).">
+  <meta property="og:url" content="https://tools.nextstepsbeyond.online/glossary/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Glossary | NSB Tools">
+  <meta name="twitter:description" content="Plain-English definitions for common creator, career, and business calculator terms (CAC, LTV, churn, runway, break-even, and more).">
+  <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://tools.nextstepsbeyond.online/glossary/"}]}</script>
+</head>
+<body>
+  <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
+  <header id="nsb-header"></header>
+  <main class="layout layout--narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span> Glossary</nav>
+    <h1>Glossary</h1>
+    <p class="glossary-intro">These tools use common business and finance terms. Here is what they mean in plain English, with quick examples.</p>
+
+    <section class="glossary-jump" aria-label="Jump to letter">
+      <h2 class="visually-hidden">Jump to letter</h2>
+      <div id="nsb-glossary-az" class="glossary-az"></div>
+    </section>
+
+    <section class="glossary-most-used">
+      <h2>Most used</h2>
+      <ul id="nsb-glossary-most" class="glossary-most-list"></ul>
+    </section>
+
+    <section class="glossary-terms">
+      <h2 class="visually-hidden">All terms</h2>
+      <div id="nsb-glossary-entries"></div>
+    </section>
+
+    <p class="disclaimer">Educational only. Not financial advice.</p>
+  </main>
+  <footer id="nsb-footer"></footer>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/glossary.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script>
+    (function () {
+      function esc(s) {
+        if (s == null) return "";
+        var d = document.createElement("div");
+        d.textContent = s;
+        return d.innerHTML;
+      }
+      function render() {
+        var G = window.NSB_GLOSSARY;
+        if (!G || !G.terms || !G.terms.length) return;
+        var terms = G.list();
+        var mostKeys = ["cac", "ltv", "arpa", "gross-margin", "churn", "payback", "roi", "utilization", "buffer", "break-even", "burn-rate", "runway"];
+        var letters = {};
+        terms.forEach(function (t) {
+          var c = (t.term || t.key).charAt(0).toUpperCase();
+          if (!letters[c]) letters[c] = [];
+          letters[c].push(t);
+        });
+        var azEl = document.getElementById("nsb-glossary-az");
+        if (azEl) {
+          var azHtml = "";
+          Object.keys(letters).sort().forEach(function (c) {
+            azHtml += '<a href="#glossary-' + c + '" class="glossary-az-link">' + c + '</a> ';
+          });
+          azEl.innerHTML = azHtml;
+        }
+        var mostEl = document.getElementById("nsb-glossary-most");
+        if (mostEl) {
+          var mostHtml = "";
+          mostKeys.forEach(function (k) {
+            var t = G.get(k);
+            if (t) mostHtml += '<li><a href="#' + esc(t.key) + '">' + esc(t.term) + '</a></li>';
+          });
+          mostEl.innerHTML = mostHtml;
+        }
+        var entriesEl = document.getElementById("nsb-glossary-entries");
+        if (entriesEl) {
+          var byLetter = {};
+          terms.forEach(function (t) {
+            var c = (t.term || t.key).charAt(0).toUpperCase();
+            if (!byLetter[c]) byLetter[c] = [];
+            byLetter[c].push(t);
+          });
+          var html = "";
+          Object.keys(byLetter).sort().forEach(function (c) {
+            html += '<div id="glossary-' + c + '" class="glossary-letter-group"><h3 class="glossary-letter">' + c + '</h3>';
+            byLetter[c].forEach(function (t) {
+              html += '<article id="' + esc(t.key) + '" class="glossary-term">';
+              html += '<h2 class="glossary-term-name">' + esc(t.term) + '</h2>';
+              if (t.aka && t.aka.length) html += '<p class="glossary-aka">Also: ' + t.aka.map(function (a) { return esc(a); }).join(", ") + '</p>';
+              html += '<p class="glossary-long">' + esc(t.long) + '</p>';
+              if (t.example) html += '<p class="glossary-example">' + esc(t.example) + '</p>';
+              if (t.usedIn && t.usedIn.length) {
+                html += '<p class="glossary-used">Used in tools: ';
+                html += t.usedIn.map(function (path) {
+                  var label = G.toolLabel ? G.toolLabel(path) : path;
+                  return '<a href="' + esc(path) + '">' + esc(label) + '</a>';
+                }).join(", ");
+                html += '</p>';
+              }
+              html += '</article>';
+            });
+            html += '</div>';
+          });
+          entriesEl.innerHTML = html;
+        }
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", render);
+      } else {
+        render();
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/tools/salary-vs-freelance-comparator/">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="embed-page">
+  <div class="embed-header"><h2>Salary vs Freelance Comparator</h2><a href="https://tools.nextstepsbeyond.online/tools/salary-vs-freelance-comparator/">Open full tool</a></div>
+  <main class="layout">
+    <div class="card"><h3>Inputs</h3>
+      <form id="nsb-form">
+        <div class="form-group"><label>W2 salary $</label><input type="number" name="salaryW2" placeholder="100000" min="0"></div>
+        <div class="form-group"><label>Benefits $</label><input type="number" name="benefitsValue" placeholder="15000" min="0"></div>
+        <div class="form-group"><label>Taxes %</label><input type="number" name="taxesPercent" value="25"></div>
+        <div class="form-group"><label>Freelance hourly $</label><input type="number" name="freelanceHourlyRate" placeholder="120" min="0"></div>
+        <div class="form-group"><label>Utilization %</label><input type="number" name="utilization" value="70"></div>
+        <div class="form-group"><label>Expenses $</label><input type="number" name="expenses" placeholder="20000" min="0"></div>
+        <button type="submit" class="btn btn-primary">Calculate</button>
+      </form>
+    </div>
+    <div class="card"><h3>Output</h3><div id="nsb-output" class="output-area"></div></div>
+    <p style="font-size:12px;margin-top:8px;"><a href="https://tools.nextstepsbeyond.online/tools/salary-vs-freelance-comparator/">Calculator by NSB Tools</a></p>
+  </main>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/tools/salary-vs-freelance-comparator/logic.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("nsb-form");
+      var out = document.getElementById("nsb-output");
+      var u = window.NSB_UTILS || {};
+      var fmt = u.formatCurrency || function (n) { return "$" + Math.round(n).toLocaleString(); };
+      function run() {
+        var inp = {}; ["salaryW2","benefitsValue","taxesPercent","freelanceHourlyRate","utilization","expenses"].forEach(function(k){ var e=form.querySelector("[name="+k+"]"); inp[k]=e?e.value:""; });
+        var res = window.NSB_SALARY_FREELANCE && window.NSB_SALARY_FREELANCE.calculate(inp);
+        if (!res || res.error) { out.innerHTML = res && res.error ? res.error : "Enter salary."; return; }
+        out.innerHTML = "W2 hourly: " + fmt(res.effectiveW2Hourly) + " | Freelance net: " + fmt(res.freelanceNetAnnual) + "/yr | Breakeven: " + fmt(res.breakevenHourly) + "/hr";
+      }
+      form.addEventListener("submit", function(e){ e.preventDefault(); run(); });
+      form.addEventListener("input", u.debounce ? u.debounce(run, 400) : run);
+      if (u.decodeParams) { var q = u.decodeParams(window.location.search); if (Object.keys(q).length) { Object.keys(q).forEach(function(k){ var e=form.querySelector("[name="+k+"]"); if (e) e.value = q[k]; }); run(); } }
+    });
+  </script>
+</body>
+</html>
