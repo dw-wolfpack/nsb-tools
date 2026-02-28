@@ -29,6 +29,94 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/career/">Career</a><span> / </span> Freelance Rate Calculator</nav>
     <h1>Freelance Rate Calculator</h1>
     <p>Calculate hourly, day, and project rates from desired income and billable hours.</p>
+    <p class="small muted">Last updated: February 27, 2025</p>
+
+    <section class="section">
+      <h2>What this tool does</h2>
+      <p>Calculates your freelance hourly, day, and project rates based on desired after-tax income, expenses, billable hours, vacation, <a href="/glossary/#utilization">utilization</a>, and <a href="/glossary/#buffer">buffer</a>. Shows project minimums for 10h, 20h, 40h. Rough estimator; not tax advice. Not AI-powered.</p>
+    </section>
+    <section class="section">
+      <h2>When to use it</h2>
+      <ul>
+        <li>Setting your freelance rate for the first time or revising it</li>
+        <li>Checking if your current rate covers income goals and expenses</li>
+        <li>Deciding project minimums for short engagements</li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Inputs explained</h2>
+      <ul>
+        <li><strong>Desired annual income (after tax)</strong> – What you want to take home.</li>
+        <li><strong>Annual expenses</strong> – Business and personal expenses that come out of income.</li>
+        <li><strong>Billable hours per week, vacation weeks</strong> – How much you can actually bill.</li>
+        <li><strong>Utilization rate</strong> – Share of working hours that are billable. See <a href="/glossary/#utilization">utilization</a>.</li>
+        <li><strong>Buffer %</strong> – Cushion for scope creep and unpaid work. See <a href="/glossary/#buffer">buffer</a>.</li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>How to use it</h2>
+      <ol>
+        <li>Enter desired income, expenses, billable hours, vacation, utilization, and optional buffer.</li>
+        <li>Click Calculate. Review hourly, day, and project minimums.</li>
+      </ol>
+    </section>
+    <section class="section">
+      <h2>Common mistakes</h2>
+      <ul>
+        <li>Assuming 100% utilization (70% is often optimistic)</li>
+        <li>Forgetting to add buffer for scope creep and non-billable time</li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Use it with AI</h2>
+      <p>This tool is not AI-powered. It is a calculator. You can use the results with an AI assistant in these ways:</p>
+      <ul>
+        <li>Paste your rates and ask for a one-paragraph explanation to use in client proposals.</li>
+        <li>Ask an AI to suggest 5 ways to increase billable hours or reduce expenses.</li>
+        <li>Use the <a href="/ai/toolkit/">AI Toolkit</a> and <a href="/ai/playbooks/founder-ops-ai-workflow/">Founder Ops AI Workflow</a> for pricing and ops.</li>
+      </ul>
+      <p>Explore the <a href="/ai/toolkit/">AI Toolkit</a> and <a href="/ai/playbooks/founder-ops-ai-workflow/">Founder Ops AI Workflow</a> for more.</p>
+    </section>
+    <section class="section">
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/tools/project-pricing-calculator/">Project Pricing Calculator</a></li>
+        <li><a href="/tools/salary-vs-freelance-comparator/">Salary vs Freelance Comparator</a></li>
+        <li><a href="/tools/resume-bullet-rewriter/">Resume Bullet Rewriter</a></li>
+        <li><a href="/tools/cold-outreach-email/">Cold Outreach Email Draft</a></li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Related glossary terms</h2>
+      <ul>
+        <li><a href="/glossary/#utilization">Utilization rate</a></li>
+        <li><a href="/glossary/#buffer">Buffer</a></li>
+        <li><a href="/glossary/#deposit">Deposit</a></li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Related pages</h2>
+      <ul>
+        <li><a href="/ai/">AI Hub</a></li>
+        <li><a href="/ai/toolkit/">AI Toolkit</a></li>
+        <li><a href="/categories/career/">Career</a></li>
+        <li><a href="/tools/project-pricing-calculator/">Project Pricing Calculator</a></li>
+        <li><a href="/tools/salary-vs-freelance-comparator/">Salary vs Freelance Comparator</a></li>
+        <li><a href="/tools/break-even-calculator/">Break-even Calculator</a></li>
+        <li><a href="/tools/loan-debt-payoff-calculator/">Loan / Debt Payoff Calculator</a></li>
+        <li><a href="/tools/employee-vs-contractor-calculator/">Employee vs Contractor Calculator</a></li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>FAQ</h2>
+      <h3>What is utilization rate?</h3>
+      <p>The share of your working hours that are billable. Non-billable time includes admin, marketing, learning.</p>
+      <h3>Is this tax advice?</h3>
+      <p>No. This is a rough estimator. Consult a tax professional.</p>
+      <h3>Why project minimums?</h3>
+      <p>Short projects often cost more per hour due to context switching. Minimums help you price them.</p>
+    </section>
+
     <div class="card" style="margin-top: 1.5rem;">
       <h2>Inputs</h2>
       <form id="nsb-form">
@@ -69,11 +157,14 @@
     </div>
     <div id="nsb-scenarios"></div>
     <div id="nsb-share-embed"></div>
+    <div id="nsb-related-guides"></div>
     <section class="pro-section"><h3>Pro features (coming soon)</h3><p>Pro unlocks unlimited saved scenarios and compare up to 4.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>
   <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+  <script src="/assets/js/related-guides.js" defer></script>
+  <script src="/assets/js/components/related-guides.js" defer></script>
   <script src="/assets/js/utils.js" defer></script>
   <script src="/assets/js/registry.js" defer></script>
   <script src="/assets/js/components/header.js" defer></script>
@@ -90,6 +181,7 @@
   <script src="/assets/js/tools/freelance-rate-calculator/ui.js" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      if (window.NSB_RELATED_GUIDES_UI) window.NSB_RELATED_GUIDES_UI.inject("nsb-related-guides", "freelance-rate-calculator");
       if (window.NSB_TOOL_PAGE_SECTIONS) {
         window.NSB_TOOL_PAGE_SECTIONS.inject("nsb-tool-sections", "freelance-rate-calculator");
       }

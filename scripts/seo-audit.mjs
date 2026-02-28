@@ -59,8 +59,14 @@ function extractCanonical(html) {
   return m ? m[1].trim() : "";
 }
 
-function checkPage(path, requireBreadcrumb) {
-  const html = read(path);
+/**
+ * Validate page HTML without reading from disk. Exported for tests.
+ * @param {string} html - Full HTML content
+ * @param {string} path - Logical path e.g. "ai/foo/index.html" or "embed/bar/index.html"
+ * @param {boolean} [requireBreadcrumb] - Whether BreadcrumbList JSON-LD is required
+ * @returns {string[]} List of issue messages
+ */
+export function checkPageFromHtml(html, path, requireBreadcrumb = false) {
   const issues = [];
   const isEmbed = path.startsWith("embed/");
 
@@ -138,6 +144,10 @@ function checkPage(path, requireBreadcrumb) {
   return issues;
 }
 
+function checkPage(path, requireBreadcrumb) {
+  return checkPageFromHtml(read(path), path, requireBreadcrumb);
+}
+
 function gatherHtmlPaths() {
   const paths = [];
 
@@ -185,6 +195,30 @@ function gatherHtmlPaths() {
     }
   }
 
+  // AI Hub pages
+  const aiPages = [
+    "ai/index.html",
+    "ai/playbooks/index.html",
+    "ai/toolkit/index.html",
+    "ai/checklists/index.html",
+    "ai/playbooks/job-search-ai-workflow/index.html",
+    "ai/playbooks/founder-ops-ai-workflow/index.html",
+    "ai/playbooks/rag-readiness-checklist/index.html",
+    "ai/playbooks/small-business-ai-adoption/index.html",
+    "ai/checklists/resume-ats-checklist/index.html",
+    "ai/checklists/vendor-eval-scorecard/index.html",
+    "ai/checklists/llm-safety-review/index.html",
+    "ai/checklists/ai-meeting-notes-workflow/index.html",
+  ];
+  for (const p of aiPages) {
+    try {
+      read(p);
+      paths.push(p);
+    } catch {
+      // ignore missing
+    }
+  }
+
   // Embeds
   const embedDir = resolve(ROOT, "embed");
   try {
@@ -229,6 +263,7 @@ function auditSitemap() {
   const mustHave = [
     ORIGIN + "/",
     ORIGIN + "/categories/",
+    ORIGIN + "/ai/",
     ORIGIN + "/faq/",
     ORIGIN + "/updates/",
     ORIGIN + "/glossary/",
@@ -264,6 +299,7 @@ async function main() {
     const requireBreadcrumb =
       p.startsWith("categories/") ||
       p.startsWith("tools/") ||
+      p.startsWith("ai/") ||
       p === "about/index.html" ||
       p === "privacy/index.html" ||
       p === "terms/index.html" ||

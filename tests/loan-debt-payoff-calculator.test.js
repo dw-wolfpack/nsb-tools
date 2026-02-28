@@ -45,3 +45,21 @@ test("loan: zero interest - totalInterest equals 0", () => {
   assert.ok(!r.error, `Unexpected error: ${r.error}`);
   assert.strictEqual(r.totalInterest, 0);
 });
+
+test("loan: payment less than monthly interest returns error", () => {
+  const r = calc.calculate({
+    principal: "100000",
+    interestRate: "12",
+    monthlyPayment: "500",
+    extraPayment: "0",
+  });
+  assert.ok(typeof r.error === "string", "payment < interest must return error");
+});
+
+test("loan: extra payment reduces payoff months and total interest", () => {
+  const noExtra = calc.calculate({ principal: "100000", interestRate: "6", monthlyPayment: "1500", extraPayment: "0" });
+  const withExtra = calc.calculate({ principal: "100000", interestRate: "6", monthlyPayment: "1500", extraPayment: "500" });
+  assert.ok(!noExtra.error && !withExtra.error);
+  assert.ok(withExtra.monthsToPayoff < noExtra.monthsToPayoff);
+  assert.ok(withExtra.totalInterest < noExtra.totalInterest);
+});

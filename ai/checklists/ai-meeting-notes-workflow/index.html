@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>AI Meeting Notes Workflow | NSB Tools</title>
+  <meta name="description" content="A simple meeting notes workflow using AI responsibly. Capture, summarize, action items, and follow-ups with guardrails and templates.">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/ai/checklists/ai-meeting-notes-workflow/">
+  <meta property="og:title" content="AI Meeting Notes Workflow | NSB Tools">
+  <meta property="og:description" content="A simple meeting notes workflow using AI responsibly. Capture, summarize, action items, and follow-ups with guardrails and templates.">
+  <meta property="og:url" content="https://tools.nextstepsbeyond.online/ai/checklists/ai-meeting-notes-workflow/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Meeting Notes Workflow | NSB Tools">
+  <meta name="twitter:description" content="A simple meeting notes workflow using AI responsibly. Capture, summarize, action items, and follow-ups with guardrails and templates.">
+  <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://tools.nextstepsbeyond.online/ai/"},{"@type":"ListItem","position":3,"name":"Checklists","item":"https://tools.nextstepsbeyond.online/ai/checklists/"},{"@type":"ListItem","position":4,"name":"Meeting Notes Workflow","item":"https://tools.nextstepsbeyond.online/ai/checklists/ai-meeting-notes-workflow/"}]}</script>
+</head>
+<body>
+  <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
+  <header id="nsb-header"></header>
+  <main class="layout layout--narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span> <a href="/ai/">AI</a><span> / </span> <a href="/ai/checklists/">Checklists</a><span> / </span> Meeting Notes Workflow</nav>
+    <h1>AI Meeting Notes Workflow</h1>
+    <p class="print-link"><a href="?print=1">Printable version</a></p>
+    <p class="category-intro">A simple meeting notes workflow using AI responsibly. Capture, summarize, action items, and follow-ups with guardrails and templates.</p>
+    <p class="muted small">Last updated: February 27, 2026</p>
+
+    <section class="section">
+      <h2>Summary</h2>
+      <p>
+        This workflow turns messy meeting notes into clean outcomes: decisions, action items, owners, and deadlines.
+        It is designed to be fast and consistent, not perfect. The goal is to leave every meeting with a shared truth.
+        Use it with the <a href="/ai/playbooks/job-search-ai-workflow/">Job Search AI Workflow</a> for interview prep and the <a href="/ai/playbooks/founder-ops-ai-workflow/">Founder Ops AI Workflow</a> for recurring ops meetings.
+        You can run it manually or paste it into any AI tool that can rewrite and format text.
+      </p>
+    </section>
+    
+    <section class="section">
+      <h2>Who it is for</h2>
+      <ul>
+        <li>Operators who run recurring meetings and hate chaos.</li>
+        <li>Engineers and founders who need decisions documented fast.</li>
+        <li>Small businesses doing client calls, sales calls, and internal planning.</li>
+        <li>Anyone who leaves meetings with “wait, what did we decide?”</li>
+      </ul>
+    </section>
+    
+    <section class="section">
+      <h2>What you get</h2>
+      <ul>
+        <li>A consistent notes format that makes follow-up automatic.</li>
+        <li>A decision log you can search later.</li>
+        <li>An action list with owners and deadlines.</li>
+        <li>A short recap you can post to Slack or email.</li>
+        <li>Guardrails to keep sensitive data out of your prompts.</li>
+      </ul>
+    </section>
+    
+    <section class="section">
+      <h2>Steps</h2>
+      <ol>
+        <li>
+          <strong>Start with the right raw input.</strong>
+          <br>Use one of these:
+          <ul>
+            <li>Bullet notes you typed during the meeting</li>
+            <li>Transcript excerpt (trim it first)</li>
+            <li>Agenda plus rough notes</li>
+          </ul>
+          Do not paste sensitive data. Replace names with roles if needed.
+        </li>
+    
+        <li>
+          <strong>Normalize the notes in 60 seconds.</strong>
+          <br>Before using AI, quickly clean:
+          <ul>
+            <li>Remove repeated lines and filler</li>
+            <li>Replace names with roles (PM, Eng, Client)</li>
+            <li>Mark unclear spots with [UNCLEAR]</li>
+          </ul>
+          The cleaner the input, the better the output.
+        </li>
+    
+        <li>
+          <strong>Extract decisions first.</strong>
+          <br>Ask the AI to list decisions made, including what was decided and why.
+          <br>If no decision was made, it should explicitly say “No decisions recorded.”
+        </li>
+    
+        <li>
+          <strong>Extract action items with owners and dates.</strong>
+          <br>Every action item must have:
+          <ul>
+            <li>Action (imperative verb)</li>
+            <li>Owner</li>
+            <li>Deadline (or “TBD”)</li>
+          </ul>
+          If the owner is not clear, it should flag it.
+        </li>
+    
+        <li>
+          <strong>Capture risks and open questions.</strong>
+          <br>Create two lists:
+          <ul>
+            <li>Risks: what could block progress</li>
+            <li>Open questions: what needs an answer</li>
+          </ul>
+          This prevents “we forgot the hard part” later.
+        </li>
+    
+        <li>
+          <strong>Publish the recap and confirm.</strong>
+          <br>Post the recap to your team channel or email with:
+          <ul>
+            <li>Decisions</li>
+            <li>Actions</li>
+            <li>Open questions</li>
+          </ul>
+          Ask for corrections within 24 hours. That is how you build a reliable decision log.
+        </li>
+      </ol>
+    </section>
+    
+    <section class="section">
+      <h2>Templates</h2>
+      <p class="muted">Copy, paste, and run this after any meeting.</p>
+    
+      <div class="prompt-pack" id="nsb-meeting-notes-templates">
+        <article class="card prompt-card">
+          <div class="prompt-card-head">
+            <div>
+              <h3 class="prompt-title">Template 1: Meeting recap prompt</h3>
+              <p class="muted prompt-sub">Turns raw notes into a clean recap.</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" data-copy-prompt>Copy</button>
+          </div>
+          <pre class="prompt-code"><code>Task: Convert these raw meeting notes into a clean recap.
+    
+    Rules:
+    - Do not invent facts. If something is unclear, mark it [UNCLEAR].
+    - Keep it short and scannable.
+    - Use this exact output format.
+    
+    Output format:
+    Title:
+    Date:
+    Attendees (roles only):
+    Context (2 bullets max):
+    
+    Decisions:
+    - Decision | reason
+    
+    Action items:
+    - Action | owner | deadline
+    
+    Risks:
+    - risk
+    
+    Open questions:
+    - question
+    
+    Notes:
+    [Paste raw notes here]</code></pre>
+        </article>
+    
+        <article class="card prompt-card">
+          <div class="prompt-card-head">
+            <div>
+              <h3 class="prompt-title">Template 2: Action list only</h3>
+              <p class="muted prompt-sub">Use when you only want tasks.</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" data-copy-prompt>Copy</button>
+          </div>
+          <pre class="prompt-code"><code>Extract action items from these notes.
+    
+    Rules:
+    - One action per line.
+    - Must include owner and deadline. If missing, write "owner: TBD" or "deadline: TBD".
+    - Use the format: action | owner | deadline
+    
+    Notes:
+    [Paste raw notes here]</code></pre>
+        </article>
+    
+        <article class="card prompt-card">
+          <div class="prompt-card-head">
+            <div>
+              <h3 class="prompt-title">Template 3: Decision log entry</h3>
+              <p class="muted prompt-sub">Use for high-stakes meetings.</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" data-copy-prompt>Copy</button>
+          </div>
+          <pre class="prompt-code"><code>Create a decision log entry from these notes.
+    
+    Rules:
+    - Only include decisions actually made.
+    - If there are none, say "No decisions recorded."
+    - Keep each decision to 2 lines max.
+    
+    Output format:
+    Decision:
+    Why:
+    Alternatives considered:
+    Owner:
+    Date:
+    Follow-ups:
+    
+    Notes:
+    [Paste raw notes here]</code></pre>
+        </article>
+      </div>
+    </section>
+    
+    <section class="section">
+      <h2>Common mistakes</h2>
+      <ul>
+        <li><strong>Copying the whole transcript.</strong> Trim it first or you get noise.</li>
+        <li><strong>No owners.</strong> Tasks without owners are fantasies.</li>
+        <li><strong>No deadlines.</strong> “Soon” is not a plan.</li>
+        <li><strong>Letting AI guess.</strong> If it is unclear, it should say so.</li>
+        <li><strong>Not confirming the recap.</strong> The decision log only works if people correct it.</li>
+        <li><strong>Pasting sensitive data.</strong> Sanitize names, customer details, credentials.</li>
+      </ul>
+    </section>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var root = document.getElementById("nsb-meeting-notes-templates");
+        if (!root) return;
+    
+        function copyText(text) {
+          if (window.NSB_UTILS && typeof window.NSB_UTILS.copyToClipboard === "function") {
+            return window.NSB_UTILS.copyToClipboard(text);
+          }
+          return navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject();
+        }
+    
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest("[data-copy-prompt]");
+          if (!btn) return;
+    
+          var card = btn.closest(".prompt-card");
+          if (!card) return;
+    
+          var codeEl = card.querySelector("pre code");
+          var text = codeEl ? (codeEl.textContent || "").trim() : "";
+          if (!text) return;
+    
+          copyText(text).then(function () {
+            if (window.NSB_TOAST) window.NSB_TOAST.show("Copied");
+          }).catch(function () {
+            if (window.NSB_TOAST) window.NSB_TOAST.show("Copy failed");
+          });
+        });
+      });
+    </script>
+
+    <section class="section">
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/tools/freelance-rate-calculator/">Freelance Rate Calculator</a></li>
+        <li><a href="/tools/project-pricing-calculator/">Project Pricing Calculator</a></li>
+        <li><a href="/tools/salary-vs-freelance-comparator/">Salary vs Freelance Comparator</a></li>
+        <li><a href="/tools/loan-debt-payoff-calculator/">Loan Debt Payoff Calculator</a></li>
+        <li><a href="/tools/burn-rate-runway-calculator/">Burn Rate Runway Calculator</a></li>
+        <li><a href="/tools/break-even-calculator/">Break-Even Calculator</a></li>
+        <li><a href="/tools/employee-vs-contractor-calculator/">Employee vs Contractor Calculator</a></li>
+        <li><a href="/tools/saas-roi-deal-analyzer/">SaaS ROI Deal Analyzer</a></li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Related glossary terms</h2>
+      <ul>
+        <li><a href="/glossary/#cac">CAC</a></li>
+        <li><a href="/glossary/#ltv">LTV</a></li>
+        <li><a href="/glossary/#churn">Churn</a></li>
+        <li><a href="/glossary/#gross-margin">Gross margin</a></li>
+        <li><a href="/glossary/#utilization">Utilization</a></li>
+        <li><a href="/glossary/#runway">Runway</a></li>
+        <li><a href="/glossary/#break-even">Break-even</a></li>
+      </ul>
+    </section>
+    <div id="nsb-link-to-this"></div>
+    <div id="nsb-next-related"></div>
+  </main>
+  <footer id="nsb-footer"></footer>
+  <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/components/modal.js" defer></script>
+  <script src="/assets/js/components/toast.js" defer></script>
+  <script src="/assets/js/print.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/ai-nav.js" defer></script>
+  <script src="/assets/js/components/next-related.js" defer></script>
+  <script src="/assets/js/components/link-to-this.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.NSB_NEXT_RELATED) window.NSB_NEXT_RELATED.init("nsb-next-related");
+      var lttEl = document.getElementById("nsb-link-to-this");
+      if (lttEl && window.NSB_LINK_TO_THIS) {
+        window.NSB_LINK_TO_THIS.render(lttEl, { anchorText: "AI meeting notes workflow" });
+      }
+    });
+  </script>
+</body>
+</html>

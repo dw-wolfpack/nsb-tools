@@ -29,6 +29,77 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/business/">Business / Finance</a><span> / </span> Employee vs Contractor Cost Calculator</nav>
     <h1>Employee vs Contractor Cost Calculator</h1>
     <p>Compare true employee cost to contractor cost. Find breakeven hours.</p>
+    <p class="small muted">Last updated: February 27, 2025</p>
+
+    <section class="section">
+      <h2>What this tool does</h2>
+      <p>Compares true annual cost of an employee (salary, <a href="/glossary/#benefits-load">benefits</a>, <a href="/glossary/#payroll-tax">payroll tax</a>, <a href="/glossary/#overhead">overhead</a>) to contractor cost. Shows breakeven hours and hourly equivalent. Rule of thumb: contractor often 1.3 to 1.8x employee equivalent. Informational only; not advice. Not AI-powered.</p>
+    </section>
+    <section class="section">
+      <h2>When to use it</h2>
+      <ul>
+        <li>Deciding whether to hire an employee or use a contractor for a role</li>
+        <li>Comparing a contractor quote to the cost of a full-time hire</li>
+        <li>Understanding total cost of employment (not just salary)</li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Inputs explained</h2>
+      <ul>
+        <li><strong>Employee</strong> – Salary or hourly, plus benefits %, payroll tax %, overhead %.</li>
+        <li><strong>Contractor</strong> – Hourly rate and annual hours. No benefits or payroll tax in this tool.</li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>How to use it</h2>
+      <ol>
+        <li>Enter employee salary (or hourly + hours), benefits, payroll tax, overhead. Enter contractor rate and hours.</li>
+        <li>Click Calculate. Compare total costs and breakeven hours.</li>
+      </ol>
+    </section>
+    <section class="section">
+      <h2>Common mistakes</h2>
+      <ul>
+        <li>Underestimating benefits and overhead (20 to 30% on top of salary is common)</li>
+        <li>Comparing contractor rate to salary only (employee has benefits and taxes)</li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Use it with AI</h2>
+      <p>This tool is not AI-powered. It is a calculator. You can use the results with an AI assistant in these ways:</p>
+      <ul>
+        <li>Paste the comparison and ask for a one-paragraph summary for a decision memo.</li>
+        <li>Ask an AI to list 5 factors beyond cost (e.g. IP, availability) when choosing employee vs contractor.</li>
+        <li>Use the <a href="/ai/toolkit/">AI Toolkit</a> and <a href="/ai/playbooks/founder-ops-ai-workflow/">Founder Ops AI Workflow</a> or <a href="/ai/checklists/vendor-eval-scorecard/">Vendor Eval Scorecard</a> for hiring and vendor workflows.</li>
+      </ul>
+      <p>Explore the <a href="/ai/toolkit/">AI Toolkit</a> and <a href="/ai/checklists/vendor-eval-scorecard/">Vendor Eval Scorecard</a> for more.</p>
+    </section>
+    <section class="section">
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/tools/freelance-rate-calculator/">Freelance Rate Calculator</a></li>
+        <li><a href="/tools/break-even-calculator/">Break-even Calculator</a></li>
+        <li><a href="/tools/saas-roi-deal-analyzer/">SaaS ROI Deal Analyzer</a></li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Related glossary terms</h2>
+      <ul>
+        <li><a href="/glossary/#benefits-load">Benefits load</a></li>
+        <li><a href="/glossary/#payroll-tax">Payroll tax</a></li>
+        <li><a href="/glossary/#overhead">Overhead</a></li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>FAQ</h2>
+      <h3>What is overhead?</h3>
+      <p>Extra costs to support work: software, equipment, desk space, management time.</p>
+      <h3>Why 1.3 to 1.8x for contractor?</h3>
+      <p>Rule of thumb. Contractors carry their own benefits and taxes.</p>
+      <h3>Is this binding?</h3>
+      <p>No. Use for ballpark comparison; actual costs vary.</p>
+    </section>
+
     <div class="card" style="margin-top: 1.5rem;">
       <h2>Inputs</h2>
       <form id="nsb-form">
@@ -79,11 +150,14 @@
     </div>
     <div id="nsb-scenarios"></div>
     <div id="nsb-share-embed"></div>
+    <div id="nsb-related-guides"></div>
     <section class="pro-section"><h3>Pro features (coming soon)</h3><p>Pro unlocks unlimited scenarios.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>
   <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+  <script src="/assets/js/related-guides.js" defer></script>
+  <script src="/assets/js/components/related-guides.js" defer></script>
   <script src="/assets/js/utils.js" defer></script>
   <script src="/assets/js/registry.js" defer></script>
   <script src="/assets/js/components/header.js" defer></script>
@@ -100,6 +174,7 @@
   <script src="/assets/js/tools/employee-vs-contractor-calculator/ui.js" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      if (window.NSB_RELATED_GUIDES_UI) window.NSB_RELATED_GUIDES_UI.inject("nsb-related-guides", "employee-vs-contractor-calculator");
       if (window.NSB_TOOL_PAGE_SECTIONS) {
         window.NSB_TOOL_PAGE_SECTIONS.inject("nsb-tool-sections", "employee-vs-contractor-calculator");
       }

@@ -17,3 +17,22 @@ test("project-pricing: hours=40, rate=100, complexity=1, buffer=20, expenses=0 =
   assert.ok(Number.isFinite(r.target), "target must be finite");
   assert.ok(Math.abs(r.target - 4800) <= 1, `target expected ~4800, got ${r.target}`);
 });
+
+test("project-pricing: hours=0 returns error", () => {
+  const r = calc.calculate({
+    estimatedHours: "0",
+    hourlyRate: "100",
+  });
+  assert.ok(typeof r.error === "string");
+});
+
+test("project-pricing: range low <= target <= high always", () => {
+  const r = calc.calculate({
+    estimatedHours: "50",
+    hourlyRate: "80",
+    riskBufferPercent: "15",
+    expenses: "200",
+  });
+  assert.ok(!r.error);
+  assert.ok(r.low <= r.target && r.target <= r.high);
+});

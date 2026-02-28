@@ -26,3 +26,34 @@ test("saas-roi: churn=0 returns error string", () => {
   });
   assert.ok(typeof r.error === "string", `Expected error string, got ${JSON.stringify(r)}`);
 });
+
+test("saas-roi: gross margin=0 returns error", () => {
+  const r = calc.calculate({
+    cac: "500",
+    arpa: "50",
+    grossMargin: "0",
+    monthlyChurn: "5",
+  });
+  assert.ok(typeof r.error === "string");
+});
+
+test("saas-roi: CAC=0 returns error", () => {
+  const r = calc.calculate({
+    cac: "0",
+    arpa: "50",
+    grossMargin: "80",
+    monthlyChurn: "5",
+  });
+  assert.ok(typeof r.error === "string");
+});
+
+test("saas-roi: high churn (50%) produces finite LTV", () => {
+  const r = calc.calculate({
+    cac: "100",
+    arpa: "20",
+    grossMargin: "80",
+    monthlyChurn: "50",
+  });
+  assert.ok(!r.error);
+  assert.ok(Number.isFinite(r.ltv) && r.ltv > 0);
+});

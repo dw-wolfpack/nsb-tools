@@ -13,3 +13,4 @@ jobs:
           node-version: "lts/*"
       - run: npm test
       - run: npm run seo:audit
+      - run: npm run seo:metrics

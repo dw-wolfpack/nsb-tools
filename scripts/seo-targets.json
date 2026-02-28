@@ -1,0 +1,54 @@
+{
+  "defaults": {
+    "minWords": 350,
+    "requiredKeywords": [],
+    "optionalKeywords": []
+  },
+  "routes": {
+    "/ai/": {
+      "minWords": 450,
+      "requiredKeywords": ["AI", "playbooks", "checklists"],
+      "optionalKeywords": ["job search", "founder", "small business", "RAG"]
+    },
+    "/ai/toolkit/": {
+      "minWords": 650,
+      "requiredKeywords": ["AI toolkit"],
+      "optionalKeywords": ["job seekers", "solo founders", "operators", "engineers", "small businesses"]
+    },
+    "/ai/playbooks/job-search-ai-workflow/": {
+      "minWords": 700,
+      "requiredKeywords": ["job search", "workflow"],
+      "optionalKeywords": ["ATS", "outreach", "resume", "follow-up"]
+    },
+    "/ai/checklists/vendor-eval-scorecard/": {
+      "minWords": 600,
+      "requiredKeywords": ["vendor", "scorecard"],
+      "optionalKeywords": ["SLA", "security", "privacy", "pricing", "SSO", "RBAC"]
+    },
+    "/ai/checklists/llm-safety-review/": {
+      "minWords": 650,
+      "requiredKeywords": ["LLM", "safety"],
+      "optionalKeywords": ["prompt injection", "hallucination", "data", "access controls"]
+    },
+    "/ai/checklists/ai-meeting-notes-workflow/": {
+      "minWords": 650,
+      "requiredKeywords": ["meeting notes"],
+      "optionalKeywords": ["decisions", "action items", "owners", "deadlines"]
+    },
+    "/ai/playbooks/founder-ops-ai-workflow/": {
+      "minWords": 700,
+      "requiredKeywords": ["founder", "ops"],
+      "optionalKeywords": ["decision memo", "weekly plan", "SOP", "metrics"]
+    },
+    "/ai/playbooks/rag-readiness-checklist/": {
+      "minWords": 750,
+      "requiredKeywords": ["RAG"],
+      "optionalKeywords": ["retrieval", "citations", "chunking", "evaluation", "refuse"]
+    },
+    "/ai/playbooks/small-business-ai-adoption/": {
+      "minWords": 700,
+      "requiredKeywords": ["small business"],
+      "optionalKeywords": ["pilot", "SOP", "ROI", "workflow"]
+    }
+  }
+}

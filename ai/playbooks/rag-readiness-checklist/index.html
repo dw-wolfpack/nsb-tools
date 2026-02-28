@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>RAG Readiness Playbook | NSB Tools</title>
+  <meta name="description" content="A practical RAG readiness playbook: document prep, chunking, citations, evaluation, and rollout. Built for operators and engineers.">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/ai/playbooks/rag-readiness-checklist/">
+  <meta property="og:title" content="RAG Readiness Playbook | NSB Tools">
+  <meta property="og:description" content="A practical RAG readiness playbook: document prep, chunking, citations, evaluation, and rollout. Built for operators and engineers.">
+  <meta property="og:url" content="https://tools.nextstepsbeyond.online/ai/playbooks/rag-readiness-checklist/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RAG Readiness Playbook | NSB Tools">
+  <meta name="twitter:description" content="A practical RAG readiness playbook: document prep, chunking, citations, evaluation, and rollout. Built for operators and engineers.">
+  <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"},{"@type":"ListItem","position":2,"name":"AI","item":"https://tools.nextstepsbeyond.online/ai/"},{"@type":"ListItem","position":3,"name":"Playbooks","item":"https://tools.nextstepsbeyond.online/ai/playbooks/"},{"@type":"ListItem","position":4,"name":"RAG Readiness","item":"https://tools.nextstepsbeyond.online/ai/playbooks/rag-readiness-checklist/"}]}</script>
+</head>
+<body>
+  <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
+  <header id="nsb-header"></header>
+  <main class="layout layout--narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span> <a href="/ai/">AI</a><span> / </span> <a href="/ai/playbooks/">Playbooks</a><span> / </span> RAG Readiness</nav>
+    <h1>RAG Readiness Playbook</h1>
+    <p class="category-intro">A practical RAG readiness playbook: document prep, chunking, citations, evaluation, and rollout. Built for operators and engineers.</p>
+    <p class="muted small">Last updated: February 27, 2026</p>
+
+    <section class="section">
+      <h2>Summary</h2>
+      <p>
+        This playbook helps you decide if you are actually ready for RAG, or if you are about to build a search problem with extra steps.
+        It is designed for operators and engineers who want a practical path: what to check, what to fix, and what to measure.
+        Use the <a href="/ai/checklists/llm-safety-review/">LLM Safety Review Checklist</a> for data and output guardrails, and the <a href="/ai/toolkit/">AI Toolkit</a> for tool picks.
+        Run this before you commit to a RAG build, and again before you roll it out to real users.
+      </p>
+    </section>
+    
+    <section class="section">
+      <h2>Who it is for</h2>
+      <ul>
+        <li>Operators and engineers building internal knowledge tools.</li>
+        <li>Founders selling a product that needs grounded answers with citations.</li>
+        <li>Teams with a pile of docs and no way to find the right answer fast.</li>
+        <li>Anyone getting burned by “the model made it up.”</li>
+      </ul>
+    </section>
+    
+    <section class="section">
+      <h2>What you get</h2>
+      <ul>
+        <li>A readiness checklist that forces clarity on the job to be done.</li>
+        <li>A document and data quality checklist that prevents garbage retrieval.</li>
+        <li>A minimal architecture outline: ingest, chunk, retrieve, cite, refuse.</li>
+        <li>Evaluation metrics you can track without a research team.</li>
+        <li>Templates for test queries and acceptance criteria.</li>
+      </ul>
+    </section>
+    
+    <section class="section">
+      <h2>Steps</h2>
+      <ol>
+        <li>
+          <strong>Define the job to be done, not the tech.</strong>
+          <br>Write one sentence:
+          <ul>
+            <li>“Users want to [task] using [source], and the result must be [quality bar].”</li>
+          </ul>
+          If you cannot state the task, you cannot evaluate success.
+        </li>
+    
+        <li>
+          <strong>Inventory the sources and the truth level.</strong>
+          <br>List each source and label it:
+          <ul>
+            <li><strong>Authoritative:</strong> policies, contracts, system docs, verified runbooks</li>
+            <li><strong>Helpful:</strong> meeting notes, tickets, chat logs</li>
+            <li><strong>Untrusted:</strong> random docs, outdated files, duplicated content</li>
+          </ul>
+          RAG is only as trustworthy as the sources you feed it.
+        </li>
+    
+        <li>
+          <strong>Fix content quality before you build retrieval.</strong>
+          <br>Do a quick cleanup pass:
+          <ul>
+            <li>Remove duplicates</li>
+            <li>Remove dead docs and old versions</li>
+            <li>Standardize titles and section headers</li>
+            <li>Add “last updated” where possible</li>
+          </ul>
+          If the library is messy, retrieval will be messy.
+        </li>
+    
+        <li>
+          <strong>Choose a minimum viable retrieval design.</strong>
+          <br>Start simple:
+          <ul>
+            <li>Chunk by headings, not arbitrary size</li>
+            <li>Store source URL and section title per chunk</li>
+            <li>Retrieve top K and cite them</li>
+            <li>Refuse when there is no evidence</li>
+          </ul>
+          You can add reranking later. Do not start with complexity.
+        </li>
+    
+        <li>
+          <strong>Define evaluation before you ship.</strong>
+          <br>Create a test set of 25 questions:
+          <ul>
+            <li>10 easy (direct lookup)</li>
+            <li>10 medium (needs synthesis across sections)</li>
+            <li>5 hard (edge cases, ambiguous)</li>
+          </ul>
+          For each question, define what a correct answer must cite.
+        </li>
+    
+        <li>
+          <strong>Ship with guardrails and logging.</strong>
+          <br>Your first version should:
+          <ul>
+            <li>Show citations for every claim</li>
+            <li>Say “Not in library” when it cannot prove it</li>
+            <li>Log the question, top docs, and whether the user was satisfied</li>
+          </ul>
+          This is how you improve relevance and trust over time.
+        </li>
+      </ol>
+    </section>
+    
+    <section class="section">
+      <h2>Templates</h2>
+      <p class="muted">Copy these into your doc, then fill them with your actual system details.</p>
+    
+      <div class="prompt-pack" id="nsb-rag-templates">
+        <article class="card prompt-card">
+          <div class="prompt-card-head">
+            <div>
+              <h3 class="prompt-title">Template 1: RAG readiness snapshot</h3>
+              <p class="muted prompt-sub">One page that says if you are ready and why.</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" data-copy-prompt>Copy</button>
+          </div>
+          <pre class="prompt-code"><code>RAG readiness snapshot
+    
+    Job to be done:
+    Users:
+    Primary sources:
+    Success criteria:
+    
+    Sources inventory:
+    - Source | type (authoritative/helpful/untrusted) | owner | last updated
+    
+    Data quality issues:
+    - duplicates:
+    - outdated:
+    - missing metadata:
+    - access problems:
+    
+    MVP retrieval plan:
+    - chunking strategy:
+    - top K:
+    - citations:
+    - refusal behavior:
+    
+    Evaluation plan:
+    - test questions count:
+    - acceptance criteria:
+    - metrics tracked:
+    
+    Decision:
+    - Ready / Not ready
+    Next actions:</code></pre>
+        </article>
+    
+        <article class="card prompt-card">
+          <div class="prompt-card-head">
+            <div>
+              <h3 class="prompt-title">Template 2: Test questions table</h3>
+              <p class="muted prompt-sub">Use this to build your eval set.</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" data-copy-prompt>Copy</button>
+          </div>
+          <pre class="prompt-code"><code>Test questions
+    
+    Format:
+    Question | difficulty | expected sources | must-cite sections | answer notes
+    
+    Examples:
+    - What is our refund policy? | easy | policy doc | section 2 | must cite
+    - How do we handle access exceptions? | medium | runbook + policy | both | synthesize
+    - What should we do if the system is down and logs are missing? | hard | incident doc | section 4 | edge case</code></pre>
+        </article>
+    
+        <article class="card prompt-card">
+          <div class="prompt-card-head">
+            <div>
+              <h3 class="prompt-title">Template 3: Acceptance criteria</h3>
+              <p class="muted prompt-sub">Keep it measurable and strict.</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" data-copy-prompt>Copy</button>
+          </div>
+          <pre class="prompt-code"><code>Acceptance criteria (MVP)
+    
+    - Every answer includes citations for factual claims.
+    - If no evidence is retrieved, the system refuses and says "Not in library."
+    - Top 3 retrieved chunks are relevant for at least 70% of test questions.
+    - Correct answer rate is at least 60% on the 25-question test set.
+    - Users can report "wrong" and we capture: question, retrieved docs, and why it failed.</code></pre>
+        </article>
+      </div>
+    </section>
+    
+    <section class="section">
+      <h2>Common mistakes</h2>
+      <ul>
+        <li><strong>Building RAG when search would solve it.</strong> Start with good search first.</li>
+        <li><strong>Messy sources.</strong> Duplicates and outdated docs destroy trust.</li>
+        <li><strong>No refusal mode.</strong> If it cannot prove it, it should not answer.</li>
+        <li><strong>No evaluation set.</strong> You cannot improve what you cannot measure.</li>
+        <li><strong>Chunking by character count only.</strong> Headings and structure matter.</li>
+        <li><strong>No citations.</strong> Without citations you will not earn trust.</li>
+      </ul>
+    </section>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var root = document.getElementById("nsb-rag-templates");
+        if (!root) return;
+    
+        function copyText(text) {
+          if (window.NSB_UTILS && typeof window.NSB_UTILS.copyToClipboard === "function") {
+            return window.NSB_UTILS.copyToClipboard(text);
+          }
+          return navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject();
+        }
+    
+        root.addEventListener("click", function (e) {
+          var btn = e.target.closest("[data-copy-prompt]");
+          if (!btn) return;
+    
+          var card = btn.closest(".prompt-card");
+          if (!card) return;
+    
+          var codeEl = card.querySelector("pre code");
+          var text = codeEl ? (codeEl.textContent || "").trim() : "";
+          if (!text) return;
+    
+          copyText(text).then(function () {
+            if (window.NSB_TOAST) window.NSB_TOAST.show("Copied");
+          }).catch(function () {
+            if (window.NSB_TOAST) window.NSB_TOAST.show("Copy failed");
+          });
+        });
+      });
+    </script>
+
+    <section class="section">
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/tools/freelance-rate-calculator/">Freelance Rate Calculator</a></li>
+        <li><a href="/tools/project-pricing-calculator/">Project Pricing Calculator</a></li>
+        <li><a href="/tools/salary-vs-freelance-comparator/">Salary vs Freelance Comparator</a></li>
+        <li><a href="/tools/loan-debt-payoff-calculator/">Loan Debt Payoff Calculator</a></li>
+        <li><a href="/tools/burn-rate-runway-calculator/">Burn Rate Runway Calculator</a></li>
+        <li><a href="/tools/break-even-calculator/">Break-Even Calculator</a></li>
+        <li><a href="/tools/employee-vs-contractor-calculator/">Employee vs Contractor Calculator</a></li>
+        <li><a href="/tools/saas-roi-deal-analyzer/">SaaS ROI Deal Analyzer</a></li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Related glossary terms</h2>
+      <ul>
+        <li><a href="/glossary/#cac">CAC</a></li>
+        <li><a href="/glossary/#ltv">LTV</a></li>
+        <li><a href="/glossary/#churn">Churn</a></li>
+        <li><a href="/glossary/#gross-margin">Gross margin</a></li>
+        <li><a href="/glossary/#utilization">Utilization</a></li>
+        <li><a href="/glossary/#runway">Runway</a></li>
+        <li><a href="/glossary/#break-even">Break-even</a></li>
+      </ul>
+    </section>
+    <div id="nsb-link-to-this"></div>
+    <div id="nsb-next-related"></div>
+  </main>
+  <footer id="nsb-footer"></footer>
+  <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/components/modal.js" defer></script>
+  <script src="/assets/js/components/toast.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/ai-nav.js" defer></script>
+  <script src="/assets/js/components/next-related.js" defer></script>
+  <script src="/assets/js/components/link-to-this.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.NSB_NEXT_RELATED) window.NSB_NEXT_RELATED.init("nsb-next-related");
+      var lttEl = document.getElementById("nsb-link-to-this");
+      if (lttEl && window.NSB_LINK_TO_THIS) {
+        window.NSB_LINK_TO_THIS.render(lttEl, { anchorText: "RAG readiness playbook" });
+      }
+    });
+  </script>
+</body>
+</html>

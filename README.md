@@ -56,12 +56,42 @@ For HTML: `curl -I https://tools.nextstepsbeyond.online/` should show `Cache-Con
 
 See [Cloudflare hardening](docs/cloudflare-hardening/) for WAF and security recommendations (docs only; no config in repo).
 
+## SEO metrics report
+
+Generate a content metrics report (word count, links, thin content flags, broken links):
+
+```bash
+npm run seo:metrics
+```
+
+Writes `reports/seo-metrics.md` and `reports/seo-metrics.json`. Safe to run locally and in CI.
+
+Link metrics count only **visible** links. Before counting, the script strips elements that are hidden in static HTML:
+
+- Elements with the `hidden` attribute
+- Elements with inline `style` containing `display:none` or `visibility:hidden`
+- Elements with `aria-hidden="true"`
+- Elements with class `visually-hidden` or `sr-only`
+
+Tools marked `isHidden` in `assets/js/registry.js` are also excluded from link counts. The report includes a "Hidden tool links" section when any page links to a hidden tool.
+
+To fail the script when any page contains links to hidden tools (e.g. for CI):
+
+```bash
+STRICT_HIDDEN_LINKS=1 npm run seo:metrics
+```
+
+### Per-page targets (optional)
+
+Create `scripts/seo-targets.json` to set per-route min word counts and required/optional keywords. See the file for structure. Routes use exact match (e.g. `/ai/toolkit/`). Pages without a route entry use `defaults`.
+
 ## SEO checklist
 
 - Update `sitemap.xml` when adding new tools or pages.
 - Keep meta `title` and `description` unique per page.
 - Use trailing slashes in all internal links.
 - Ensure canonical URLs match sitemap entries.
+- See [SEO runbook](docs/seo-runbook/) for target keywords, internal linking, backlink playbook, and metrics.
 
 ## Structure
 

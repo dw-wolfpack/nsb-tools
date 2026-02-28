@@ -16,6 +16,7 @@
     const path = window.location.pathname;
     if (path === "/" || path === "/index.html" || path === "") return "home";
     if (path.startsWith("/categories/")) return "categories";
+    if (path.startsWith("/ai")) return "ai";
     if (path.startsWith("/about")) return "about";
     if (path.startsWith("/faq")) return "faq";
     if (path.startsWith("/updates")) return "updates";
@@ -47,6 +48,7 @@
             <nav class="header-nav" aria-label="Main navigation">
               <a href="${base}"${active === "home" ? " class=\"active\"" : ""}>Home</a>
               <a href="${base}categories/"${active === "categories" ? " class=\"active\"" : ""}>Categories</a>
+              <a href="${base}ai/"${active === "ai" ? " class=\"active\"" : ""}>AI</a>
               <a href="${base}about/">About</a>
               <a href="${base}faq/">FAQ</a>
               <a href="${base}updates/"${active === "updates" ? " class=\"active\"" : ""}>Updates</a>

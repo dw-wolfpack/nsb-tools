@@ -470,6 +470,46 @@ a:hover {
   font-size: 1.125rem;
 }
 
+/* Prompt pack */
+.prompt-pack {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.prompt-card {
+  padding: var(--space-md);
+}
+
+.prompt-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.prompt-title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.prompt-sub {
+  margin: .25rem 0 0 0;
+}
+
+.prompt-code {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: rgba(0,0,0,0.25);
+  padding: var(--space-md);
+  overflow-x: auto;
+}
+
+.prompt-code code {
+  white-space: pre-wrap;
+}
+
 /* Section tight */
 .section--tight {
   margin-top: var(--space-md);
@@ -517,6 +557,129 @@ a:hover {
 #nsb-tools {
   /* Reserve vertical space for JS-injected cards to reduce CLS */
   min-height: 8rem;
+}
+
+/* All Tools: 2-row horizontal scroller - outer is scroll container, inner is flex (no grid overlap) */
+.tool-grid--scroll-2rows:not(.is-expanded) {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  min-width: 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+  border-radius: 12px;
+  position: relative;
+}
+
+.tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: var(--space-md);
+  max-height: 360px;
+  width: max-content;
+}
+
+.tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner > .tool-card {
+  width: 280px;
+  min-width: 280px;
+  flex: 0 0 auto;
+  min-height: 150px;
+  box-sizing: border-box;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+/* Scroll cue: gradient fade on right edge (shelf mode only) */
+.tool-grid--scroll-2rows:not(.is-expanded)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 8px;
+  width: 3rem;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, var(--color-bg, #0f172a));
+}
+
+/* Force scrollbar visible (shelf only) */
+.tool-grid--scroll-2rows:not(.is-expanded)::-webkit-scrollbar {
+  height: 8px;
+}
+.tool-grid--scroll-2rows:not(.is-expanded)::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 4px;
+}
+.tool-grid--scroll-2rows:not(.is-expanded)::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.5);
+  border-radius: 4px;
+}
+.tool-grid--scroll-2rows:not(.is-expanded)::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.7);
+}
+
+/* Fixed tile width per breakpoint */
+@media (min-width: 640px) {
+  .tool-grid--scroll-2rows:not(.is-expanded) > .tool-card {
+    width: 300px;
+    min-width: 300px;
+  }
+}
+@media (min-width: 768px) {
+  .tool-grid--scroll-2rows:not(.is-expanded) > .tool-card {
+    width: 320px;
+    min-width: 320px;
+  }
+}
+@media (min-width: 1024px) {
+  .tool-grid--scroll-2rows:not(.is-expanded) > .tool-card {
+    width: 340px;
+    min-width: 340px;
+  }
+}
+
+/* ✅ Critical: allow flex/grid parents to not “force expand” */
+.home-main,
+.section,
+.section.section--tight,
+.section-header-row {
+  min-width: 0;
+}
+
+/* Expanded state: revert to normal responsive grid (.shelf-inner becomes pass-through) */
+.tool-grid--scroll-2rows.is-expanded {
+  display: grid;
+  grid-auto-flow: row;
+  grid-auto-columns: unset;
+  grid-template-rows: unset;
+  grid-template-columns: repeat(2, 1fr);
+  overflow: visible;
+  scroll-snap-type: none;
+}
+
+.tool-grid--scroll-2rows.is-expanded .shelf-inner {
+  display: contents;
+}
+
+.tool-grid--scroll-2rows.is-expanded .shelf-inner > .tool-card,
+.tool-grid--scroll-2rows.is-expanded > .tool-card {
+  width: auto;
+  min-width: unset;
+  scroll-snap-align: unset;
+}
+
+@media (min-width: 48em) and (max-width: 63.99em) {
+  .tool-grid--scroll-2rows.is-expanded {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 64em) {
+  .tool-grid--scroll-2rows.is-expanded {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .tool-card {
@@ -1398,4 +1561,241 @@ table th {
   font-size: 0.9rem;
   color: var(--color-muted);
   margin-bottom: 0.5rem;
+}
+
+/* --- Print mode --- */
+.print-mode .banner,
+.print-mode #nsb-header,
+.print-mode #nsb-footer,
+.print-mode .modal-overlay,
+.print-mode .chip-row,
+.print-mode .hero-search,
+.print-mode .pro-section,
+.print-mode #nsb-link-to-this,
+.print-mode #nsb-next-related,
+.print-mode #nsb-share-embed,
+.print-mode #nsb-scenarios {
+  display: none !important;
+}
+
+.print-mode body {
+  background: #fff;
+  color: #111;
+}
+
+.print-mode .card {
+  box-shadow: none;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.print-mode .layout {
+  padding: 1rem;
+}
+
+.print-mode main {
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.print-mode h1, .print-mode h2, .print-mode h3 {
+  color: #111;
+}
+
+.print-mode a {
+  color: #1d4ed8;
+}
+
+.print-link {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+@media print {
+  .banner, #nsb-header, #nsb-footer, .modal-overlay,
+  .pro-section, #nsb-share-embed, #nsb-scenarios,
+  #nsb-link-to-this, #nsb-next-related {
+    display: none !important;
+  }
+  body { background: #fff; color: #111; }
+  .card { box-shadow: none; border: 1px solid #ddd; background: #fff; }
+}
+
+/* --- btn-sm --- */
+.btn-sm {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.6rem;
+  min-height: unset;
+  border-radius: var(--radius-sm);
+}
+
+/* --- Link to this page block --- */
+.link-card {
+  margin-top: 2rem;
+}
+
+.link-card .share-toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.link-card .share-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.link-card .share-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.share-toggle-icon {
+  flex-shrink: 0;
+  transition: transform 160ms ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.share-toggle[aria-expanded="true"] .share-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.link-body {
+  overflow: hidden;
+  transition: max-height 220ms ease, opacity 160ms ease, margin-top 220ms ease;
+}
+
+.link-body.is-collapsed {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.link-body:not(.is-collapsed) {
+  max-height: 900px;
+  opacity: 1;
+  margin-top: var(--space-md);
+}
+
+@keyframes btnPop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.btn-copied {
+  animation: btnPop 220ms ease;
+}
+
+.link-card-title {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.link-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.link-label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 6rem;
+}
+
+.link-code {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.4rem;
+  word-break: break-all;
+  user-select: all;
+}
+
+.link-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.link-note {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* --- Next up / Related navigation --- */
+.next-related {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.next-related-next {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.next-related-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  margin-right: 0.4rem;
+}
+
+.next-related-section {
+  font-size: 0.95rem;
+}
+
+.next-related-links {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.4rem 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+}
+
+/* --- Related AI guides card on calculator pages --- */
+.related-guides-card {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.related-guides-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.related-guides-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+}
+
+/* --- AI Toolkit page --- */
+.toolkit-tracks {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.toolkit-track-card {
+  margin-bottom: var(--space-md);
+  padding: var(--space-md);
 }

@@ -33,6 +33,7 @@
         <div class="hero-inner">
           <h1 class="hero-title"><span class="hero-title-brand">NSB</span> <span class="hero-title-highlight">Tools</span></h1>
           <p class="hero-subtitle">Fast client-side tools for creators, writers, and operators. No signup. Just output.</p>
+          <p class="small muted">Last updated: February 27, 2025</p>
           <div class="hero-search">
             <label for="nsb-hero-search" class="visually-hidden">Search tools</label>
             <input type="search" id="nsb-hero-search" placeholder="Search tools by name, tag, or description..." aria-label="Search tools">
@@ -45,7 +46,49 @@
             <button type="button" class="chip" data-category="business" aria-pressed="false">Business</button>
             <button type="button" class="chip" data-category="repurpose" aria-pressed="false">Repurpose</button>
             <button type="button" class="chip" data-tag="calculator" aria-pressed="false">Calculators</button>
+            <button type="button" class="chip" data-tag="ai" aria-pressed="false">AI</button>
           </div>
+          <section class="section section--tight" style="margin-top: 1rem;">
+            <h2>What this page is</h2>
+            <p>NSB Tools is a free, client-side tool hub. Everything runs in your browser. No signup, no tracking. Generate copy, run calculators, and share results via URL.</p>
+            <h2>Who it is for</h2>
+            <p>Creators, writers, job seekers, founders, and operators who want fast drafts and numbers without creating an account.</p>
+            <h2>How to use it in 5 minutes</h2>
+            <ol>
+              <li>Pick a category or search by name.</li>
+              <li>Open a tool and enter your inputs.</li>
+              <li>Hit Generate or Calculate.</li>
+              <li>Copy the output or share the link.</li>
+            </ol>
+            <h2>Start here</h2>
+            <ul>
+              <li><a href="/ai/playbooks/job-search-ai-workflow/">Job Search AI Workflow</a></li>
+              <li><a href="/ai/checklists/resume-ats-checklist/">Resume ATS Checklist</a></li>
+              <li><a href="/tools/salary-vs-freelance-comparator/">Salary vs Freelance Comparator</a></li>
+              <li><a href="/ai/checklists/vendor-eval-scorecard/">Vendor Eval Scorecard</a></li>
+              <li><a href="/ai/checklists/llm-safety-review/">LLM Safety Review</a></li>
+              <li><a href="/tools/freelance-rate-calculator/">Freelance Rate Calculator</a></li>
+              <li><a href="/tools/break-even-calculator/">Break-even Calculator</a></li>
+              <li><a href="/tools/linkedin-post-builder/">LinkedIn Post Builder</a></li>
+            </ul>
+            <p>Browse <a href="/categories/">categories</a> (<a href="/categories/social/">Social</a>, <a href="/categories/career/">Career</a>, <a href="/categories/business/">Business</a>) or the <a href="/glossary/">glossary</a>.</p>
+            <p>All tools run in your browser. No signup, no server-side storage. Share results via URL. Your inputs stay on-device.</p>
+            <h2>AI Hub</h2>
+            <p>Practical playbooks, checklists, and tool picks for job seekers, founders, operators, and small businesses. <a href="/ai/">Visit the AI Hub</a> or start with the <a href="/ai/toolkit/">AI Toolkit</a>.</p>
+            <section class="section">
+              <h2>How to use NSB Tools (2 minutes)</h2>
+              <p>All tools run in your browser. No signup, no server-side storage. Enter your inputs, hit Generate or Calculate, and copy the output. Share results via URL; links include your inputs so others see the same view. Use the category chips above or search to find a tool, then open it and go. Your data stays on-device.</p>
+              <h2>Recommended next clicks</h2>
+              <ul>
+                <li><a href="/categories/">Browse all categories</a></li>
+                <li><a href="/categories/career/">Career tools</a></li>
+                <li><a href="/categories/business/">Business / Finance tools</a></li>
+                <li><a href="/ai/">AI Hub</a></li>
+                <li><a href="/ai/toolkit/">AI Toolkit</a></li>
+                <li><a href="/glossary/">Glossary of terms</a></li>
+              </ul>
+            </section>
+          </section>
           <p class="hero-trust">Runs locally. Your data stays on-device.</p>
         </div>
       </section>
@@ -104,20 +147,27 @@
         <section class="section section--tight">
           <div class="section-header-row">
             <h2 class="section-title">All Tools</h2>
-            <div class="view-toggle" role="group" aria-label="View mode">
-              <button type="button" id="nsb-view-all" aria-pressed="true">All tools</button>
-              <button type="button" id="nsb-view-category" aria-pressed="false">By category</button>
+            <div class="section-actions">
+              <div class="view-toggle" role="group" aria-label="View mode">
+                <button type="button" id="nsb-view-all" aria-pressed="true">All tools</button>
+                <button type="button" id="nsb-view-category" aria-pressed="false">By category</button>
+              </div>
+              <button type="button" id="nsb-tools-expand" class="btn btn-secondary btn-sm" aria-expanded="false">
+                Show all
+              </button>
             </div>
           </div>
-          <div id="nsb-all-tools" class="tool-grid skeleton-grid">
-            <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
-            <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
-            <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
-            <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
-            <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
-            <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
-            <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
-            <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
+          <div id="nsb-all-tools" class="tool-grid tool-grid--scroll-2rows skeleton-grid" data-scroll-mode="2rows">
+            <div class="shelf-inner">
+              <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
+              <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
+              <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
+              <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
+              <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
+              <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
+              <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
+              <article class="tool-card skeleton-card tool-card-skeleton shimmer"></article>
+            </div>
           </div>
           <div id="nsb-by-category" style="display: none;"></div>
         </section>
@@ -225,9 +275,13 @@
           container.innerHTML = '<p class="search-no-results">Registry not loaded. Check console.</p>';
           return;
         }
-        container.innerHTML = tools.length
+        var html = tools.length
           ? tools.map(function(t) { return window.NSB_TOOL_CARD.render(t); }).join("")
           : '<p class="search-no-results">No tools match your search.</p>';
+        if (container.id === "nsb-all-tools" && container.classList.contains("tool-grid--scroll-2rows")) {
+          html = '<div class="shelf-inner">' + html + "</div>";
+        }
+        container.innerHTML = html;
       }
 
       function renderByCategory(R) {
@@ -274,8 +328,13 @@
         var byCatEl = document.getElementById("nsb-by-category");
         var featuredEl = document.getElementById("nsb-featured");
         var viewCatBtn = document.getElementById("nsb-view-category");
+        var expandBtn = document.getElementById("nsb-tools-expand");
 
         var isByCategory = viewCatBtn && viewCatBtn.getAttribute("aria-pressed") === "true";
+
+        if (expandBtn) {
+          expandBtn.style.display = isByCategory ? "none" : "";
+        }
         var filtered = filterTools(R, query, categoryFilter, tagFilter);
 
         if (featuredEl && R) {
@@ -293,7 +352,11 @@
         } else {
           if (allEl) {
             allEl.style.display = "";
-            renderTools(filtered, allEl);
+            if (tagFilter === "ai" && filtered.length === 0) {
+              allEl.innerHTML = '<p class="search-no-results">No AI tools yet. <a href="/ai/">Visit the AI Hub</a> for playbooks, checklists, and tool picks.</p>';
+            } else {
+              renderTools(filtered, allEl);
+            }
           }
           if (byCatEl) byCatEl.style.display = "none";
         }
@@ -386,6 +449,31 @@
           });
         }
 
+        // All Tools: expand/collapse the scroll window
+        var expandBtn = document.getElementById("nsb-tools-expand");
+        var allToolsGrid = document.getElementById("nsb-all-tools");
+
+        function setAllToolsExpanded(expanded) {
+          if (!allToolsGrid || !expandBtn) return;
+          if (expanded) {
+            allToolsGrid.classList.add("is-expanded");
+            expandBtn.textContent = "Collapse";
+            expandBtn.setAttribute("aria-expanded", "true");
+          } else {
+            allToolsGrid.classList.remove("is-expanded");
+            expandBtn.textContent = "Show all";
+            expandBtn.setAttribute("aria-expanded", "false");
+            allToolsGrid.scrollLeft = 0;
+          }
+        }
+
+        if (expandBtn) {
+          expandBtn.addEventListener("click", function() {
+            var expanded = allToolsGrid && allToolsGrid.classList.contains("is-expanded");
+            setAllToolsExpanded(!expanded);
+          });
+        }
+
         var viewAllBtn = document.getElementById("nsb-view-all");
         var viewCatBtn = document.getElementById("nsb-view-category");
         if (viewAllBtn) viewAllBtn.addEventListener("click", function() {
@@ -404,7 +492,7 @@
           var byCatEl = document.getElementById("nsb-by-category");
           if (allToolsEl) allToolsEl.style.display = "none";
           if (byCatEl) byCatEl.style.display = "";
-          renderByCategory(R);
+          applyFilters(R);
         });
 
         var headerSearch = document.getElementById("nsb-search");
