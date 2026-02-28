@@ -30,3 +30,25 @@ test("burn-rate: revenue < expenses => runwayMonths finite and > 0", () => {
   assert.ok(!r.error, `Unexpected error: ${r.error}`);
   assert.ok(Number.isFinite(r.runwayMonths) && r.runwayMonths > 0, `runwayMonths must be finite > 0, got ${r.runwayMonths}`);
 });
+
+test("burn-rate: cash=0 => runwayMonths 0", () => {
+  const r = calc.calculate({
+    cashOnHand: "0",
+    monthlyRevenue: "0",
+    monthlyExpenses: "10000",
+    revenueGrowthRate: "0",
+  });
+  assert.ok(!r.error, `Unexpected error: ${r.error}`);
+  assert.strictEqual(r.runwayMonths, 0);
+});
+
+test("burn-rate: projection table has 12 rows", () => {
+  const r = calc.calculate({
+    cashOnHand: "100000",
+    monthlyRevenue: "5000",
+    monthlyExpenses: "15000",
+    revenueGrowthRate: "0",
+  });
+  assert.ok(!r.error);
+  assert.strictEqual(r.projection.length, 12, "projection must have 12 months");
+});

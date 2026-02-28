@@ -24,26 +24,75 @@
 <body>
   <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
   <header id="nsb-header"></header>
+
   <main class="layout">
     <nav class="breadcrumb"><a href="/">Home</a><span>/</span> Categories</nav>
+
     <h1>Categories</h1>
     <p>Browse tools by category.</p>
+    <p class="small muted">Last updated: February 27, 2025</p>
+
+    <p>
+      Categories group tools by use case. Everything runs in your browser with no signup.
+      If you want full workflows (not just single tools), use the <a href="/ai/">AI Hub</a>.
+    </p>
+
+    <section class="section">
+      <h2>How categories work</h2>
+      <p>
+        Pick a category, open a tool, run it, and copy or share the result.
+        Share links encode your inputs in the URL, so you can revisit and tweak later.
+      </p>
+
+      <ul>
+        <li><a href="/categories/social/">Social / Creator</a> for hooks, scripts, usernames, hashtags, and content ideas.</li>
+        <li><a href="/categories/writing/">Writing</a> for headlines, newsletters, LinkedIn posts, and outlines.</li>
+        <li><a href="/categories/career/">Career</a> for resumes, STAR stories, outreach drafts, and freelance math.</li>
+        <li><a href="/categories/business/">Business / Finance</a> for break-even, burn/runway, loan payoff, and deal analysis.</li>
+        <li><a href="/categories/repurpose/">Repurpose</a> for turning one input into multiple outputs and planning content.</li>
+      </ul>
+
+      <h2>Popular starting points</h2>
+      <ul>
+        <li><a href="/tools/freelance-rate-calculator/">Freelance Rate Calculator</a></li>
+        <li><a href="/tools/break-even-calculator/">Break-even Calculator</a></li>
+        <li><a href="/tools/saas-roi-deal-analyzer/">SaaS ROI Deal Analyzer</a></li>
+        <li><a href="/tools/linkedin-post-builder/">LinkedIn Post Builder</a></li>
+        <li><a href="/glossary/">Glossary</a></li>
+      </ul>
+
+      <h2>Pair categories with AI</h2>
+      <p>
+        Use playbooks and checklists to turn tools into a repeatable workflow:
+        <a href="/ai/playbooks/">AI Playbooks</a>, <a href="/ai/checklists/">AI Checklists</a>, and the
+        <a href="/ai/toolkit/">AI Toolkit</a>.
+      </p>
+
+      <p>
+        Tip: bookmark a few share links for scenarios you compare often. It becomes a lightweight decision log.
+      </p>
+    </section>
+
     <div id="nsb-categories" style="margin-top: 1.5rem;"></div>
   </main>
+
   <footer id="nsb-footer"></footer>
   <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+
   <script src="/assets/js/utils.js" defer></script>
   <script src="/assets/js/registry.js" defer></script>
   <script src="/assets/js/components/header.js" defer></script>
   <script src="/assets/js/components/footer.js" defer></script>
   <script src="/assets/js/components/modal.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
+
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const R = window.NSB_REGISTRY;
       const el = document.getElementById("nsb-categories");
       if (el && R) {
-        el.innerHTML = R.CATEGORIES.map(c => {
+        var aiCard = '<div class="card" style="margin-bottom: 1rem;"><h3><a href="/ai/">AI</a></h3><p>Playbooks, checklists, and a toolkit for job seekers, founders, operators, and small businesses.</p><p><a href="/ai/">View AI hub</a></p></div>';
+        el.innerHTML = aiCard + R.CATEGORIES.map(c => {
           var list = R.getToolsByCategory(c.slug) || [];
           var count = list.filter(function(t) { return window.NSB_DEBUG_HIDDEN || !t.isHidden; }).length;
           return `

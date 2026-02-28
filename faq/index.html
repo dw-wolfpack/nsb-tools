@@ -19,31 +19,78 @@
   <meta name="twitter:description" content="Frequently asked questions about NSB Tools. No signup, runs locally.">
   <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need to sign up?","acceptedAnswer":{"@type":"Answer","text":"No. All tools run in your browser. No account required."}},{"@type":"Question","name":"Is my data sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Inputs and outputs stay on your device. We use localStorage only for preferences and recently used tools."}},{"@type":"Question","name":"What is Pro?","acceptedAnswer":{"@type":"Answer","text":"Pro is a planned paid tier that will remove daily generation limits and unlock extra features. Not available yet."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need to sign up?","acceptedAnswer":{"@type":"Answer","text":"No. All tools run in your browser. No account required."}},{"@type":"Question","name":"Is my data sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Inputs and outputs stay on your device. We use localStorage only for preferences and recently used tools."}},{"@type":"Question","name":"What is Pro?","acceptedAnswer":{"@type":"Answer","text":"Pro is a planned paid tier that will remove daily generation limits and unlock extra features. Not available yet."}},{"@type":"Question","name":"How does sharing work?","acceptedAnswer":{"@type":"Answer","text":"Most tools support share links that encode your inputs in the URL so you can reopen the same view later. If a page has a Share button, it is safe to copy and send."}},{"@type":"Question","name":"Do you store my inputs?","acceptedAnswer":{"@type":"Answer","text":"No. NSB Tools does not store your inputs on a server. Some tools may save lightweight preferences locally in your browser (like last used category or recently used tools)."}},{"@type":"Question","name":"Can I use this for client work?","acceptedAnswer":{"@type":"Answer","text":"Yes. Outputs are drafts and numbers to help you move faster. Always sanity check anything high-stakes before you ship or send it."}}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"},{"@type":"ListItem","position":2,"name":"FAQ","item":"https://tools.nextstepsbeyond.online/faq/"}]}</script>
 </head>
 <body>
   <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
   <header id="nsb-header"></header>
+
   <main class="layout layout--narrow">
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span> FAQ</nav>
     <h1>FAQ</h1>
+
+    <p class="small muted">Last updated: February 27, 2025</p>
+
+    <p>
+      NSB Tools is a small set of fast tools that run in your browser. No signup.
+      If you want workflows and checklists to go with the tools, start at the <a href="/ai/">AI Hub</a>.
+    </p>
+
     <section class="section">
       <h2>Do I need to sign up?</h2>
       <p>No. All tools run in your browser. No account required.</p>
     </section>
+
     <section class="section">
       <h2>Is my data sent anywhere?</h2>
       <p>No. Inputs and outputs stay on your device. We use localStorage only for preferences and recently used tools.</p>
     </section>
+
+    <section class="section">
+      <h2>How does sharing work?</h2>
+      <p>
+        Most tools support share links that encode your inputs in the URL so you can reopen the same view later.
+        If a page has a Share button, it is safe to copy and send.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Do you store my inputs?</h2>
+      <p>
+        No. NSB Tools does not store your inputs on a server. Some tools may save lightweight preferences locally
+        in your browser (like last used category or recently used tools).
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Can I use this for client work?</h2>
+      <p>
+        Yes. Outputs are drafts and numbers to help you move faster. Always sanity check anything high-stakes
+        before you ship or send it.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Where should I start?</h2>
+      <ul>
+        <li><a href="/categories/">Browse categories</a> to find tools by use case.</li>
+        <li><a href="/ai/toolkit/">AI Toolkit</a> for prompts and “best next tool” picks.</li>
+        <li><a href="/glossary/">Glossary</a> if you want quick definitions for common terms.</li>
+      </ul>
+    </section>
+
     <section class="section">
       <h2>What is Pro?</h2>
       <p>Pro is a planned paid tier that will remove daily generation limits and unlock extra features. Not available yet.</p>
     </section>
+
     <p><a href="/">Back to tools</a></p>
   </main>
+
   <footer id="nsb-footer"></footer>
   <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+
   <script src="/assets/js/utils.js" defer></script>
   <script src="/assets/js/registry.js" defer></script>
   <script src="/assets/js/components/header.js" defer></script>

@@ -37,3 +37,24 @@ test("breakeven: saas mode - fixed=2000, arpa=50, margin=80 => customersToBreakE
   assert.ok(Number.isFinite(r.customersToBreakEven), "customersToBreakEven must be finite");
   assert.ok(r.customersToBreakEven >= 0, "customersToBreakEven must be >= 0");
 });
+
+test("breakeven: service mode - fixed=0 => unitsToBreakEven 0", () => {
+  const r = calc.calculate({
+    mode: "service",
+    fixedCostsPerMonth: "0",
+    pricePerUnit: "30",
+    variableCostPerUnit: "20",
+  });
+  assert.ok(!r.error, `Unexpected error: ${r.error}`);
+  assert.strictEqual(r.unitsToBreakEven, 0);
+});
+
+test("breakeven: saas mode - margin=0 returns error", () => {
+  const r = calc.calculate({
+    mode: "saas",
+    fixedCostsPerMonth: "2000",
+    arpa: "50",
+    grossMargin: "0",
+  });
+  assert.ok(typeof r.error === "string", `Expected error, got ${JSON.stringify(r)}`);
+});

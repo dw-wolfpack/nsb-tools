@@ -7,7 +7,11 @@
 
   function parseNum(val) {
     if (val == null || val === "") return NaN;
-    const s = String(val).replace(/,/g, "").replace(/\s/g, "");
+    const s = String(val)
+      .replace(/\s/g, "")
+      .replace(/\$/g, "")
+      .replace(/%/g, "")
+      .replace(/,/g, "");
     const n = parseFloat(s);
     return isNaN(n) ? NaN : n;
   }

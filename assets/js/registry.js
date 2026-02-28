@@ -47,7 +47,6 @@ const TOOLS = [
     description: "Generate hashtag sets (broad/niche/community) from niche + keywords + content type.",
     path: "/tools/hashtag-generator/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Hashtag Generator | NSB Tools",
     seoDescription: "Generate hashtag sets for broad, niche, and community reach. Free social media tool."
@@ -60,7 +59,6 @@ const TOOLS = [
     description: "Generate captions + ethical comment prompts based on platform + tone + CTA.",
     path: "/tools/caption-generator/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Caption Generator | NSB Tools",
     seoDescription: "Generate captions and ethical comment prompts for social posts. Free creator tool."
@@ -73,7 +71,6 @@ const TOOLS = [
     description: "Generate content ideas with angles, hooks, and format suggestions.",
     path: "/tools/content-ideas/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Content Ideas Generator | NSB Tools",
     seoDescription: "Generate content ideas with angles, hooks, and format suggestions. Free creator tool."
@@ -98,7 +95,6 @@ const TOOLS = [
     description: "Generate a newsletter outline with sections, bullets, subject lines, CTAs.",
     path: "/tools/newsletter-outline/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Newsletter Outline Generator | NSB Tools",
     seoDescription: "Generate newsletter outlines with sections, subject lines, and CTAs. Free writing tool."
@@ -111,7 +107,6 @@ const TOOLS = [
     description: "Generate headline/title options grouped by style (how-to/list/contrarian/story).",
     path: "/tools/title-headline-generator/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Title + Headline Generator | NSB Tools",
     seoDescription: "Generate headlines grouped by style: how-to, list, contrarian, story. Free copywriting tool."
@@ -124,7 +119,6 @@ const TOOLS = [
     description: "Rewrite a resume bullet into stronger variants with metric placeholders.",
     path: "/tools/resume-bullet-rewriter/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Resume Bullet Rewriter | NSB Tools",
     seoDescription: "Rewrite resume bullets into stronger variants with metric placeholders. Free career tool."
@@ -137,7 +131,6 @@ const TOOLS = [
     description: "Turn notes into STAR story drafts (concise + detailed) with follow-up Qs.",
     path: "/tools/star-stories/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Interview Stories (STAR) Generator | NSB Tools",
     seoDescription: "Turn notes into STAR interview story drafts with follow-up questions. Free career tool."
@@ -150,7 +143,6 @@ const TOOLS = [
     description: "Draft 2 outreach emails (punchy + formal-ish) for recruiter/hm/broker.",
     path: "/tools/cold-outreach-email/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Cold Outreach Email Draft | NSB Tools",
     seoDescription: "Draft punchy and formal cold outreach emails for recruiters and hiring managers. Free career tool."
@@ -163,7 +155,6 @@ const TOOLS = [
     description: "Parse pasted teaser text into key fields + red flags + diligence questions.",
     path: "/tools/deal-teaser-analyzer/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Deal Teaser Analyzer | NSB Tools",
     seoDescription: "Parse deal teaser text into key fields, red flags, and diligence questions. Free business tool."
@@ -176,7 +167,6 @@ const TOOLS = [
     description: "Estimate monthly P&I, basic DSCR placeholders, quick scenario toggles.",
     path: "/tools/sba-payment-estimator/",
     isPro: false,
-    isHidden: true,
     consumesCredit: false,
     seoTitle: "Simple SBA Payment Estimator | NSB Tools",
     seoDescription: "Estimate monthly SBA loan payments, DSCR, and run quick scenarios. Free business tool."
@@ -189,7 +179,6 @@ const TOOLS = [
     description: "Generate LOI outline bullets based on asset + price + financing structure.",
     path: "/tools/loi-outline/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Offer / LOI Outline Generator | NSB Tools",
     seoDescription: "Generate LOI outline bullets for asset, price, and financing structure. Free business tool."
@@ -202,7 +191,6 @@ const TOOLS = [
     description: "Convert a source text into hooks + scripts + captions + visual ideas (heuristics only).",
     path: "/tools/repurpose-pack/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Repurpose Pack Generator | NSB Tools",
     seoDescription: "Convert source text into hooks, scripts, captions, and visual ideas. Free content repurposing tool."
@@ -215,7 +203,6 @@ const TOOLS = [
     description: "Generate a 1-week calendar table with post types/angles; export CSV.",
     path: "/tools/content-calendar/",
     isPro: false,
-    isHidden: true,
     consumesCredit: true,
     seoTitle: "Content Calendar Generator | NSB Tools",
     seoDescription: "Generate a 1-week content calendar with post types and angles. Export to CSV. Free tool."

@@ -24,25 +24,62 @@
 <body>
   <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
   <header id="nsb-header"></header>
+
   <main class="layout layout--narrow">
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span> Privacy</nav>
+
     <h1>Privacy</h1>
+
     <p><strong>We do not sell your data.</strong> We do not track you for advertising.</p>
-    <h2>localStorage</h2>
-    <p>We use browser localStorage only for:</p>
-    <ul>
-      <li>Recently used tools (to show links on the home page)</li>
-      <li>Saved outputs (when you choose to save)</li>
-      <li>Daily generation count (to enforce free-tier limits)</li>
-      <li>Pro flag (client-side only; no real auth yet)</li>
-    </ul>
-    <p>All of this stays on your device. We never receive it.</p>
-    <h2>Analytics</h2>
-    <p>We may add optional analytics (e.g. Plausible, GA) in the future. If we do, we will update this page.</p>
+    <p class="small muted">Last updated: February 27, 2025</p>
+
+    <section class="section">
+      <h2>What we store</h2>
+      <p>NSB Tools is built to run in your browser. Most usage never leaves your device.</p>
+
+      <h3>localStorage</h3>
+      <p>We use browser localStorage only for:</p>
+      <ul>
+        <li>Recently used tools (to show links on the home page)</li>
+        <li>Saved outputs (when you choose to save)</li>
+        <li>Daily generation count (to enforce free-tier limits)</li>
+        <li>Pro flag (client-side only; no real auth yet)</li>
+      </ul>
+      <p>All of this stays on your device. We never receive it.</p>
+    </section>
+
+    <section class="section">
+      <h2>What we do not do</h2>
+      <ul>
+        <li>No selling personal data</li>
+        <li>No ad tracking</li>
+        <li>No server-side storage of your tool inputs or outputs</li>
+      </ul>
+      <p>If a tool has a share link, it encodes your inputs in the URL so you can reopen the same scenario later. You control whether you share that link.</p>
+    </section>
+
+    <section class="section">
+      <h2>Analytics</h2>
+      <p>We may add optional analytics in the future to understand basic usage (for example, which pages are most helpful). If we do, we will update this page.</p>
+    </section>
+
+    <section class="section">
+      <h2>Recommended links</h2>
+      <ul>
+        <li><a href="/">Back to tools</a></li>
+        <li><a href="/faq/">FAQ</a></li>
+        <li><a href="/updates/">Get updates</a></li>
+        <li><a href="/categories/">Browse categories</a></li>
+        <li><a href="/ai/">AI Hub</a></li>
+      </ul>
+    </section>
+
     <p><a href="/">Back to tools</a></p>
   </main>
+
   <footer id="nsb-footer"></footer>
   <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+
   <script src="/assets/js/utils.js" defer></script>
   <script src="/assets/js/registry.js" defer></script>
   <script src="/assets/js/components/header.js" defer></script>

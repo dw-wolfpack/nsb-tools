@@ -29,6 +29,83 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/business/">Business / Finance</a><span> / </span> SaaS ROI Deal Analyzer</nav>
     <h1>SaaS ROI Deal Analyzer</h1>
     <p>LTV, CAC payback, ROI. Sensitivity on CAC, ARPA, churn. Not financial advice.</p>
+    <p class="small muted">Last updated: February 27, 2025</p>
+
+    <section class="section">
+      <h2>What this tool does</h2>
+      <p>Calculates <a href="/glossary/#ltv">LTV</a>, <a href="/glossary/#payback">CAC payback</a> months, and <a href="/glossary/#roi">ROI</a> for SaaS. You enter <a href="/glossary/#cac">CAC</a>, <a href="/glossary/#arpa">ARPA</a>, <a href="/glossary/#gross-margin">gross margin</a>, and <a href="/glossary/#churn">churn</a>. Sensitivity shows impact of changing CAC, ARPA, or churn. If payback is over 6 months, fix CAC, raise ARPA, or reduce churn. Not financial advice. Not AI-powered.</p>
+    </section>
+    <section class="section">
+      <h2>When to use it</h2>
+      <ul>
+        <li>Evaluating SaaS unit economics before scaling spend</li>
+        <li>Checking if CAC payback is acceptable (under 6 months is often a target)</li>
+        <li>Running sensitivity on churn or ARPA to see which lever matters most</li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Inputs explained</h2>
+      <ul>
+        <li><strong>CAC</strong> – Customer acquisition cost. See <a href="/glossary/#cac">CAC</a>.</li>
+        <li><strong>ARPA</strong> – Average revenue per account per month. See <a href="/glossary/#arpa">ARPA</a>.</li>
+        <li><strong>Gross margin %</strong> – Revenue minus direct costs. See <a href="/glossary/#gross-margin">gross margin</a>.</li>
+        <li><strong>Churn %</strong> – Monthly churn. See <a href="/glossary/#churn">churn</a>.</li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>How to use it</h2>
+      <ol>
+        <li>Enter CAC, ARPA, gross margin, churn. Optionally set initial customers and months.</li>
+        <li>Click Calculate. Review LTV, payback, ROI, and sensitivity.</li>
+      </ol>
+    </section>
+    <section class="section">
+      <h2>Common mistakes</h2>
+      <ul>
+        <li>Using revenue instead of gross margin for LTV</li>
+        <li>Ignoring churn (small changes in churn have big impact on LTV and payback)</li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Use it with AI</h2>
+      <p>This tool is not AI-powered. It is a calculator. You can use the results with an AI assistant in these ways:</p>
+      <ul>
+        <li>Paste the LTV, payback, and ROI and ask for a one-page memo on whether to scale or fix unit economics.</li>
+        <li>Ask an AI to suggest 5 actions if payback is over 6 months (e.g. reduce CAC, improve retention).</li>
+        <li>Use the <a href="/ai/toolkit/">AI Toolkit</a> and <a href="/ai/playbooks/founder-ops-ai-workflow/">Founder Ops AI Workflow</a> or <a href="/ai/checklists/vendor-eval-scorecard/">Vendor Eval Scorecard</a> for deal and vendor workflows.</li>
+      </ul>
+      <p>Explore the <a href="/ai/toolkit/">AI Toolkit</a> and <a href="/ai/checklists/vendor-eval-scorecard/">Vendor Eval Scorecard</a> for more.</p>
+    </section>
+    <section class="section">
+      <h2>Related tools</h2>
+      <ul>
+        <li><a href="/tools/break-even-calculator/">Break-even Calculator</a></li>
+        <li><a href="/tools/burn-rate-runway-calculator/">Burn Rate / Runway Calculator</a></li>
+        <li><a href="/tools/deal-teaser-analyzer/">Deal Teaser Analyzer</a></li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>Related glossary terms</h2>
+      <ul>
+        <li><a href="/glossary/#cac">CAC</a></li>
+        <li><a href="/glossary/#ltv">LTV</a></li>
+        <li><a href="/glossary/#churn">Churn</a></li>
+        <li><a href="/glossary/#gross-margin">Gross margin</a></li>
+        <li><a href="/glossary/#payback">CAC payback period</a></li>
+        <li><a href="/glossary/#roi">ROI</a></li>
+        <li><a href="/glossary/#arpa">ARPA</a></li>
+      </ul>
+    </section>
+    <section class="section">
+      <h2>FAQ</h2>
+      <h3>What is a good payback?</h3>
+      <p>Under 3 months green; 3 to 6 yellow; over 6 red.</p>
+      <h3>What is LTV?</h3>
+      <p>Lifetime value. ARPA times gross margin times average lifetime (1/churn in months).</p>
+      <h3>Is this financial advice?</h3>
+      <p>No. Use for directional analysis.</p>
+    </section>
+
     <div class="card" style="margin-top: 1.5rem;">
       <h2>Inputs</h2>
       <form id="nsb-form">
@@ -62,11 +139,14 @@
     </div>
     <div id="nsb-scenarios"></div>
     <div id="nsb-share-embed"></div>
+    <div id="nsb-related-guides"></div>
     <section class="pro-section"><h3>Pro features (coming soon)</h3><p>Pro unlocks unlimited scenarios.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>
   <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+  <script src="/assets/js/related-guides.js" defer></script>
+  <script src="/assets/js/components/related-guides.js" defer></script>
   <script src="/assets/js/utils.js" defer></script>
   <script src="/assets/js/registry.js" defer></script>
   <script src="/assets/js/components/header.js" defer></script>
@@ -83,6 +163,7 @@
   <script src="/assets/js/tools/saas-roi-deal-analyzer/ui.js" defer></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      if (window.NSB_RELATED_GUIDES_UI) window.NSB_RELATED_GUIDES_UI.inject("nsb-related-guides", "saas-roi-deal-analyzer");
       if (window.NSB_TOOL_PAGE_SECTIONS) {
         window.NSB_TOOL_PAGE_SECTIONS.inject("nsb-tool-sections", "saas-roi-deal-analyzer");
       }
