@@ -209,11 +209,18 @@
   <script src="/assets/js/components/tool-card.js" defer></script>
   <script src="/assets/js/components/modal.js" defer></script>
   <script src="/assets/js/components/toast.js" defer></script>
+  <script src="/assets/js/search-controller.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
   <script>
     (function() {
       window.NSB_DEBUG_HIDDEN = /[?&]debug=1/.test(window.location.search || "");
       const base = "https://tools.nextstepsbeyond.online";
+
+      var params = new URLSearchParams(window.location.search || "");
+      var qParam = params.get("q");
+      if (qParam != null && qParam !== "") {
+        try { window.NSB_SEARCH_QUERY = decodeURIComponent(qParam).trim(); } catch (e) { window.NSB_SEARCH_QUERY = String(qParam).trim(); }
+      }
 
       function waitForDeps(maxMs, cb) {
         var start = Date.now();
@@ -383,6 +390,16 @@
         window.NSB_ON_SEARCH = function() { applyFilters(R); };
         window.NSB_ON_SEARCH();
 
+        var heroSearch = document.getElementById("nsb-hero-search");
+        if (heroSearch) heroSearch.value = window.NSB_SEARCH_QUERY || "";
+        if (window.NSB_SEARCH) {
+          window.NSB_SEARCH.bindHomeHeroSearch();
+          window.NSB_SEARCH.bindHeaderSearch();
+        }
+        if (window.NSB_SEARCH && (window.NSB_SEARCH_QUERY || "").trim().length > 0) {
+          window.NSB_SEARCH.setQuery(window.NSB_SEARCH_QUERY, "init");
+        }
+
         var cats = R.CATEGORIES || [];
         var catsEl = document.getElementById("nsb-categories");
         if (catsEl) {
@@ -410,31 +427,6 @@
             return t ? '<li><a href="' + t.path + '">' + t.name + '</a></li>' : "";
           }).filter(Boolean).join("") : "";
           recentEl.innerHTML = recentHtml || '<li class="search-no-results">Use a tool to see it here.</li>';
-        }
-
-        var heroSearch = document.getElementById("nsb-hero-search");
-        if (heroSearch) {
-          heroSearch.value = window.NSB_SEARCH_QUERY || "";
-          (function() {
-            var debounced = (window.NSB_UTILS && window.NSB_UTILS.debounce) ? window.NSB_UTILS.debounce(function() {
-              window.NSB_SEARCH_QUERY = heroSearch.value.trim();
-              if (window.NSB_SEARCH_QUERY) {
-                window.NSB_CATEGORY_FILTER = "";
-                window.NSB_TAG_FILTER = "";
-                var chips = document.querySelectorAll(".chip-row .chip");
-                for (var ci = 0; ci < chips.length; ci++) chips[ci].setAttribute("aria-pressed", "false");
-                var allChip = document.querySelector(".chip-row .chip[data-category='']");
-                if (allChip) allChip.setAttribute("aria-pressed", "true");
-              }
-              if (typeof window.NSB_ON_SEARCH === "function") window.NSB_ON_SEARCH();
-              var hs = document.getElementById("nsb-search");
-              if (hs && hs.value !== heroSearch.value) hs.value = heroSearch.value;
-            }, 300) : function() {
-              window.NSB_SEARCH_QUERY = heroSearch.value.trim();
-              if (typeof window.NSB_ON_SEARCH === "function") window.NSB_ON_SEARCH();
-            };
-            heroSearch.addEventListener("input", debounced);
-          })();
         }
 
         var chipBtns = document.querySelectorAll(".chip-row .chip");
@@ -494,14 +486,6 @@
           if (byCatEl) byCatEl.style.display = "";
           applyFilters(R);
         });
-
-        var headerSearch = document.getElementById("nsb-search");
-        if (headerSearch) {
-          headerSearch.addEventListener("input", function() {
-            var heroSearch = document.getElementById("nsb-hero-search");
-            if (heroSearch && heroSearch.value !== headerSearch.value) heroSearch.value = headerSearch.value;
-          });
-        }
 
         var ld = {
           "@context": "https://schema.org",

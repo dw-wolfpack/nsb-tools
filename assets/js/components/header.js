@@ -76,16 +76,24 @@
 
       const searchInput = document.getElementById("nsb-search");
       if (searchInput) {
-        searchInput.addEventListener("input", window.NSB_UTILS.debounce(() => {
-          window.NSB_SEARCH_QUERY = searchInput.value.trim();
-          if (typeof window.NSB_ON_SEARCH === "function") {
-            window.NSB_ON_SEARCH(window.NSB_SEARCH_QUERY);
-          }
-          const heroSearch = document.getElementById("nsb-hero-search");
-          if (heroSearch && heroSearch.value !== searchInput.value) {
-            heroSearch.value = searchInput.value;
-          }
-        }, 300));
+        const debounced = (window.NSB_UTILS && typeof window.NSB_UTILS.debounce === "function")
+          ? window.NSB_UTILS.debounce(() => {
+              if (window.NSB_SEARCH && typeof window.NSB_SEARCH.setQuery === "function") {
+                window.NSB_SEARCH.setQuery(searchInput.value, "header");
+                return;
+              }
+              window.NSB_SEARCH_QUERY = searchInput.value.trim();
+              if (typeof window.NSB_ON_SEARCH === "function") window.NSB_ON_SEARCH();
+            }, 300)
+          : () => {
+              if (window.NSB_SEARCH && typeof window.NSB_SEARCH.setQuery === "function") {
+                window.NSB_SEARCH.setQuery(searchInput.value, "header");
+                return;
+              }
+              window.NSB_SEARCH_QUERY = searchInput.value.trim();
+              if (typeof window.NSB_ON_SEARCH === "function") window.NSB_ON_SEARCH();
+            };
+        searchInput.addEventListener("input", debounced);
       }
 
       const upgradeBtn = document.querySelector("[data-nsb-open-upgrade]");
