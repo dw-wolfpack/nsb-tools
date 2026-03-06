@@ -34,10 +34,6 @@
           <h1 class="hero-title"><span class="hero-title-brand">NSB</span> <span class="hero-title-highlight">Tools</span></h1>
           <p class="hero-subtitle">Fast client-side tools for creators, writers, and operators. No signup. Just output.</p>
           <p class="small muted">Last updated: February 27, 2025</p>
-          <div class="hero-search">
-            <label for="nsb-hero-search" class="visually-hidden">Search tools</label>
-            <input type="search" id="nsb-hero-search" placeholder="Search tools by name, tag, or description..." aria-label="Search tools">
-          </div>
           <div class="chip-row" role="group" aria-label="Filter by category">
             <button type="button" class="chip" data-category="" aria-pressed="true">All</button>
             <button type="button" class="chip" data-category="social" aria-pressed="false">Social</button>
@@ -205,6 +201,7 @@
   <script src="/assets/js/utils.js" defer></script>
   <script src="/assets/js/registry.js" defer></script>
   <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/search-autocomplete.js" defer></script>
   <script src="/assets/js/components/footer.js" defer></script>
   <script src="/assets/js/components/tool-card.js" defer></script>
   <script src="/assets/js/components/modal.js" defer></script>
@@ -412,31 +409,6 @@
           recentEl.innerHTML = recentHtml || '<li class="search-no-results">Use a tool to see it here.</li>';
         }
 
-        var heroSearch = document.getElementById("nsb-hero-search");
-        if (heroSearch) {
-          heroSearch.value = window.NSB_SEARCH_QUERY || "";
-          (function() {
-            var debounced = (window.NSB_UTILS && window.NSB_UTILS.debounce) ? window.NSB_UTILS.debounce(function() {
-              window.NSB_SEARCH_QUERY = heroSearch.value.trim();
-              if (window.NSB_SEARCH_QUERY) {
-                window.NSB_CATEGORY_FILTER = "";
-                window.NSB_TAG_FILTER = "";
-                var chips = document.querySelectorAll(".chip-row .chip");
-                for (var ci = 0; ci < chips.length; ci++) chips[ci].setAttribute("aria-pressed", "false");
-                var allChip = document.querySelector(".chip-row .chip[data-category='']");
-                if (allChip) allChip.setAttribute("aria-pressed", "true");
-              }
-              if (typeof window.NSB_ON_SEARCH === "function") window.NSB_ON_SEARCH();
-              var hs = document.getElementById("nsb-search");
-              if (hs && hs.value !== heroSearch.value) hs.value = heroSearch.value;
-            }, 300) : function() {
-              window.NSB_SEARCH_QUERY = heroSearch.value.trim();
-              if (typeof window.NSB_ON_SEARCH === "function") window.NSB_ON_SEARCH();
-            };
-            heroSearch.addEventListener("input", debounced);
-          })();
-        }
-
         var chipBtns = document.querySelectorAll(".chip-row .chip");
         for (var i = 0; i < chipBtns.length; i++) {
           chipBtns[i].addEventListener("click", function() {
@@ -494,14 +466,6 @@
           if (byCatEl) byCatEl.style.display = "";
           applyFilters(R);
         });
-
-        var headerSearch = document.getElementById("nsb-search");
-        if (headerSearch) {
-          headerSearch.addEventListener("input", function() {
-            var heroSearch = document.getElementById("nsb-hero-search");
-            if (heroSearch && heroSearch.value !== headerSearch.value) heroSearch.value = headerSearch.value;
-          });
-        }
 
         var ld = {
           "@context": "https://schema.org",
