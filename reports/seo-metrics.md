@@ -1,12 +1,12 @@
 # SEO Content Metrics Report
 
-Generated: 2026-02-28
+Generated: 2026-03-06
 
 ## Summary table
 
 | Route | Words | Target | Missing req | Internal | Unique | In-body | Broken |
 |-------|-------|--------|--------------|----------|--------|---------|--------|
-| / | 364 | 350 | 0 | 16 | 14 | 16 | 0 |
+| / | 362 | 350 | 0 | 16 | 14 | 16 | 0 |
 | /categories/business/ | 351 | 350 | 0 | 9 | 8 | 9 | 0 |
 | /categories/career/ | 186 | 350 | 0 | 6 | 6 | 6 | 0 |
 | /categories/repurpose/ | 351 | 350 | 0 | 9 | 8 | 9 | 0 |
