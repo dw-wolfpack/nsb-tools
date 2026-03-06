@@ -5,10 +5,12 @@ Static, ultra-fast "tool farm" for creators, writers, and professionals. 17 tool
 ## Local development
 
 ```bash
-python -m http.server 8000
+npm run dev
 ```
 
-Then open http://localhost:8000/
+Or: `python -m http.server 8000`. Then open http://localhost:8000/
+
+The site uses environment-aware config: on localhost the **dev** license worker is used; on `*.pages.dev` previews the dev worker is used; on the production domain `tools.nextstepsbeyond.online` the **prod** license worker is used. To confirm locally, open DevTools console and check `window.NSB_CONFIG.ENV_NAME` (should be `"local"`) and `window.NSB_CONFIG.LICENSE_API_BASE` (should point at the dev worker URL).
 
 ## Unit tests
 

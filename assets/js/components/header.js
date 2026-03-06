@@ -33,15 +33,14 @@
       window.location.search.includes("debug=1") : false;
   }
 
-  window.NSB_HEADER = {
-    render(container) {
-      const base = getBasePath();
-      const active = getActiveFromPath();
-      const q = (typeof window.NSB_SEARCH_QUERY === "string") ? window.NSB_SEARCH_QUERY : "";
+  function finishRender(container) {
+    const base = getBasePath();
+    const active = getActiveFromPath();
+    const q = (typeof window.NSB_SEARCH_QUERY === "string") ? window.NSB_SEARCH_QUERY : "";
 
-      const showProBtn = isDebugOrPro();
-      const proNav = showProBtn ? `<button type="button" class="btn btn-pro" data-nsb-open-upgrade>Pro</button>` : "";
-      const html = `
+    const showProBtn = isDebugOrPro();
+    const proNav = showProBtn ? `<button type="button" class="btn btn-pro" data-nsb-open-upgrade>Pro</button>` : "";
+    const html = `
         <div class="header layout">
           <div class="header-inner">
             <a href="${base}" class="header-logo">NSB Tools</a>
@@ -64,33 +63,63 @@
         </div>
       `;
 
-      if (typeof container === "string") {
-        const el = document.querySelector(container);
-        if (el) el.innerHTML = html;
-      } else if (container && container.innerHTML !== undefined) {
-        container.innerHTML = html;
-      } else {
-        const wrap = document.getElementById("nsb-header");
-        if (wrap) wrap.innerHTML = html;
-      }
+    if (typeof container === "string") {
+      const el = document.querySelector(container);
+      if (el) el.innerHTML = html;
+    } else if (container && container.innerHTML !== undefined) {
+      container.innerHTML = html;
+    } else {
+      const wrap = document.getElementById("nsb-header");
+      if (wrap) wrap.innerHTML = html;
+    }
 
-      const searchInput = document.getElementById("nsb-search");
-      if (searchInput) {
-        searchInput.addEventListener("input", window.NSB_UTILS.debounce(() => {
-          window.NSB_SEARCH_QUERY = searchInput.value.trim();
-          if (typeof window.NSB_ON_SEARCH === "function") {
-            window.NSB_ON_SEARCH(window.NSB_SEARCH_QUERY);
+    const searchInput = document.getElementById("nsb-search");
+    if (searchInput && window.NSB_UTILS && window.NSB_UTILS.debounce) {
+      searchInput.addEventListener("input", window.NSB_UTILS.debounce(() => {
+        window.NSB_SEARCH_QUERY = searchInput.value.trim();
+        if (typeof window.NSB_ON_SEARCH === "function") {
+          window.NSB_ON_SEARCH(window.NSB_SEARCH_QUERY);
+        }
+      }, 300));
+    }
+
+    const upgradeBtn = document.querySelector("[data-nsb-open-upgrade]");
+    if (upgradeBtn) {
+      upgradeBtn.addEventListener("click", function (e) {
+        if (upgradeBtn.tagName === "A") e.preventDefault();
+        if (typeof window.NSB_OPEN_UPGRADE === "function") window.NSB_OPEN_UPGRADE();
+      });
+    }
+  }
+
+  window.NSB_HEADER = {
+    render(container) {
+      if (window.NSB_CONFIG) {
+        finishRender(container);
+        return;
+      }
+      var existing = document.querySelector('script[src="/assets/js/config.js"]');
+      if (existing) {
+        var attempts = 0;
+        var maxAttempts = 50;
+        var done = function () {
+          if (window.NSB_CONFIG || attempts >= maxAttempts) {
+            finishRender(container);
+          } else {
+            attempts++;
+            setTimeout(done, 20);
           }
-        }, 300));
+        };
+        done();
+        return;
       }
-
-      const upgradeBtn = document.querySelector("[data-nsb-open-upgrade]");
-      if (upgradeBtn) {
-        upgradeBtn.addEventListener("click", function (e) {
-          if (upgradeBtn.tagName === "A") e.preventDefault();
-          if (typeof window.NSB_OPEN_UPGRADE === "function") window.NSB_OPEN_UPGRADE();
-        });
-      }
+      var script = document.createElement("script");
+      script.type = "module";
+      script.src = "/assets/js/config.js";
+      script.onload = function () {
+        finishRender(container);
+      };
+      document.head.appendChild(script);
     }
   };
 })();

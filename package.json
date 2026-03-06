@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
+    "test:watch": "node --test --watch",
+    "dev": "npx http-server -p 8000 -c-1",
     "seo:audit": "node scripts/seo-audit.mjs",
     "seo:metrics": "node scripts/seo-metrics.mjs",
     "precommit": "npm test && npm run seo:audit && npm run seo:metrics"
