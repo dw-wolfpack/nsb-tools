@@ -21,9 +21,10 @@
 
 import { readFileSync, readdirSync } from "node:fs";
 import { resolve, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import process from "node:process";
 
-const ROOT = resolve(new URL("..", import.meta.url).pathname);
+const ROOT = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const ORIGIN = "https://tools.nextstepsbeyond.online";
 
 /** @param {string} p */

@@ -81,10 +81,6 @@
           if (typeof window.NSB_ON_SEARCH === "function") {
             window.NSB_ON_SEARCH(window.NSB_SEARCH_QUERY);
           }
-          const heroSearch = document.getElementById("nsb-hero-search");
-          if (heroSearch && heroSearch.value !== searchInput.value) {
-            heroSearch.value = searchInput.value;
-          }
         }, 300));
       }
 

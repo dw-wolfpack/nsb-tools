@@ -98,8 +98,13 @@
     }
 
     const searchInput = document.getElementById("nsb-search");
-    if (searchInput && window.NSB_SEARCH_QUERY) {
-      searchInput.value = window.NSB_SEARCH_QUERY;
+    if (searchInput) {
+      if (window.NSB_SEARCH_QUERY) {
+        searchInput.value = window.NSB_SEARCH_QUERY;
+      }
+      if (typeof window.NSB_SEARCH_AUTOCOMPLETE !== "undefined" && window.NSB_SEARCH_AUTOCOMPLETE.attach) {
+        window.NSB_SEARCH_AUTOCOMPLETE.attach(searchInput);
+      }
     }
   }
 

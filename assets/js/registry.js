@@ -169,7 +169,8 @@ const TOOLS = [
     isPro: false,
     consumesCredit: false,
     seoTitle: "Simple SBA Payment Estimator | NSB Tools",
-    seoDescription: "Estimate monthly SBA loan payments, DSCR, and run quick scenarios. Free business tool."
+    seoDescription: "Estimate monthly SBA loan payments, DSCR, and run quick scenarios. Free business tool.",
+    keywords: ["interest rate", "SBA loan", "DSCR", "principal and interest", "annual rate", "loan payment"]
   },
   {
     slug: "loi-outline",
@@ -217,7 +218,8 @@ const TOOLS = [
     isPro: false,
     consumesCredit: false,
     seoTitle: "Freelance Rate Calculator | NSB Tools",
-    seoDescription: "Calculate freelance hourly, day, and project rates from income goals and billable hours. Free career tool."
+    seoDescription: "Calculate freelance hourly, day, and project rates from income goals and billable hours. Free career tool.",
+    keywords: ["freelance rate", "hourly rate", "day rate", "project rate", "billable hours", "utilization"]
   },
   {
     slug: "project-pricing-calculator",
@@ -229,7 +231,8 @@ const TOOLS = [
     isPro: false,
     consumesCredit: false,
     seoTitle: "Project Pricing Calculator | NSB Tools",
-    seoDescription: "Calculate recommended project quotes with complexity multiplier and risk buffer. Free freelance tool."
+    seoDescription: "Calculate recommended project quotes with complexity multiplier and risk buffer. Free freelance tool.",
+    keywords: ["project quote", "freelance pricing", "hourly rate", "quote range"]
   },
   {
     slug: "salary-vs-freelance-comparator",
@@ -241,7 +244,8 @@ const TOOLS = [
     isPro: false,
     consumesCredit: false,
     seoTitle: "Salary vs Freelance Comparator | NSB Tools",
-    seoDescription: "Compare W2 salary to freelance income. Find breakeven hourly rate. Free career calculator."
+    seoDescription: "Compare W2 salary to freelance income. Find breakeven hourly rate. Free career calculator.",
+    keywords: ["salary", "freelance rate", "breakeven", "W2", "hourly rate"]
   },
   {
     slug: "loan-debt-payoff-calculator",
@@ -253,7 +257,8 @@ const TOOLS = [
     isPro: false,
     consumesCredit: false,
     seoTitle: "Loan Debt Payoff Calculator | NSB Tools",
-    seoDescription: "Calculate loan payoff timeline, total interest, and extra payment savings. Free business tool."
+    seoDescription: "Calculate loan payoff timeline, total interest, and extra payment savings. Free business tool.",
+    keywords: ["interest rate", "APR", "amortization", "payoff", "debt", "student loan", "car loan", "credit card"]
   },
   {
     slug: "employee-vs-contractor-calculator",
@@ -277,7 +282,8 @@ const TOOLS = [
     isPro: false,
     consumesCredit: false,
     seoTitle: "Break-even Calculator | NSB Tools",
-    seoDescription: "Calculate break-even units or MRR for service, ecommerce, and SaaS. Free business tool."
+    seoDescription: "Calculate break-even units or MRR for service, ecommerce, and SaaS. Free business tool.",
+    keywords: ["break even", "breakeven", "MRR", "fixed cost", "unit economics", "SaaS", "ecommerce"]
   },
   {
     slug: "burn-rate-runway-calculator",
@@ -289,7 +295,8 @@ const TOOLS = [
     isPro: false,
     consumesCredit: false,
     seoTitle: "Burn Rate Runway Calculator | NSB Tools",
-    seoDescription: "Calculate burn rate, runway, and 12-month cash projection. Free startup tool."
+    seoDescription: "Calculate burn rate, runway, and 12-month cash projection. Free startup tool.",
+    keywords: ["burn rate", "runway", "cash flow", "startup", "projection"]
   },
   {
     slug: "saas-roi-deal-analyzer",
