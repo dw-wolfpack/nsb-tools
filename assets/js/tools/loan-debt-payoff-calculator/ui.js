@@ -36,6 +36,7 @@
     var fmt = u.formatCurrency || function (n) { return "$" + Math.round(n).toLocaleString(); };
     function moneyOrDash(v) { return Number.isFinite(v) ? fmt(v) : "—"; }
     var lastCopyable = "";
+    var lastResult = null;
 
     function run() {
       var outputEl = document.getElementById("nsb-output");
@@ -56,8 +57,10 @@
         if (!res || res.error) {
           outputEl.innerHTML = '<p class="benchmark benchmark-warn">' + (res && res.error ? res.error : 'Enter principal balance and monthly payment to see results.') + '</p>';
           lastCopyable = "";
+          lastResult = null;
           return;
         }
+        lastResult = res;
         lastCopyable = "Months to payoff: " + res.monthsToPayoff + "\nTotal interest: " + fmt(res.totalInterest);
         if (res.interestSavings != null && res.interestSavings > 0) lastCopyable += "\nInterest saved with extra payment: " + fmt(res.interestSavings);
         if (res.schedule && res.schedule.length) {
@@ -127,6 +130,26 @@
           });
         }
       });
+    }
+
+    var btnGroup = copyBtn && copyBtn.parentNode && copyBtn.parentNode.classList && copyBtn.parentNode.classList.contains("btn-group") ? copyBtn.parentNode : null;
+    if (btnGroup && !document.getElementById("nsb-export-csv")) {
+      var exportBtn = document.createElement("button");
+      exportBtn.type = "button";
+      exportBtn.className = "btn btn-secondary";
+      exportBtn.id = "nsb-export-csv";
+      exportBtn.textContent = "Export CSV";
+      exportBtn.addEventListener("click", function () {
+        if (!window.NSB_PRO || typeof window.NSB_PRO.requirePro !== "function") return;
+        window.NSB_PRO.requirePro(function () {
+          if (!lastResult || !lastResult.schedule || !lastResult.schedule.length || !window.NSB_CSV) return;
+          var headers = ["month", "payment", "principalPaid", "interestPaid", "endingBalance"];
+          var csv = window.NSB_CSV.toCSV(lastResult.schedule, headers);
+          window.NSB_CSV.downloadCSV("loan-payoff-schedule.csv", csv);
+          if (window.NSB_TOAST) window.NSB_TOAST.show("Downloaded");
+        });
+      });
+      btnGroup.appendChild(exportBtn);
     }
 
     if (u.decodeParams) {

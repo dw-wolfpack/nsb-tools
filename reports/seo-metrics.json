@@ -1,5 +1,5 @@
 {
-  "generated": "2026-03-06T21:59:38.412Z",
+  "generated": "2026-03-07T16:59:25.025Z",
   "pages": [
     {
       "route": "/",
@@ -1649,28 +1649,27 @@
     {
       "route": "/changelog/",
       "filePath": "changelog/index.html",
-      "wordCountBody": 180,
+      "wordCountBody": 475,
       "h1Text": "Changelog",
       "titleText": "Changelog | NSB Tools",
       "metaDescriptionLength": 59,
-      "internalLinksTotal": 4,
-      "internalLinksUnique": 3,
+      "internalLinksTotal": 7,
+      "internalLinksUnique": 4,
       "aiLinksCount": 1,
       "toolLinksCount": 0,
       "glossaryLinksCount": 0,
-      "inBodyLinksCount": 4,
+      "inBodyLinksCount": 7,
       "hiddenToolLinksFound": [],
       "brokenLinks": [],
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (180/350)",
         "internalLinksUnique < 6"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
-      "isBelowTargetWords": true,
+      "isBelowTargetWords": false,
       "requiredKeywordsMissing": [],
       "optionalKeywordsPresent": [],
       "optionalKeywordsTotal": 0
