@@ -224,6 +224,10 @@ a:hover {
   background: rgba(56, 189, 248, 0.15);
 }
 
+.header-nav .btn-sm {
+  flex-shrink: 0;
+}
+
 .header-pro-link {
   font-size: 0.875rem;
   color: var(--color-text-muted);
@@ -655,7 +659,7 @@ a:hover {
   min-height: 8rem;
 }
 
-/* All Tools: 2-row horizontal scroller - outer is scroll container, inner is flex (no grid overlap) */
+/* All Tools: horizontal scroller - single row, no wrap (fixes iOS overlap) */
 .tool-grid--scroll-2rows:not(.is-expanded) {
   display: block;
   overflow-x: auto;
@@ -667,22 +671,22 @@ a:hover {
   padding-bottom: 0.5rem;
   border-radius: 12px;
   position: relative;
+  contain: paint;
 }
 
 .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: var(--space-md);
-  max-height: 360px;
   width: max-content;
+  align-items: stretch;
 }
 
 .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner > .tool-card {
   width: 280px;
   min-width: 280px;
-  flex: 0 0 auto;
+  flex: 0 0 280px;
   min-height: 150px;
   box-sizing: border-box;
   overflow: hidden;
@@ -717,23 +721,26 @@ a:hover {
   background: rgba(56, 189, 248, 0.7);
 }
 
-/* Fixed tile width per breakpoint */
+/* Fixed tile width per breakpoint (cards are inside .shelf-inner) */
 @media (min-width: 640px) {
-  .tool-grid--scroll-2rows:not(.is-expanded) > .tool-card {
+  .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner > .tool-card {
     width: 300px;
     min-width: 300px;
+    flex: 0 0 300px;
   }
 }
 @media (min-width: 768px) {
-  .tool-grid--scroll-2rows:not(.is-expanded) > .tool-card {
+  .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner > .tool-card {
     width: 320px;
     min-width: 320px;
+    flex: 0 0 320px;
   }
 }
 @media (min-width: 1024px) {
-  .tool-grid--scroll-2rows:not(.is-expanded) > .tool-card {
+  .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner > .tool-card {
     width: 340px;
     min-width: 340px;
+    flex: 0 0 340px;
   }
 }
 

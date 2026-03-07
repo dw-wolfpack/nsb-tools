@@ -43,7 +43,7 @@
   }
 
   function getProNavHtml(pro, showProBtn) {
-    return pro ? '<button type="button" class="pro-badge" id="nsb-pro-badge">Pro</button>' : (showProBtn ? '<button type="button" class="btn btn-pro" data-nsb-open-upgrade>Pro</button>' : "");
+    return pro ? '<button type="button" class="pro-badge" id="nsb-pro-badge">Pro</button>' : (showProBtn ? '<button type="button" class="btn btn-secondary btn-sm" data-nsb-open-upgrade>Upgrade</button>' : "");
   }
 
   function bindOnce(el, key, event, handler) {
@@ -60,7 +60,7 @@
     const q = (typeof window.NSB_SEARCH_QUERY === "string") ? window.NSB_SEARCH_QUERY : "";
 
     const pro = isProUser();
-    const showProBtn = !pro && isDebug();
+    const showProBtn = !pro;
     const proNav = getProNavHtml(pro, showProBtn);
     const html = `
         <div class="header layout">
