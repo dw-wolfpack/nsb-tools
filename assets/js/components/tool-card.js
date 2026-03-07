@@ -9,20 +9,36 @@
     return window.location.origin + "/";
   }
 
+  function escapeHtml(s) {
+    if (s == null || s === "") return "";
+    const str = String(s);
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
   window.NSB_TOOL_CARD = {
     render(tool, options) {
       const base = getBasePath();
-      const path = tool.path || base + "tools/" + tool.slug + "/";
+      const path = escapeHtml(tool.path || base + "tools/" + (tool.slug || "") + "/");
       const tags = (tool.tags || []).slice(0, 3).map((t) =>
-        `<span class="tool-card-tag">${String(t).replace(/</g, "&lt;")}</span>`
+        `<span class="tool-card-tag">${escapeHtml(t)}</span>`
       ).join("");
+      const name = escapeHtml(tool.name || "");
+      const desc = escapeHtml(tool.description || "");
+      const slug = escapeHtml(tool.slug || "");
       return `
-        <a href="${path}" class="tool-card" data-tool-slug="${(tool.slug || "").replace(/"/g, "&quot;")}">
-          <h3 class="tool-card-title">${(tool.name || "").replace(/</g, "&lt;")}</h3>
-          <p class="tool-card-desc">${(tool.description || "").replace(/</g, "&lt;")}</p>
-          ${tags ? `<div class="tool-card-tags">${tags}</div>` : ""}
-          <span class="tool-card-cta">Open &rarr;</span>
-        </a>
+        <div class="tool-card-wrapper">
+          <a href="${path}" class="tool-card" data-tool-slug="${slug}">
+            <h3 class="tool-card-title">${name}</h3>
+            <p class="tool-card-desc">${desc}</p>
+            ${tags ? `<div class="tool-card-tags">${tags}</div>` : ""}
+            <span class="tool-card-cta">Open &rarr;</span>
+          </a>
+        </div>
       `;
     },
 

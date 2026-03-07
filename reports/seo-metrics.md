@@ -65,7 +65,7 @@ Generated: 2026-03-07
 | /about/ | 181 | 350 | 0 | 7 | 6 | 7 | 0 |
 | /terms/ | 180 | 350 | 0 | 4 | 2 | 4 | 0 |
 | /privacy/ | 183 | 350 | 0 | 4 | 3 | 4 | 0 |
-| /changelog/ | 180 | 350 | 0 | 4 | 3 | 4 | 0 |
+| /changelog/ | 475 | 350 | 0 | 7 | 4 | 7 | 0 |
 
 ## Needs work
 
@@ -96,7 +96,7 @@ Generated: 2026-03-07
 - **/about/**: below target words (181/350)
 - **/terms/**: below target words (180/350); internalLinksUnique < 6
 - **/privacy/**: below target words (183/350); internalLinksUnique < 6
-- **/changelog/**: below target words (180/350); internalLinksUnique < 6
+- **/changelog/**: internalLinksUnique < 6
 
 ## Top internal link targets
 

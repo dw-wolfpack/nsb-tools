@@ -659,41 +659,53 @@ a:hover {
   min-height: 8rem;
 }
 
-/* All Tools: horizontal scroller - single row, no wrap (fixes iOS overlap) */
+/* All Tools: 2-row horizontal scroller using grid-auto-flow: column */
+
+/* Outer container: clips the shelf so no body-level horizontal scrollbar */
 .tool-grid--scroll-2rows:not(.is-expanded) {
   display: block;
-  overflow-x: auto;
-  overflow-y: hidden;
   max-width: 100%;
   min-width: 0;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 0.5rem;
+  overflow: hidden;
   border-radius: 12px;
   position: relative;
-  contain: paint;
 }
 
+/* Shelf: this is BOTH the 2-row grid AND the scroll container */
 .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-auto-columns: 200px;
   gap: var(--space-md);
-  width: max-content;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.5rem;
   align-items: stretch;
 }
 
-.tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner > .tool-card {
-  width: 280px;
-  min-width: 280px;
-  flex: 0 0 280px;
+/* Cards: no explicit width—the grid column controls it */
+.tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner > .tool-card-wrapper {
   min-height: 150px;
   box-sizing: border-box;
   overflow: hidden;
   scroll-snap-align: start;
+  contain: layout style;
+  isolation: isolate;
 }
 
-/* Scroll cue: gradient fade on right edge (shelf mode only) */
+/* Link fills the grid cell */
+.tool-card-wrapper .tool-card {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Scroll cue: gradient fade on right edge */
 .tool-grid--scroll-2rows:not(.is-expanded)::after {
   content: "";
   position: absolute;
@@ -705,42 +717,36 @@ a:hover {
   background: linear-gradient(to right, transparent, var(--color-bg, #0f172a));
 }
 
-/* Force scrollbar visible (shelf only) */
-.tool-grid--scroll-2rows:not(.is-expanded)::-webkit-scrollbar {
+/* Scrollbar styles on the scrolling element */
+.tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner::-webkit-scrollbar {
   height: 8px;
 }
-.tool-grid--scroll-2rows:not(.is-expanded)::-webkit-scrollbar-track {
+.tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner::-webkit-scrollbar-track {
   background: rgba(30, 41, 59, 0.5);
   border-radius: 4px;
 }
-.tool-grid--scroll-2rows:not(.is-expanded)::-webkit-scrollbar-thumb {
+.tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner::-webkit-scrollbar-thumb {
   background: rgba(56, 189, 248, 0.5);
   border-radius: 4px;
 }
-.tool-grid--scroll-2rows:not(.is-expanded)::-webkit-scrollbar-thumb:hover {
+.tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner::-webkit-scrollbar-thumb:hover {
   background: rgba(56, 189, 248, 0.7);
 }
 
-/* Fixed tile width per breakpoint (cards are inside .shelf-inner) */
-@media (min-width: 640px) {
-  .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner > .tool-card {
-    width: 300px;
-    min-width: 300px;
-    flex: 0 0 300px;
+/* Responsive column width: wider cards on larger screens */
+@media (min-width: 480px) {
+  .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner {
+    grid-auto-columns: 240px;
   }
 }
 @media (min-width: 768px) {
-  .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner > .tool-card {
-    width: 320px;
-    min-width: 320px;
-    flex: 0 0 320px;
+  .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner {
+    grid-auto-columns: 270px;
   }
 }
 @media (min-width: 1024px) {
-  .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner > .tool-card {
-    width: 340px;
-    min-width: 340px;
-    flex: 0 0 340px;
+  .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner {
+    grid-auto-columns: 300px;
   }
 }
 
@@ -767,11 +773,16 @@ a:hover {
   display: contents;
 }
 
-.tool-grid--scroll-2rows.is-expanded .shelf-inner > .tool-card,
-.tool-grid--scroll-2rows.is-expanded > .tool-card {
-  width: auto;
-  min-width: unset;
+.tool-grid--scroll-2rows.is-expanded .shelf-inner > .tool-card-wrapper,
+.tool-grid--scroll-2rows.is-expanded > .tool-card-wrapper {
+  min-height: unset;
+  contain: unset;
+  isolation: unset;
   scroll-snap-align: unset;
+}
+
+.tool-grid--scroll-2rows.is-expanded .tool-card-wrapper .tool-card {
+  height: auto;
 }
 
 @media (min-width: 48em) and (max-width: 63.99em) {
