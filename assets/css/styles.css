@@ -316,6 +316,63 @@ a:hover {
   color: var(--color-text-muted);
 }
 
+/* Search suggest (typeahead) */
+.search-suggest {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-sm);
+  box-shadow: var(--shadow-lg);
+  max-height: 16rem;
+  overflow-y: auto;
+  list-style: none;
+  padding: var(--space-xs);
+}
+
+.search-suggest[hidden] {
+  display: none;
+}
+
+.search-suggest-item {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.875rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.search-suggest-item:hover,
+.search-suggest-item.is-active {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-text);
+}
+
+.search-suggest-item-name {
+  display: block;
+  font-weight: 500;
+}
+
+.search-suggest-item-meta {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 0.15rem;
+}
+
+.search-suggest-empty {
+  padding: var(--space-md);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
 /* Footer */
 .footer {
   margin-top: var(--space-2xl);
@@ -1023,6 +1080,29 @@ a:hover {
   box-shadow: var(--glow-pro);
 }
 
+.pro-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: rgba(192, 132, 252, 0.2);
+  color: var(--color-pro);
+  margin-left: var(--space-xs);
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.pro-badge:hover {
+  background: rgba(192, 132, 252, 0.3);
+}
+
+.pro-badge:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 /* Form */
 .form-group {
   margin-bottom: var(--space-md);
@@ -1217,6 +1297,70 @@ a:hover {
   margin-top: var(--space-lg);
   display: flex;
   gap: var(--space-sm);
+}
+
+.modal-pro-list {
+  margin: var(--space-md) 0;
+  padding-left: var(--space-lg);
+}
+
+.modal-pro-already-row {
+  margin-top: var(--space-lg);
+}
+
+.modal-pro-unlock {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.modal-pro-unlock label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: var(--space-xs);
+}
+
+.modal-pro-unlock .input {
+  width: 100%;
+  max-width: 20rem;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.modal-pro-unlock .btn {
+  margin-top: var(--space-xs);
+}
+
+.modal-pro-error {
+  color: var(--color-error);
+  font-size: 0.875rem;
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+
+.modal-pro-error[hidden] {
+  display: none;
+}
+
+.modal-pro-disable {
+  color: var(--color-text-muted);
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--color-accent);
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 /* Toast */

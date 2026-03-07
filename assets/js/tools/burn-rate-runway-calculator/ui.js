@@ -34,6 +34,7 @@
     var shareEl = document.getElementById("nsb-share-embed");
     var u = window.NSB_UTILS || {};
     var fmt = u.formatCurrency || function (n) { return "$" + Math.round(n).toLocaleString(); };
+    var lastResult = null;
 
     function run() {
       var outputEl = document.getElementById("nsb-output");
@@ -54,8 +55,10 @@
           outputEl.innerHTML = '<p class="benchmark benchmark-warn">' + (res && res.error ? res.error : 'Enter cash on hand and monthly expenses to see results.') + '</p>';
           if (projEl) projEl.innerHTML = "";
           if (bench) bench.innerHTML = "";
+          lastResult = null;
           return;
         }
+        lastResult = res;
         outputEl.innerHTML = "";
         if (projEl) projEl.innerHTML = "";
         if (bench) bench.innerHTML = "";
@@ -93,6 +96,36 @@
     if (form) {
       form.addEventListener("submit", function (e) { e.preventDefault(); run(); });
       form.addEventListener("input", u.debounce ? u.debounce(run, 400) : run);
+    }
+
+    var projEl = document.getElementById("nsb-projection");
+    if (projEl && !document.getElementById("nsb-export-csv")) {
+      var exportWrap = document.createElement("div");
+      exportWrap.className = "btn-group";
+      exportWrap.style.marginTop = "0.5rem";
+      var exportBtn = document.createElement("button");
+      exportBtn.type = "button";
+      exportBtn.className = "btn btn-secondary";
+      exportBtn.id = "nsb-export-csv";
+      exportBtn.textContent = "Export CSV";
+      exportBtn.addEventListener("click", function () {
+        if (!window.NSB_PRO || typeof window.NSB_PRO.requirePro !== "function") return;
+        window.NSB_PRO.requirePro(function () {
+          if (!lastResult || !lastResult.projection || !lastResult.projection.length || !window.NSB_CSV) return;
+          var initialCash = lastResult.cash != null ? lastResult.cash : (lastResult.projection[0] ? lastResult.projection[0].cash - (lastResult.projection[0].revenue - lastResult.projection[0].expenses) : 0);
+          var rows = lastResult.projection.map(function (row, i) {
+            var cashStart = i === 0 ? initialCash : lastResult.projection[i - 1].cash;
+            var netBurn = row.expenses - row.revenue;
+            return { month: row.month, cashStart: cashStart, revenue: row.revenue, expenses: row.expenses, netBurn: netBurn, cashEnd: row.cash };
+          });
+          var headers = ["month", "cashStart", "revenue", "expenses", "netBurn", "cashEnd"];
+          var csv = window.NSB_CSV.toCSV(rows, headers);
+          window.NSB_CSV.downloadCSV("burn-rate-projection.csv", csv);
+          if (window.NSB_TOAST) window.NSB_TOAST.show("Downloaded");
+        });
+      });
+      exportWrap.appendChild(exportBtn);
+      projEl.parentNode.insertBefore(exportWrap, projEl.nextSibling);
     }
 
     if (u.decodeParams) {

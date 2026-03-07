@@ -33,6 +33,21 @@
     <p class="small muted">Last updated: March 6th, 2026</p>
 
     <section class="section">
+      <h2>2026-03</h2>
+      <ul>
+        <li><strong>Search fixed.</strong> Header search works on every page with a typeahead dropdown (up to 8 matches from the tool registry). On Home, the All Tools grid filters as you type; on other pages, Enter navigates to <code>/?q=...</code> and Home applies the query. Clicking a suggestion goes straight to that tool. Home also reads <code>?q=</code> from the URL on load so shared links open with results pre-filtered.</li>
+        <li><strong>Pro badge in header.</strong> When <code>localStorage.nsb_pro</code> is true, a Pro pill appears in the nav on all pages and opens the upgrade modal on click. Debug mode still shows the Pro button when not subscribed. Header event binding is idempotent so re-renders (e.g. after unlock) do not double-bind.</li>
+        <li><strong>Pro modal: "I already paid" and unlock.</strong> The "I already paid" control is now a clear secondary button. Clicking it toggles an unlock section with email input and "Unlock Pro" button. Validation (valid email, length 254) shows an inline error on failure; on success, Pro is set, a toast confirms, the modal closes, and the header re-renders.</li>
+        <li><strong>Mailchimp signup.</strong> The Get updates form on <a href="/updates/">/updates/</a> posts to <code>POST /api/subscribe</code>, a Cloudflare Pages Function that adds or updates a Mailchimp audience member and tags with "nsb-tools". Double opt-in is configurable via env.</li>
+        <li><strong>Local dev with Workers.</strong> Static-only dev: <code>npm run dev</code> (http-server). To run the subscribe API and other Pages Functions locally: <code>npm run dev:cf</code> (Wrangler). Use <code>.dev.vars</code> for Mailchimp and other secrets (see README).</li>
+        <li><strong>Robustness.</strong> Header listeners (search, upgrade, Pro badge) use bind-once markers so multiple renders do not attach duplicate handlers. Dynamic script loading (csv.js, pro.js) is idempotent: DOM checks and <code>data-nsb</code> markers prevent duplicate script tags; loading flags clear on error or missing global so retries work.</li>
+      </ul>
+      <p class="small muted">
+        Links: <a href="/">Home</a>, <a href="/updates/">Get updates</a>, <a href="/categories/">Categories</a>, <a href="/ai/">AI Hub</a>
+      </p>
+    </section>
+
+    <section class="section">
       <h2>2025-02</h2>
       <ul>
         <li>SEO audit: BreadcrumbList JSON-LD added to Changelog, SEO Health, About, Privacy, Terms</li>
@@ -71,6 +86,7 @@
   <script src="/assets/js/registry.js" defer></script>
   <script src="/assets/js/components/header.js" defer></script>
   <script src="/assets/js/components/search-autocomplete.js" defer></script>
+  <script src="/assets/js/components/search-suggest.js" defer></script>
   <script src="/assets/js/components/footer.js" defer></script>
   <script src="/assets/js/components/modal.js" defer></script>
   <script src="/assets/js/main.js" defer></script>

@@ -205,6 +205,7 @@
   <script src="/assets/js/registry.js" defer></script>
   <script src="/assets/js/components/header.js" defer></script>
   <script src="/assets/js/components/search-autocomplete.js" defer></script>
+  <script src="/assets/js/components/search-suggest.js" defer></script>
   <script src="/assets/js/components/footer.js" defer></script>
   <script src="/assets/js/components/tool-card.js" defer></script>
   <script src="/assets/js/components/modal.js" defer></script>
@@ -363,6 +364,14 @@
       }
 
       function runHomeInit(R) {
+        var qParam = (window.location.search && new URLSearchParams(window.location.search).get("q")) || "";
+        if (qParam.trim()) {
+          window.NSB_SEARCH_QUERY = qParam.trim();
+          var headerSearch = document.getElementById("nsb-search");
+          if (headerSearch) headerSearch.value = window.NSB_SEARCH_QUERY;
+          var heroSearch = document.getElementById("nsb-hero-search");
+          if (heroSearch) heroSearch.value = window.NSB_SEARCH_QUERY;
+        }
         if (!R) {
           var errMsg = '<p class="search-no-results">Registry not loaded. Check console.</p>';
           var fe = document.getElementById("nsb-featured");

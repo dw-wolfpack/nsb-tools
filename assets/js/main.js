@@ -75,7 +75,9 @@
     window.nsbAnalytics.track("upgrade_click", { source: "limit" });
   }
 
-  window.NSB_OPEN_UPGRADE = showUpgradeModal;
+  window.NSB_OPEN_UPGRADE = (window.NSB_PRO && typeof window.NSB_PRO.openUpgradeModal === "function")
+    ? function () { window.NSB_PRO.openUpgradeModal(); }
+    : showUpgradeModal;
   window.NSB_CHECK_PRO = checkPro;
   window.NSB_CAN_GENERATE = canGenerate;
   window.NSB_INCREMENT_GEN = incrementTodayCount;
@@ -98,14 +100,45 @@
     }
 
     const searchInput = document.getElementById("nsb-search");
-    if (searchInput) {
-      if (window.NSB_SEARCH_QUERY) {
-        searchInput.value = window.NSB_SEARCH_QUERY;
-      }
-      if (typeof window.NSB_SEARCH_AUTOCOMPLETE !== "undefined" && window.NSB_SEARCH_AUTOCOMPLETE.attach) {
-        window.NSB_SEARCH_AUTOCOMPLETE.attach(searchInput);
-      }
+    if (searchInput && window.NSB_SEARCH_QUERY) {
+      searchInput.value = window.NSB_SEARCH_QUERY;
     }
+
+    loadProScriptsIfNeeded();
+  }
+
+  window.NSB_LOAD_PRO_SCRIPTS_IF_NEEDED = loadProScriptsIfNeeded;
+
+  function loadProScriptsIfNeeded() {
+    if (typeof window === "undefined" || !window.document || !window.document.head) return;
+    if (window.NSB_PRO) return;
+    if (document.querySelector && document.querySelector('script[data-nsb="csv"]')) return;
+    if (window.__NSB_CSV_LOADING) return;
+    var base = getBasePath();
+    window.__NSB_CSV_LOADING = true;
+    var s1 = document.createElement("script");
+    s1.setAttribute("data-nsb", "csv");
+    s1.src = base + "assets/js/csv.js";
+    s1.async = false;
+    s1.onload = function () {
+      if (window.NSB_PRO) return;
+      if (!window.NSB_CSV || typeof window.NSB_CSV.toCSV !== "function") {
+        window.__NSB_CSV_LOADING = false;
+        return;
+      }
+      if (document.querySelector && document.querySelector('script[data-nsb="pro"]')) return;
+      if (window.__NSB_PRO_LOADING) return;
+      window.__NSB_PRO_LOADING = true;
+      var s2 = document.createElement("script");
+      s2.setAttribute("data-nsb", "pro");
+      s2.src = base + "assets/js/pro.js";
+      s2.async = false;
+      s2.onload = function () { window.__NSB_PRO_LOADING = false; };
+      s2.onerror = function () { window.__NSB_PRO_LOADING = false; };
+      document.head.appendChild(s2);
+    };
+    s1.onerror = function () { window.__NSB_CSV_LOADING = false; };
+    document.head.appendChild(s1);
   }
 
   init();
