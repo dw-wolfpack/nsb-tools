@@ -12,6 +12,17 @@ Or: `python -m http.server 8000`. Then open http://localhost:8000/
 
 The site uses environment-aware config: on localhost the **dev** license worker is used; on `*.pages.dev` previews the dev worker is used; on the production domain `tools.nextstepsbeyond.online` the **prod** license worker is used. To confirm locally, open DevTools console and check `window.NSB_CONFIG.ENV_NAME` (should be `"local"`) and `window.NSB_CONFIG.LICENSE_API_BASE` (should point at the dev worker URL).
 
+### Cloudflare Pages Functions (e.g. `/api/subscribe`)
+
+The email signup form on `/updates/` calls `POST /api/subscribe`, which is implemented as a Cloudflare Pages Function. To run it locally you need Wrangler:
+
+```bash
+npm i -D wrangler
+npm run dev:cf
+```
+
+Then open http://localhost:8000/. The `dev` script (`npx http-server -p 8000`) serves static files only; **`/api/subscribe` only works when using `dev:cf`** (or on deployed Pages).
+
 ## Unit tests
 
 One test file per calculator under `tests/`. Requires Node 18+, no external dependencies.
