@@ -1,19 +1,19 @@
 {
-  "generated": "2026-03-06T21:00:57.792Z",
+  "generated": "2026-03-06T21:59:38.412Z",
   "pages": [
     {
       "route": "/",
       "filePath": "index.html",
-      "wordCountBody": 362,
+      "wordCountBody": 369,
       "h1Text": "NSB Tools",
       "titleText": "NSB Tools | Free Creator, Writing, Career, and Business Tools",
       "metaDescriptionLength": 160,
-      "internalLinksTotal": 16,
-      "internalLinksUnique": 14,
+      "internalLinksTotal": 17,
+      "internalLinksUnique": 15,
       "aiLinksCount": 4,
       "toolLinksCount": 5,
       "glossaryLinksCount": 1,
-      "inBodyLinksCount": 16,
+      "inBodyLinksCount": 17,
       "hiddenToolLinksFound": [],
       "brokenLinks": [],
       "hasLastUpdated": true,
@@ -1534,7 +1534,7 @@
     {
       "route": "/updates/",
       "filePath": "updates/index.html",
-      "wordCountBody": 115,
+      "wordCountBody": 113,
       "h1Text": "Get updates",
       "titleText": "Get updates | NSB Tools",
       "metaDescriptionLength": 74,
@@ -1550,7 +1550,7 @@
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (115/350)",
+        "below target words (113/350)",
         "internalLinksUnique < 6"
       ],
       "isAiPage": false,

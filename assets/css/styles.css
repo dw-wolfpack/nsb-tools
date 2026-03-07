@@ -1060,6 +1060,19 @@ a:hover {
   resize: vertical;
 }
 
+.subscribe-message {
+  margin-top: var(--space-md);
+  font-size: 0.875rem;
+}
+
+.subscribe-message--success {
+  color: var(--color-success);
+}
+
+.subscribe-message--error {
+  color: var(--color-error);
+}
+
 .share-row {
   display: flex;
   gap: var(--space-sm);

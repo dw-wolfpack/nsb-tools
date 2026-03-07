@@ -44,9 +44,19 @@
 
     <section class="section">
       <h2>Join the list</h2>
-      <p><a href="#" id="updates-mailto" class="btn btn-primary">Email Chris</a></p>
-      <p><button type="button" class="btn btn-secondary" id="updates-copy">Copy email address</button></p>
-      <p class="small muted">Tip: include what you want NSB Tools to add next.</p>
+      <form id="updates-subscribe-form" class="subscribe-form" aria-live="polite">
+        <div class="form-group">
+          <label for="updates-first-name">First name <span class="muted">(optional)</span></label>
+          <input type="text" id="updates-first-name" name="firstName" maxlength="80" autocomplete="given-name" class="input">
+        </div>
+        <div class="form-group">
+          <label for="updates-email">Email <span class="required">*</span></label>
+          <input type="email" id="updates-email" name="email" required autocomplete="email" class="input">
+        </div>
+        <button type="submit" id="updates-submit" class="btn btn-primary">Get updates</button>
+        <p class="small muted">No spam. 1–2 emails/month. Unsubscribe anytime.</p>
+        <p id="updates-message" class="subscribe-message" hidden></p>
+      </form>
     </section>
 
     <section class="section">
@@ -79,18 +89,55 @@
 
   <script>
     (function() {
-      var a = "cnf", b = "iegel", c = "@", d = "gmail", e = ".", f = "com";
-      var addr = a + b + c + d + e + f;
-      var subject = "NSB%20Tools%20Updates";
-      var body = "Hey%20Chris%2C%0A%0APlease%20add%20me%20to%20NSB%20Tools%20updates.%0A%0AName%3A%20%0AInterests%3A%20%0A%0AThanks!";
       document.addEventListener("DOMContentLoaded", function() {
-        var mailto = document.getElementById("updates-mailto");
-        var copyBtn = document.getElementById("updates-copy");
-        if (mailto) mailto.href = "mailto:" + addr + "?subject=" + subject + "&body=" + body;
-        if (copyBtn) copyBtn.addEventListener("click", function() {
-          if (window.NSB_UTILS && window.NSB_UTILS.copyToClipboard(addr)) {
-            if (window.NSB_TOAST) window.NSB_TOAST.show("Copied");
+        var form = document.getElementById("updates-subscribe-form");
+        var submitBtn = document.getElementById("updates-submit");
+        var messageEl = document.getElementById("updates-message");
+        if (!form || !submitBtn || !messageEl) return;
+
+        function showMessage(text, isError) {
+          messageEl.textContent = text;
+          messageEl.hidden = false;
+          messageEl.setAttribute("role", isError ? "alert" : "status");
+          messageEl.className = "subscribe-message" + (isError ? " subscribe-message--error" : " subscribe-message--success");
+        }
+
+        form.addEventListener("submit", function(e) {
+          e.preventDefault();
+          var email = (document.getElementById("updates-email") && document.getElementById("updates-email").value || "").trim();
+          var firstName = (document.getElementById("updates-first-name") && document.getElementById("updates-first-name").value || "").trim();
+          if (!email) {
+            showMessage("Please enter your email.", true);
+            return;
           }
+          submitBtn.disabled = true;
+          messageEl.hidden = true;
+
+          fetch("/api/subscribe", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email, firstName: firstName || undefined })
+          })
+            .then(function(res) { return res.json().then(function(data) { return { ok: res.ok, status: res.status, data: data }; }); })
+            .then(function(result) {
+              if (result.data.ok) {
+                showMessage(result.data.doubleOptIn ? "Check your email to confirm (including spam)." : "You're in.", false);
+                form.reset();
+              } else {
+                var msg = "Something went wrong. Try again.";
+                if (result.data.error === "invalid_email") msg = "Please enter a valid email address.";
+                else if (result.data.error === "invalid_first_name") msg = "First name is too long.";
+                else if (result.data.error === "invalid_json") msg = "Invalid request.";
+                else if (result.data.error && result.data.error !== "server_error") msg = result.data.error;
+                showMessage(msg, true);
+              }
+            })
+            .catch(function() {
+              showMessage("Something went wrong. Try again.", true);
+            })
+            .finally(function() {
+              submitBtn.disabled = false;
+            });
         });
       });
     })();

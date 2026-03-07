@@ -6,7 +6,7 @@ Generated: 2026-03-06
 
 | Route | Words | Target | Missing req | Internal | Unique | In-body | Broken |
 |-------|-------|--------|--------------|----------|--------|---------|--------|
-| / | 362 | 350 | 0 | 16 | 14 | 16 | 0 |
+| / | 369 | 350 | 0 | 17 | 15 | 17 | 0 |
 | /categories/business/ | 351 | 350 | 0 | 9 | 8 | 9 | 0 |
 | /categories/career/ | 186 | 350 | 0 | 6 | 6 | 6 | 0 |
 | /categories/repurpose/ | 351 | 350 | 0 | 9 | 8 | 9 | 0 |
@@ -61,7 +61,7 @@ Generated: 2026-03-06
 | /ai/toolkit/ | 598 | 650 | 0 | 28 | 14 | 17 | 0 |
 | /glossary/ | 35 | 350 | 0 | 1 | 1 | 1 | 0 |
 | /faq/ | 237 | 350 | 0 | 5 | 4 | 5 | 0 |
-| /updates/ | 115 | 350 | 0 | 5 | 3 | 5 | 0 |
+| /updates/ | 113 | 350 | 0 | 5 | 3 | 5 | 0 |
 | /about/ | 181 | 350 | 0 | 7 | 6 | 7 | 0 |
 | /terms/ | 180 | 350 | 0 | 4 | 2 | 4 | 0 |
 | /privacy/ | 183 | 350 | 0 | 4 | 3 | 4 | 0 |
@@ -92,7 +92,7 @@ Generated: 2026-03-06
 - **/ai/toolkit/**: below target words (598/650); 5/5 optional keywords
 - **/glossary/**: below target words (35/350); internalLinksUnique < 6
 - **/faq/**: below target words (237/350); internalLinksUnique < 6
-- **/updates/**: below target words (115/350); internalLinksUnique < 6
+- **/updates/**: below target words (113/350); internalLinksUnique < 6
 - **/about/**: below target words (181/350)
 - **/terms/**: below target words (180/350); internalLinksUnique < 6
 - **/privacy/**: below target words (183/350); internalLinksUnique < 6
