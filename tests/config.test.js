@@ -46,3 +46,13 @@ test("import does not throw when window is undefined", () => {
   const out = resolveEnvConfig("localhost");
   assert.strictEqual(out.ENV_NAME, "local");
 });
+
+test("resolveEnvConfig includes PRO_CHECKOUT_URL string for dev", () => {
+  const out = resolveEnvConfig("localhost");
+  assert.strictEqual(typeof out.PRO_CHECKOUT_URL, "string", "PRO_CHECKOUT_URL should be a string");
+});
+
+test("resolveEnvConfig includes PRO_CHECKOUT_URL string for prod", () => {
+  const out = resolveEnvConfig("randomdomain.com");
+  assert.strictEqual(typeof out.PRO_CHECKOUT_URL, "string", "PRO_CHECKOUT_URL should be a string for prod");
+});
