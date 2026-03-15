@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>Pro activated - NSB Tools</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <div class="banner">NSB Tools - <a href="/updates/">Get updates</a></div>
+  <header id="nsb-header"></header>
+
+  <main class="layout layout--narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span> Thank you</nav>
+
+    <div id="thank-you-state">
+      <h1>You're almost there.</h1>
+      <p>Your payment went through. Enter the email you used at checkout to activate NSB Tools Pro.</p>
+      <p>Pro unlocks saved inputs, CSV export, and more across your favorite tools.</p>
+      <p><button type="button" class="btn btn-primary" id="thank-you-activate">Activate Pro</button></p>
+    </div>
+
+    <div id="thank-you-already" class="thank-you-already" hidden>
+      <h1>You're almost there.</h1>
+      <p>You are already activated.</p>
+      <p><a href="/pro/" class="btn btn-primary">Open Pro hub</a></p>
+    </div>
+  </main>
+
+  <footer id="nsb-footer"></footer>
+  <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/search-autocomplete.js" defer></script>
+  <script src="/assets/js/components/search-suggest.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/components/modal.js" defer></script>
+  <script src="/assets/js/components/toast.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/pro-copy.js" defer></script>
+  <script src="/assets/js/pro.js" defer></script>
+  <script>
+    (function () {
+      document.addEventListener("DOMContentLoaded", function () {
+        var activateBtn = document.getElementById("thank-you-activate");
+        var stateEl = document.getElementById("thank-you-state");
+        var alreadyEl = document.getElementById("thank-you-already");
+
+        function isPro() {
+          try { return localStorage.getItem("nsb_pro") === "true"; } catch (e) { return false; }
+        }
+
+        if (isPro()) {
+          if (stateEl) stateEl.hidden = true;
+          if (alreadyEl) alreadyEl.hidden = false;
+          return;
+        }
+
+        if (activateBtn) {
+          activateBtn.addEventListener("click", function () {
+            if (window.NSB_PRO && typeof window.NSB_PRO.openUpgradeModal === "function") {
+              window.NSB_PRO.openUpgradeModal({ focusUnlock: true });
+            } else if (window.NSB_OPEN_UPGRADE) {
+              window.NSB_OPEN_UPGRADE();
+            }
+          });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

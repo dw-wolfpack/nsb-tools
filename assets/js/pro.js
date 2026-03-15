@@ -27,6 +27,9 @@
         localStorage.removeItem(STORAGE_KEY);
         localStorage.removeItem(STORAGE_EMAIL_KEY);
       }
+      try {
+        window.dispatchEvent(new CustomEvent("nsb:pro-changed"));
+      } catch (e) {}
     } catch (e) {}
   }
 
@@ -54,7 +57,7 @@
       .catch(function () { return null; }); // null = network error
   }
 
-  function openUpgradeModal() {
+  function openUpgradeModal(opts) {
     var modal = typeof window.NSB_MODAL !== "undefined" ? window.NSB_MODAL : null;
     var toast = typeof window.NSB_TOAST !== "undefined" && window.NSB_TOAST && typeof window.NSB_TOAST.show === "function" ? window.NSB_TOAST : null;
     if (!modal || typeof modal.open !== "function") return;
@@ -78,19 +81,30 @@
       ? '<p class="small muted" style="margin-top:1rem;"><a href="#" id="nsb-pro-disable-link" class="modal-pro-disable">Disable Pro</a></p>'
       : "";
 
+    var benefits = (window.NSB_PRO_COPY && typeof window.NSB_PRO_COPY.modalBenefits === "function")
+      ? window.NSB_PRO_COPY.modalBenefits()
+      : ["Save presets", "Export results"];
+    var upgradeLabel = "Upgrade";
+    if (window.NSB_PRO_COPY && typeof window.NSB_PRO_COPY.formatPrice === "function") {
+      var priceStr = window.NSB_PRO_COPY.formatPrice();
+      if (priceStr) upgradeLabel = "Upgrade (" + priceStr + ")";
+    }
+    var bulletsHtml = benefits.map(function (b) { return "<li>" + String(b).replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</li>"; }).join("");
+    var subtextHtml = (window.NSB_PRO_COPY && benefits.length > 0)
+      ? '<p class="small muted" style="margin-top:.5rem;">Save time on repeat work. Cancel anytime.</p>'
+      : "";
     var nonProContent =
       '<h2 id="nsb-modal-title">NSB Tools Pro</h2>' +
-      '<ul class="modal-pro-list">' +
-      "<li>Save presets</li>" +
-      "<li>Export results</li>" +
-      "</ul>" +
+      '<ul class="modal-pro-list">' + bulletsHtml + "</ul>" +
+      subtextHtml +
       '<div class="modal-actions">' +
-      '<button type="button" class="btn btn-primary" id="nsb-pro-upgrade-btn">Upgrade</button>' +
+      '<button type="button" class="btn btn-primary" id="nsb-pro-upgrade-btn">' + String(upgradeLabel).replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</button>' +
       '<button type="button" class="btn btn-secondary" data-nsb-modal-close>Close</button>' +
       "</div>" +
       '<div class="modal-pro-already-row">' +
       '<button type="button" class="btn btn-secondary btn-sm" id="nsb-pro-already-paid">Log in</button>' +
       "</div>" +
+      '<p class="small muted" style="margin-top:.5rem;">Just paid? Enter your checkout email above to activate.</p>' +
       '<div id="nsb-pro-unlock" class="modal-pro-unlock" hidden>' +
       '<label for="nsb-pro-email">Email</label>' +
       '<input type="email" id="nsb-pro-email" class="input" placeholder="you@example.com" maxlength="254">' +
@@ -147,6 +161,17 @@
           if (emailInputEl && emailInputEl.focus) emailInputEl.focus();
         }
       });
+    }
+
+    // Optional: open with unlock section visible and email focused (e.g. from thank-you page)
+    if (opts && opts.focusUnlock && unlockBlock && alreadyPaidBtn) {
+      unlockBlock.hidden = false;
+      var errEl2 = overlay.querySelector("#nsb-pro-email-error");
+      if (errEl2) errEl2.hidden = true;
+      var emailInputEl2 = overlay.querySelector("#nsb-pro-email");
+      if (emailInputEl2 && emailInputEl2.focus) {
+        setTimeout(function () { emailInputEl2.focus(); }, 100);
+      }
     }
 
     // Unlock Pro: real license verify

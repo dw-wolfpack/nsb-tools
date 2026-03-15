@@ -1,6 +1,6 @@
 # SEO Content Metrics Report
 
-Generated: 2026-03-07
+Generated: 2026-03-15
 
 ## Summary table
 

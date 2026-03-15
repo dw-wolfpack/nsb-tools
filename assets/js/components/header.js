@@ -50,7 +50,7 @@
     if (pro) {
       return '<button type="button" class="pro-badge" id="nsb-pro-badge">Pro</button> ' + proHubLink;
     }
-    return '<button type="button" class="btn btn-secondary btn-sm" data-nsb-open-upgrade>Upgrade</button> ' + proHubBtn;
+    return '<button type="button" class="btn btn-primary btn-sm" data-nsb-open-upgrade>Upgrade</button> ' + proHubBtn;
   }
 
   function bindOnce(el, key, event, handler) {

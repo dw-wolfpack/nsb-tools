@@ -88,8 +88,10 @@ test("pro onload with global missing clears __NSB_PRO_LOADING", async () => {
   };
   globalThis.window.document = globalThis.document;
   createdScripts[0].onload();
-  assert.strictEqual(createdScripts.length >= 2, true, "pro script should be created after csv onload");
-  globalThis.window.NSB_PRO = undefined;
+  assert.strictEqual(createdScripts.length >= 2, true, "pro-copy script should be created after csv onload");
   createdScripts[1].onload();
+  assert.strictEqual(createdScripts.length >= 3, true, "pro script should be created after pro-copy onload");
+  globalThis.window.NSB_PRO = undefined;
+  createdScripts[2].onload();
   assert.strictEqual(globalThis.window.__NSB_PRO_LOADING, false, "__NSB_PRO_LOADING should be cleared when NSB_PRO missing");
 });

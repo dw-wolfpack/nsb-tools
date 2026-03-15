@@ -1121,6 +1121,63 @@ a:hover {
   outline-offset: 2px;
 }
 
+.header-nav .btn-primary.btn-sm {
+  flex-shrink: 0;
+}
+
+/* Pro CTA bottom strip (tool/ai pages) */
+.nsb-pro-cta-strip {
+  width: 100%;
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+.nsb-pro-cta-strip p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+}
+.nsb-pro-cta-strip .nsb-pro-cta-meta {
+  font-size: 0.8125rem;
+}
+.nsb-pro-cta-strip .nsb-pro-cta-strip-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Pro inline lock banner (moment-of-want) */
+.nsb-pro-inline-lock {
+  margin-top: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(192, 132, 252, 0.12);
+  border: 1px solid rgba(192, 132, 252, 0.25);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+.nsb-pro-inline-lock p {
+  margin: 0;
+  color: var(--color-text);
+}
+.nsb-pro-inline-lock .nsb-pro-inline-price {
+  margin-top: 0.15rem;
+}
+.nsb-pro-inline-lock .nsb-pro-inline-actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
 /* Form */
 .form-group {
   margin-bottom: var(--space-md);

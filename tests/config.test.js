@@ -56,3 +56,20 @@ test("resolveEnvConfig includes PRO_CHECKOUT_URL string for prod", () => {
   const out = resolveEnvConfig("randomdomain.com");
   assert.strictEqual(typeof out.PRO_CHECKOUT_URL, "string", "PRO_CHECKOUT_URL should be a string for prod");
 });
+
+test("resolveEnvConfig includes PRO_PRICE_TEXT for dev and prod", () => {
+  const dev = resolveEnvConfig("localhost");
+  const prod = resolveEnvConfig("tools.nextstepsbeyond.online");
+  assert.strictEqual(typeof dev.PRO_PRICE_TEXT, "string");
+  assert.strictEqual(typeof prod.PRO_PRICE_TEXT, "string");
+  assert.ok(dev.PRO_PRICE_TEXT.indexOf("/mo") >= 0 || dev.PRO_PRICE_TEXT.length > 0);
+});
+
+test("resolveEnvConfig includes THANK_YOU_URL for dev and prod", () => {
+  const dev = resolveEnvConfig("localhost");
+  const prod = resolveEnvConfig("tools.nextstepsbeyond.online");
+  assert.strictEqual(typeof dev.THANK_YOU_URL, "string");
+  assert.strictEqual(typeof prod.THANK_YOU_URL, "string");
+  assert.ok(dev.THANK_YOU_URL.includes("thank-you"), "dev THANK_YOU_URL should point to thank-you");
+  assert.ok(prod.THANK_YOU_URL.includes("thank-you"), "prod THANK_YOU_URL should point to thank-you");
+});
