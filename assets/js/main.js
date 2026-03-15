@@ -5,7 +5,8 @@
 (function () {
   "use strict";
 
-  const DAILY_LIMIT = 20;
+  // Limit resets at midnight local time (key = nsb_gens_YYYY-MM-DD).
+  const DAILY_LIMIT = 5;
 
   window.nsbAnalytics = {
     track(eventName, props) {
@@ -105,6 +106,31 @@
     }
 
     loadProScriptsIfNeeded();
+    loadProCtaAndMount();
+  }
+
+  function loadProCtaAndMount() {
+    var path = (window.location && window.location.pathname) || "";
+    if (path.indexOf("/tools/") !== 0 && path.indexOf("/ai/") !== 0) return;
+    var base = getBasePath();
+    function mountStrip() {
+      if (typeof window.NSB_PRO_CTA !== "undefined" && typeof window.NSB_PRO_CTA.mountBottomStrip === "function") {
+        window.NSB_PRO_CTA.mountBottomStrip();
+      }
+    }
+    if (typeof window.NSB_PRO_CTA !== "undefined" && typeof window.NSB_PRO_CTA.mountBottomStrip === "function") {
+      mountStrip();
+      return;
+    }
+    var scriptCta = document.createElement("script");
+    scriptCta.src = base + "assets/js/components/pro-cta.js";
+    scriptCta.async = true;
+    scriptCta.onload = mountStrip;
+    if (document.head) document.head.appendChild(scriptCta);
+    var scriptLock = document.createElement("script");
+    scriptLock.src = base + "assets/js/components/pro-inline-lock.js";
+    scriptLock.async = true;
+    if (document.head) document.head.appendChild(scriptLock);
   }
 
   window.NSB_LOAD_PRO_SCRIPTS_IF_NEEDED = loadProScriptsIfNeeded;
@@ -129,13 +155,29 @@
       if (document.querySelector && document.querySelector('script[data-nsb="pro"]')) return;
       if (window.__NSB_PRO_LOADING) return;
       window.__NSB_PRO_LOADING = true;
-      var s2 = document.createElement("script");
-      s2.setAttribute("data-nsb", "pro");
-      s2.src = base + "assets/js/pro.js";
-      s2.async = false;
-      s2.onload = function () { window.__NSB_PRO_LOADING = false; };
-      s2.onerror = function () { window.__NSB_PRO_LOADING = false; };
-      document.head.appendChild(s2);
+      var sCopy = document.createElement("script");
+      sCopy.setAttribute("data-nsb", "pro-copy");
+      sCopy.src = base + "assets/js/pro-copy.js";
+      sCopy.async = false;
+      sCopy.onload = function () {
+        var s2 = document.createElement("script");
+        s2.setAttribute("data-nsb", "pro");
+        s2.src = base + "assets/js/pro.js";
+        s2.async = false;
+        s2.onload = function () { window.__NSB_PRO_LOADING = false; };
+        s2.onerror = function () { window.__NSB_PRO_LOADING = false; };
+        document.head.appendChild(s2);
+      };
+      sCopy.onerror = function () {
+        var s2 = document.createElement("script");
+        s2.setAttribute("data-nsb", "pro");
+        s2.src = base + "assets/js/pro.js";
+        s2.async = false;
+        s2.onload = function () { window.__NSB_PRO_LOADING = false; };
+        s2.onerror = function () { window.__NSB_PRO_LOADING = false; };
+        document.head.appendChild(s2);
+      };
+      document.head.appendChild(sCopy);
     };
     s1.onerror = function () { window.__NSB_CSV_LOADING = false; };
     document.head.appendChild(s1);

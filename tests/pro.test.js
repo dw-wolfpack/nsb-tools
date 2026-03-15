@@ -94,6 +94,27 @@ test("openUpgradeModal content includes unlock markup and ids", () => {
   assert.ok(content.indexOf("Unlock Pro") >= 0, "content should include Unlock Pro button");
 });
 
+test("openUpgradeModal with NSB_PRO_COPY shows benefit-led bullets and price in Upgrade button", () => {
+  storage = {};
+  globalThis.localStorage = createStorage();
+  globalThis.window.NSB_PRO_COPY = {
+    modalBenefits: function () { return ["Pick up where you left off. Saved inputs, no re-typing.", "Export to CSV for spreadsheets and decks."]; },
+    formatPrice: function () { return "$14.99/mo"; }
+  };
+  var content = "";
+  globalThis.window.NSB_MODAL = { open: function (html) { content = html; }, close: function () {} };
+  globalThis.document = {
+    getElementById: function () { return null; },
+    head: { appendChild: function () {} },
+    createElement: function () { return {}; },
+    body: { appendChild: function () {}, removeChild: function () {} }
+  };
+  globalThis.window.NSB_PRO.openUpgradeModal();
+  assert.ok(content.indexOf("Pick up where you left off") >= 0, "modal should include benefit-led copy");
+  assert.ok(content.indexOf("Upgrade ($") >= 0, "Upgrade button should include price");
+  assert.ok(content.indexOf("Save time on repeat work") >= 0, "modal should include subtext");
+});
+
 test("openUpgradeModal I already paid click toggles unlock section", () => {
   storage = {};
   globalThis.localStorage = createStorage();

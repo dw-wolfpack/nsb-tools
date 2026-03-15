@@ -4,6 +4,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("nsb-form"), out = document.getElementById("nsb-output");
     const copyBtn = document.getElementById("nsb-copy"), saveBtn = document.getElementById("nsb-save"), clearBtn = document.getElementById("nsb-clear"), shareBtn = document.getElementById("nsb-share"), csvBtn = document.getElementById("nsb-csv");
+    if (csvBtn) csvBtn.setAttribute("data-nsb-lock-context", "export");
     const gen = document.getElementById("nsb-generate"), regen = document.getElementById("nsb-regen");
     if (!form || !out) return;
     function run() {
@@ -28,6 +29,19 @@
     saveBtn && saveBtn.addEventListener("click", () => { const t = out.dataset.raw; if (t) { const s = window.NSB_UTILS.storage.get("nsb_saved",[]); s.push({tool:"hashtag-generator",text:t,at:new Date().toISOString()}); window.NSB_UTILS.storage.set("nsb_saved", s.slice(-20)); window.NSB_TOAST.show("Saved"); } });
     clearBtn && clearBtn.addEventListener("click", () => { out.innerHTML = ""; delete out.dataset.raw; delete out.dataset.json; });
     shareBtn && shareBtn.addEventListener("click", () => { if (window.NSB_UTILS.copyToClipboard(window.location.href.split("?")[0])) window.NSB_TOAST.show("Share link copied"); });
-    csvBtn && csvBtn.addEventListener("click", () => { try { const j = JSON.parse(out.dataset.json || "{}"); const rows = [["Type","Hashtags"], ...["broad","niche","community"].map(k => [k, (j[k]||[]).join(" ")])]; window.NSB_UTILS.downloadFile(window.NSB_UTILS.exportCSV(rows), "hashtags.csv", "text/csv"); window.nsbAnalytics.track("tool_export", { tool: "hashtag-generator" }); } catch(e) {} });
+    csvBtn && csvBtn.addEventListener("click", () => {
+      if (!window.NSB_PRO || typeof window.NSB_PRO.requirePro !== "function") return;
+      if (!window.NSB_PRO.isPro() && window.NSB_PRO_INLINE_LOCK && typeof window.NSB_PRO_INLINE_LOCK.show === "function") {
+        window.NSB_PRO_INLINE_LOCK.show(csvBtn);
+      }
+      window.NSB_PRO.requirePro(function () {
+        try {
+          const j = JSON.parse(out.dataset.json || "{}");
+          const rows = [["Type","Hashtags"], ...["broad","niche","community"].map(k => [k, (j[k]||[]).join(" ")])];
+          window.NSB_UTILS.downloadFile(window.NSB_UTILS.exportCSV(rows), "hashtags.csv", "text/csv");
+          window.nsbAnalytics.track("tool_export", { tool: "hashtag-generator" });
+        } catch (e) {}
+      });
+    });
   });
 })();

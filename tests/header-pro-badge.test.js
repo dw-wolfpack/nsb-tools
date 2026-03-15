@@ -26,6 +26,7 @@ test("header exposes getProNavHtml and returns correct nav HTML", async () => {
 
   var htmlUpgrade = header.getProNavHtml(false, true);
   assert.ok(htmlUpgrade.indexOf("data-nsb-open-upgrade") !== -1, "showProBtn=true: should contain upgrade button");
+  assert.ok(htmlUpgrade.indexOf("btn-primary") !== -1, "Upgrade button should be primary (btn-primary)");
   assert.ok(htmlUpgrade.indexOf("Pro hub") !== -1, "showProBtn=true: should contain Pro hub");
 
   var htmlEmpty = header.getProNavHtml(false, false);

@@ -159,9 +159,13 @@
       exportBtn.type = "button";
       exportBtn.className = "btn btn-secondary";
       exportBtn.id = "nsb-export-csv";
+      exportBtn.setAttribute("data-nsb-lock-context", "export");
       exportBtn.textContent = "Export CSV";
       exportBtn.addEventListener("click", function () {
         if (!window.NSB_PRO || typeof window.NSB_PRO.requirePro !== "function") return;
+        if (!window.NSB_PRO.isPro() && window.NSB_PRO_INLINE_LOCK && typeof window.NSB_PRO_INLINE_LOCK.show === "function") {
+          window.NSB_PRO_INLINE_LOCK.show(exportBtn);
+        }
         window.NSB_PRO.requirePro(function () {
           if (!lastResult || !lastResult.schedule || !lastResult.schedule.length || !window.NSB_CSV) return;
           var headers = ["month", "payment", "principalPaid", "interestPaid", "endingBalance"];

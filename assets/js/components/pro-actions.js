@@ -255,11 +255,15 @@
     var saveBtn = document.createElement("button");
     saveBtn.type = "button";
     saveBtn.className = "btn btn-primary btn-sm";
+    saveBtn.setAttribute("data-nsb-lock-context", "presets");
     saveBtn.textContent = "Save preset";
     saveBtn.addEventListener("click", function () {
       if (!window.NSB_PRO || typeof window.NSB_PRO.requirePro !== "function") {
         showToast("Pro required.");
         return;
+      }
+      if (!isPro() && window.NSB_PRO_INLINE_LOCK && typeof window.NSB_PRO_INLINE_LOCK.show === "function") {
+        window.NSB_PRO_INLINE_LOCK.show(saveBtn);
       }
       window.NSB_PRO.requirePro(function () { promptSavePreset(toolSlug); });
     });
@@ -267,11 +271,15 @@
     var loadBtn = document.createElement("button");
     loadBtn.type = "button";
     loadBtn.className = "btn btn-secondary btn-sm";
+    loadBtn.setAttribute("data-nsb-lock-context", "presets");
     loadBtn.textContent = "Load preset";
     loadBtn.addEventListener("click", function () {
       if (!window.NSB_PRO || typeof window.NSB_PRO.requirePro !== "function") {
         showToast("Pro required.");
         return;
+      }
+      if (!isPro() && window.NSB_PRO_INLINE_LOCK && typeof window.NSB_PRO_INLINE_LOCK.show === "function") {
+        window.NSB_PRO_INLINE_LOCK.show(loadBtn);
       }
       window.NSB_PRO.requirePro(function () { openLoadModal(toolSlug); });
     });
