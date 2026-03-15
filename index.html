@@ -140,6 +140,8 @@
           </div>
         </section>
 
+        <div id="nsb-pro-hub-home" style="display:none; margin-bottom:1rem;"></div>
+
         <section class="section section--tight">
           <div class="section-header-row">
             <h2 class="section-title">All Tools</h2>
@@ -387,6 +389,21 @@
         var featuredEl = document.getElementById("nsb-featured");
         if (featuredEl) {
           featuredEl.innerHTML = featured.length ? featured.map(function(t) { return window.NSB_TOOL_CARD.render(t); }).join("") : '<p class="search-no-results">No featured tools.</p>';
+        }
+
+        var proHubHome = document.getElementById("nsb-pro-hub-home");
+        if (proHubHome) {
+          try {
+            if (localStorage.getItem("nsb_pro") === "true") {
+              proHubHome.innerHTML = '<a href="/pro/" class="tool-card" style="display:block;padding:1rem;text-decoration:none;color:inherit;">Pro hub: presets and exports</a>';
+              proHubHome.style.display = "";
+            } else {
+              proHubHome.innerHTML = "";
+              proHubHome.style.display = "none";
+            }
+          } catch (e) {
+            proHubHome.style.display = "none";
+          }
         }
 
         window.NSB_ON_SEARCH = function() { applyFilters(R); };

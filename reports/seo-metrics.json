@@ -1,5 +1,5 @@
 {
-  "generated": "2026-03-07T16:59:25.025Z",
+  "generated": "2026-03-07T21:40:50.118Z",
   "pages": [
     {
       "route": "/",
@@ -301,7 +301,7 @@
     {
       "route": "/tools/burn-rate-runway-calculator/",
       "filePath": "tools/burn-rate-runway-calculator/index.html",
-      "wordCountBody": 371,
+      "wordCountBody": 367,
       "h1Text": "Burn Rate / Runway Calculator",
       "titleText": "Burn Rate Runway Calculator | NSB Tools",
       "metaDescriptionLength": 77,
@@ -682,7 +682,7 @@
     {
       "route": "/tools/loan-debt-payoff-calculator/",
       "filePath": "tools/loan-debt-payoff-calculator/index.html",
-      "wordCountBody": 406,
+      "wordCountBody": 402,
       "h1Text": "Loan / Debt Payoff Calculator",
       "titleText": "Loan Debt Payoff Calculator | NSB Tools",
       "metaDescriptionLength": 94,

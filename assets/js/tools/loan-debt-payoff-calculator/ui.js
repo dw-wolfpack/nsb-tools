@@ -37,6 +37,23 @@
     function moneyOrDash(v) { return Number.isFinite(v) ? fmt(v) : "—"; }
     var lastCopyable = "";
     var lastResult = null;
+    window.NSB_LAST_RESULT = window.NSB_LAST_RESULT || {};
+
+    // Check for pending preset from /pro/ page
+    try {
+      var pendingId = sessionStorage.getItem("nsb_pending_preset_id");
+      var pendingSlug = sessionStorage.getItem("nsb_pending_preset_slug");
+      if (pendingId && pendingSlug === SLUG && window.NSB_PRO_STORE && window.NSB_TOOL_ADAPTERS) {
+        sessionStorage.removeItem("nsb_pending_preset_id");
+        sessionStorage.removeItem("nsb_pending_preset_slug");
+        var presets = window.NSB_PRO_STORE.listPresets(SLUG);
+        var pending = presets.find(function (p) { return p.id === pendingId; });
+        if (pending) {
+          var adapter = window.NSB_TOOL_ADAPTERS.getAdapter(SLUG);
+          if (adapter) { setParams(pending.inputs); }
+        }
+      }
+    } catch (e) {}
 
     function run() {
       var outputEl = document.getElementById("nsb-output");
@@ -61,6 +78,7 @@
           return;
         }
         lastResult = res;
+        window.NSB_LAST_RESULT[SLUG] = res;
         lastCopyable = "Months to payoff: " + res.monthsToPayoff + "\nTotal interest: " + fmt(res.totalInterest);
         if (res.interestSavings != null && res.interestSavings > 0) lastCopyable += "\nInterest saved with extra payment: " + fmt(res.interestSavings);
         if (res.schedule && res.schedule.length) {
@@ -90,6 +108,9 @@
         if (res.interestSavings != null && res.interestSavings > 0) html += "<br><strong>Interest saved with extra payment:</strong> " + fmt(res.interestSavings);
         if (window.NSB_DEBUG_HIDDEN || (typeof localStorage !== "undefined" && localStorage.getItem("nsb_debug") === "true")) html += " <span class=\"small muted\">Rendered at " + new Date().toLocaleTimeString() + "</span>";
         outputEl.innerHTML = html;
+        if (window.NSB_PRO_ACTIONS && typeof window.NSB_PRO_ACTIONS.mount === "function") {
+          try { window.NSB_PRO_ACTIONS.mount(SLUG); } catch (e) {}
+        }
         if (amortEl) {
           if (res.schedule && res.schedule.length) {
             var tbl = '<table class="compare-table"><thead><tr><th>Month</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead><tbody>';
@@ -164,26 +185,17 @@
       }
     } catch (e) {}
 
-    try {
-      if (window.NSB_SCENARIOS && window.NSB_SCENARIOS.renderUI && scenariosEl) {
-        window.NSB_SCENARIOS.renderUI(scenariosEl, {
-          slug: SLUG,
-          getParams: getParams,
-          setParams: setParams,
-          getOutputData: function (r) { return { monthsToPayoff: r.monthsToPayoff, totalInterest: r.totalInterest }; },
-          columnsFn: function () { return ["monthsToPayoff", "totalInterest"]; },
-          calcFn: function (inp) { return window.NSB_LOAN_PAYOFF && window.NSB_LOAN_PAYOFF.calculate(inp); },
-          run: run,
-          format: fmt
-        });
-      }
-    } catch (e) {}
+    if (scenariosEl) scenariosEl.innerHTML = "";
 
     if (u.storage) {
       try {
         var r = u.storage.get("nsb_recent", []);
         u.storage.set("nsb_recent", [SLUG].concat(r.filter(function (x) { return x !== SLUG; })).slice(0, 10));
       } catch (e) {}
+    }
+
+    if (window.NSB_PRO_ACTIONS && typeof window.NSB_PRO_ACTIONS.mountProSection === "function") {
+      try { window.NSB_PRO_ACTIONS.mountProSection(SLUG); } catch (e) {}
     }
   });
 })();

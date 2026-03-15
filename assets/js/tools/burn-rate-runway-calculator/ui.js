@@ -35,6 +35,23 @@
     var u = window.NSB_UTILS || {};
     var fmt = u.formatCurrency || function (n) { return "$" + Math.round(n).toLocaleString(); };
     var lastResult = null;
+    window.NSB_LAST_RESULT = window.NSB_LAST_RESULT || {};
+
+    // Check for pending preset from /pro/ page
+    try {
+      var pendingId = sessionStorage.getItem("nsb_pending_preset_id");
+      var pendingSlug = sessionStorage.getItem("nsb_pending_preset_slug");
+      if (pendingId && pendingSlug === SLUG && window.NSB_PRO_STORE && window.NSB_TOOL_ADAPTERS) {
+        sessionStorage.removeItem("nsb_pending_preset_id");
+        sessionStorage.removeItem("nsb_pending_preset_slug");
+        var presets = window.NSB_PRO_STORE.listPresets(SLUG);
+        var pending = presets.find(function (p) { return p.id === pendingId; });
+        if (pending) {
+          var adapter = window.NSB_TOOL_ADAPTERS.getAdapter(SLUG);
+          if (adapter) { setParams(pending.inputs); }
+        }
+      }
+    } catch (e) {}
 
     function run() {
       var outputEl = document.getElementById("nsb-output");
@@ -59,6 +76,7 @@
           return;
         }
         lastResult = res;
+        window.NSB_LAST_RESULT[SLUG] = res;
         outputEl.innerHTML = "";
         if (projEl) projEl.innerHTML = "";
         if (bench) bench.innerHTML = "";
@@ -66,6 +84,9 @@
           "<strong>Runway:</strong> " + (res.runwayLabel ? res.runwayLabel : (res.runwayMonths != null ? res.runwayMonths.toFixed(1) + " months" : "Infinite (not burning)")) +
           (window.NSB_DEBUG_HIDDEN || (typeof localStorage !== "undefined" && localStorage.getItem("nsb_debug") === "true") ? " <span class=\"small muted\">Rendered at " + new Date().toLocaleTimeString() + "</span>" : "");
         outputEl.innerHTML = html;
+        if (window.NSB_PRO_ACTIONS && typeof window.NSB_PRO_ACTIONS.mount === "function") {
+          try { window.NSB_PRO_ACTIONS.mount(SLUG); } catch (e) {}
+        }
         if (projEl && res.projection && res.projection.length) {
           var tbl = '<table class="compare-table"><thead><tr><th>Month</th><th>Cash</th><th>Revenue</th><th>Expenses</th></tr></thead><tbody>';
           res.projection.forEach(function (row) {
@@ -140,26 +161,17 @@
       }
     } catch (e) {}
 
-    try {
-      if (window.NSB_SCENARIOS && window.NSB_SCENARIOS.renderUI && scenariosEl) {
-        window.NSB_SCENARIOS.renderUI(scenariosEl, {
-          slug: SLUG,
-          getParams: getParams,
-          setParams: setParams,
-          getOutputData: function (r) { return { netBurn: r.netBurn, runwayMonths: r.runwayMonths }; },
-          columnsFn: function () { return ["netBurn", "runwayMonths"]; },
-          calcFn: function (inp) { return window.NSB_BURN_RATE && window.NSB_BURN_RATE.calculate(inp); },
-          run: run,
-          format: fmt
-        });
-      }
-    } catch (e) {}
+    if (scenariosEl) scenariosEl.innerHTML = "";
 
     if (u.storage) {
       try {
         var r = u.storage.get("nsb_recent", []);
         u.storage.set("nsb_recent", [SLUG].concat(r.filter(function (x) { return x !== SLUG; })).slice(0, 10));
       } catch (e) {}
+    }
+
+    if (window.NSB_PRO_ACTIONS && typeof window.NSB_PRO_ACTIONS.mountProSection === "function") {
+      try { window.NSB_PRO_ACTIONS.mountProSection(SLUG); } catch (e) {}
     }
   });
 })();

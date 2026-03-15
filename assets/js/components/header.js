@@ -43,7 +43,14 @@
   }
 
   function getProNavHtml(pro, showProBtn) {
-    return pro ? '<button type="button" class="pro-badge" id="nsb-pro-badge">Pro</button>' : (showProBtn ? '<button type="button" class="btn btn-secondary btn-sm" data-nsb-open-upgrade>Upgrade</button>' : "");
+    const base = getBasePath();
+    if (!pro && !showProBtn) return "";
+    var proHubLink = '<a href="' + base + 'pro/" class="btn btn-secondary btn-sm" id="nsb-pro-hub-link">Pro hub</a>';
+    var proHubBtn = '<button type="button" class="btn btn-secondary btn-sm" id="nsb-pro-hub-link" data-nsb-open-upgrade>Pro hub</button>';
+    if (pro) {
+      return '<button type="button" class="pro-badge" id="nsb-pro-badge">Pro</button> ' + proHubLink;
+    }
+    return '<button type="button" class="btn btn-secondary btn-sm" data-nsb-open-upgrade>Upgrade</button> ' + proHubBtn;
   }
 
   function bindOnce(el, key, event, handler) {
@@ -134,6 +141,14 @@
     const proBadge = document.getElementById("nsb-pro-badge");
     if (proBadge) {
       bindOnce(proBadge, "pro-badge", "click", function () {
+        if (typeof window.NSB_OPEN_UPGRADE === "function") window.NSB_OPEN_UPGRADE();
+      });
+    }
+
+    const proHubLink = document.getElementById("nsb-pro-hub-link");
+    if (proHubLink && proHubLink.getAttribute("data-nsb-open-upgrade") !== null) {
+      bindOnce(proHubLink, "pro-hub", "click", function (e) {
+        e.preventDefault();
         if (typeof window.NSB_OPEN_UPGRADE === "function") window.NSB_OPEN_UPGRADE();
       });
     }
