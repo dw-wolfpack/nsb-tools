@@ -60,21 +60,29 @@
     if (!modal || typeof modal.open !== "function") return;
 
     var pro = isPro();
-    var logOutHtml = pro
-      ? '<p class="small muted" style="margin-top:.5rem;"><button type="button" class="btn-link" id="nsb-pro-logout">Log out</button></p>'
+    var email = "";
+    try { email = localStorage.getItem("nsb_pro_email") || ""; } catch (e) {}
+
+    var proContent = pro
+      ? '<h2 id="nsb-modal-title">NSB Tools Pro</h2>' +
+        '<p class="small muted">Logged in as ' + (email ? "<strong>" + String(email).replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</strong>" : "Pro user") + ".</p>" +
+        '<div class="modal-actions" style="margin-top:1rem;">' +
+        '<a href="' + (window.location.origin || "") + '/pro/" class="btn btn-primary">Open Pro hub</a> ' +
+        '<button type="button" class="btn btn-secondary" id="nsb-pro-logout">Log out</button>' +
+        '<button type="button" class="btn btn-secondary" data-nsb-modal-close>Close</button>' +
+        "</div>"
       : "";
 
+    var logOutHtml = "";
     var disableLinkHtml = isDebug()
       ? '<p class="small muted" style="margin-top:1rem;"><a href="#" id="nsb-pro-disable-link" class="modal-pro-disable">Disable Pro</a></p>'
       : "";
 
-    var content =
+    var nonProContent =
       '<h2 id="nsb-modal-title">NSB Tools Pro</h2>' +
       '<ul class="modal-pro-list">' +
-      "<li>Save presets (coming soon)</li>" +
-      "<li>Compare scenarios (coming soon)</li>" +
+      "<li>Save presets</li>" +
       "<li>Export results</li>" +
-      "<li>No limits (coming soon)</li>" +
       "</ul>" +
       '<div class="modal-actions">' +
       '<button type="button" class="btn btn-primary" id="nsb-pro-upgrade-btn">Upgrade</button>' +
@@ -90,8 +98,9 @@
       '<p id="nsb-pro-email-error" class="modal-pro-error" hidden></p>' +
       '<button type="button" class="btn btn-primary" id="nsb-pro-unlock-btn">Unlock Pro</button>' +
       "</div>" +
-      logOutHtml +
       disableLinkHtml;
+
+    var content = pro ? proContent : nonProContent;
 
     modal.open(content);
 

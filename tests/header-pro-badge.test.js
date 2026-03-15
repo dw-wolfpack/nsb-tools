@@ -21,11 +21,12 @@ test("header exposes getProNavHtml and returns correct nav HTML", async () => {
 
   var htmlPro = header.getProNavHtml(true, false);
   assert.ok(htmlPro.indexOf("nsb-pro-badge") !== -1, "pro=true: should contain nsb-pro-badge id");
-  assert.ok(htmlPro.indexOf("button") !== -1, "pro=true: should be a button");
-  assert.ok(htmlPro.indexOf("pro-badge") !== -1, "pro=true: should have pro-badge class");
+  assert.ok(htmlPro.indexOf("Pro hub") !== -1, "pro=true: should contain Pro hub link");
+  assert.ok(htmlPro.indexOf("pro/") !== -1, "pro=true: should link to pro/");
 
   var htmlUpgrade = header.getProNavHtml(false, true);
   assert.ok(htmlUpgrade.indexOf("data-nsb-open-upgrade") !== -1, "showProBtn=true: should contain upgrade button");
+  assert.ok(htmlUpgrade.indexOf("Pro hub") !== -1, "showProBtn=true: should contain Pro hub");
 
   var htmlEmpty = header.getProNavHtml(false, false);
   assert.strictEqual(htmlEmpty, "", "both false: should be empty string");

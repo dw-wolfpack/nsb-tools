@@ -17,7 +17,7 @@ Generated: 2026-03-07
 | /tools/break-even-calculator/ecommerce/ | 281 | 350 | 0 | 13 | 6 | 6 | 0 |
 | /tools/break-even-calculator/saas/ | 312 | 350 | 0 | 16 | 6 | 8 | 0 |
 | /tools/break-even-calculator/service-business/ | 340 | 350 | 0 | 13 | 5 | 6 | 0 |
-| /tools/burn-rate-runway-calculator/ | 371 | 350 | 0 | 14 | 8 | 5 | 0 |
+| /tools/burn-rate-runway-calculator/ | 367 | 350 | 0 | 14 | 8 | 5 | 0 |
 | /tools/caption-generator/ | 346 | 350 | 0 | 8 | 6 | 3 | 0 |
 | /tools/cold-outreach-email/ | 329 | 350 | 0 | 9 | 7 | 4 | 0 |
 | /tools/content-calendar/ | 315 | 350 | 0 | 8 | 5 | 3 | 0 |
@@ -31,7 +31,7 @@ Generated: 2026-03-07
 | /tools/hashtag-generator/ | 333 | 350 | 0 | 8 | 6 | 3 | 0 |
 | /tools/hook-generator/ | 378 | 350 | 0 | 8 | 6 | 3 | 0 |
 | /tools/linkedin-post-builder/ | 445 | 350 | 0 | 12 | 9 | 3 | 0 |
-| /tools/loan-debt-payoff-calculator/ | 406 | 350 | 0 | 17 | 8 | 8 | 0 |
+| /tools/loan-debt-payoff-calculator/ | 402 | 350 | 0 | 17 | 8 | 8 | 0 |
 | /tools/loan-debt-payoff-calculator/business-loan/ | 307 | 350 | 0 | 13 | 7 | 6 | 0 |
 | /tools/loan-debt-payoff-calculator/credit-card/ | 290 | 350 | 0 | 13 | 6 | 7 | 0 |
 | /tools/loan-debt-payoff-calculator/student-loan/ | 302 | 350 | 0 | 13 | 6 | 7 | 0 |

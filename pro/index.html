@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
+  <link rel="manifest" href="/assets/site.webmanifest">
+  <title>NSB Tools Pro</title>
+  <meta name="description" content="Manage your NSB Tools Pro account and saved presets.">
+  <link rel="canonical" href="https://tools.nextstepsbeyond.online/pro/">
+  <meta property="og:title" content="NSB Tools Pro">
+  <meta property="og:description" content="Manage your NSB Tools Pro account and saved presets.">
+  <meta property="og:url" content="https://tools.nextstepsbeyond.online/pro/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NSB Tools Pro">
+  <meta name="twitter:description" content="Manage your NSB Tools Pro account and saved presets.">
+  <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"},{"@type":"ListItem","position":2,"name":"Pro","item":"https://tools.nextstepsbeyond.online/pro/"}]}</script>
+</head>
+<body>
+  <div class="banner">NSB Tools (beta) - <a href="/updates/">Get updates</a></div>
+  <header id="nsb-header"></header>
+
+  <main class="layout layout--narrow">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span> Pro</nav>
+    <div id="nsb-pro-hub"></div>
+  </main>
+
+  <footer id="nsb-footer"></footer>
+  <div id="nsb-modal-overlay" class="modal-overlay" hidden></div>
+
+  <script src="/assets/js/utils.js" defer></script>
+  <script src="/assets/js/registry.js" defer></script>
+  <script src="/assets/js/components/header.js" defer></script>
+  <script src="/assets/js/components/search-autocomplete.js" defer></script>
+  <script src="/assets/js/components/search-suggest.js" defer></script>
+  <script src="/assets/js/components/footer.js" defer></script>
+  <script src="/assets/js/components/modal.js" defer></script>
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/pro-store.js" defer></script>
+  <script src="/assets/js/tool-adapters.js" defer></script>
+  <script>
+    (function () {
+      "use strict";
+
+      var TOOL_LABELS = {
+        "loan-debt-payoff-calculator": "Loan Payoff",
+        "burn-rate-runway-calculator": "Burn Rate",
+      };
+
+      function esc(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function isPro() {
+        try { return localStorage.getItem("nsb_pro") === "true"; } catch (e) { return false; }
+      }
+
+      function getEmail() {
+        try { return localStorage.getItem("nsb_pro_email") || ""; } catch (e) { return ""; }
+      }
+
+      function logOut() {
+        try {
+          localStorage.removeItem("nsb_pro");
+          localStorage.removeItem("nsb_pro_email");
+        } catch (e) {}
+        render();
+        if (window.NSB_HEADER && typeof window.NSB_HEADER.render === "function") {
+          try { window.NSB_HEADER.render(); } catch (e) {}
+        }
+      }
+
+      function getStore() { return window.NSB_PRO_STORE; }
+
+      function getFilter() {
+        var sel = document.getElementById("nsb-preset-filter");
+        return sel ? sel.value : "";
+      }
+
+      function renderPresetList(filter) {
+        var store = getStore();
+        var listEl = document.getElementById("nsb-preset-list");
+        if (!listEl || !store) return;
+        var presets = store.listPresets(filter || undefined);
+        if (!presets.length) {
+          listEl.innerHTML = '<p class="small muted">No presets saved yet. Go to a tool and save a preset.</p>';
+          return;
+        }
+        var rows = presets.map(function (p) {
+          var label = TOOL_LABELS[p.toolSlug] || esc(p.toolSlug);
+          var date = p.updatedAt ? new Date(p.updatedAt).toLocaleDateString() : "";
+          return (
+            '<li class="preset-hub-item" style="display:flex;align-items:center;gap:.5rem;padding:.5rem 0;border-bottom:1px solid var(--border,#e2e8f0);">' +
+            '<span style="flex:1;">' +
+            '<span style="font-weight:500;">' + esc(p.name) + '</span> ' +
+            '<span class="small muted">' + label + (date ? ' &middot; ' + esc(date) : '') + '</span>' +
+            '</span>' +
+            '<button type="button" class="btn btn-primary btn-sm" data-preset-load="' + esc(p.id) + '" data-preset-slug="' + esc(p.toolSlug) + '">Load</button>' +
+            '<button type="button" class="btn btn-secondary btn-sm" data-preset-rename="' + esc(p.id) + '">Rename</button>' +
+            '<button type="button" class="btn btn-secondary btn-sm" data-preset-delete="' + esc(p.id) + '" style="color:var(--error,#dc2626);">Delete</button>' +
+            '</li>'
+          );
+        });
+        listEl.innerHTML = '<ul style="list-style:none;margin:0;padding:0;">' + rows.join("") + "</ul>";
+        bindListActions();
+      }
+
+      function bindListActions() {
+        var listEl = document.getElementById("nsb-preset-list");
+        if (!listEl) return;
+        var store = getStore();
+
+        listEl.querySelectorAll("[data-preset-load]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var id = btn.getAttribute("data-preset-load");
+            var slug = btn.getAttribute("data-preset-slug");
+            var toolUrl = window.NSB_TOOL_ADAPTERS ? window.NSB_TOOL_ADAPTERS.getToolUrl(slug) : null;
+            if (!toolUrl) { alert("Cannot find tool URL."); return; }
+            try {
+              sessionStorage.setItem("nsb_pending_preset_id", id);
+              sessionStorage.setItem("nsb_pending_preset_slug", slug);
+            } catch (e) {}
+            window.location.href = toolUrl;
+          });
+        });
+
+        listEl.querySelectorAll("[data-preset-rename]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (!store) return;
+            var id = btn.getAttribute("data-preset-rename");
+            var newName = prompt("New preset name:");
+            if (newName && newName.trim()) {
+              store.renamePreset(id, newName.trim());
+              renderPresetList(getFilter());
+            }
+          });
+        });
+
+        listEl.querySelectorAll("[data-preset-delete]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (!store) return;
+            var id = btn.getAttribute("data-preset-delete");
+            if (!confirm("Delete this preset? This cannot be undone.")) return;
+            store.deletePreset(id);
+            renderPresetList(getFilter());
+          });
+        });
+      }
+
+      function buildFilterOptions(store) {
+        var allPresets = store.listPresets();
+        var slugs = [];
+        allPresets.forEach(function (p) {
+          if (slugs.indexOf(p.toolSlug) === -1) slugs.push(p.toolSlug);
+        });
+        var opts = '<option value="">All tools</option>';
+        slugs.forEach(function (slug) {
+          var label = TOOL_LABELS[slug] || slug;
+          opts += '<option value="' + esc(slug) + '">' + esc(label) + '</option>';
+        });
+        return opts;
+      }
+
+      function renderProHub(hub) {
+        var pro = isPro();
+        var email = getEmail();
+        var store = getStore();
+
+        if (!pro) {
+          hub.innerHTML =
+            '<h1>NSB Tools Pro</h1>' +
+            '<p>Save presets, export results, and more.</p>' +
+            '<ul style="margin:.75rem 0 1rem 1.25rem;">' +
+            '<li>Save named presets for any tool</li>' +
+            '<li>Export results as CSV</li>' +
+            '<li>More Pro features coming</li>' +
+            '</ul>' +
+            '<div class="btn-group">' +
+            '<button type="button" class="btn btn-primary" id="nsb-pro-hub-upgrade">Upgrade to Pro</button>' +
+            '<button type="button" class="btn btn-secondary" id="nsb-pro-hub-login">Log in</button>' +
+            '</div>';
+
+          var upgradeBtn = document.getElementById("nsb-pro-hub-upgrade");
+          var loginBtn = document.getElementById("nsb-pro-hub-login");
+          if (upgradeBtn) {
+            upgradeBtn.addEventListener("click", function () {
+              if (window.NSB_OPEN_UPGRADE) window.NSB_OPEN_UPGRADE();
+            });
+          }
+          if (loginBtn) {
+            loginBtn.addEventListener("click", function () {
+              if (window.NSB_OPEN_UPGRADE) window.NSB_OPEN_UPGRADE();
+            });
+          }
+          return;
+        }
+
+        var filterHtml = store
+          ? '<label for="nsb-preset-filter" class="small muted">Filter by tool</label> ' +
+            '<select id="nsb-preset-filter" class="input" style="width:auto;margin-left:.25rem;">' +
+            buildFilterOptions(store) +
+            '</select>'
+          : "";
+
+        hub.innerHTML =
+          '<h1>NSB Tools Pro</h1>' +
+          '<p>Logged in as <strong>' + esc(email || "Pro user") + '</strong></p>' +
+          '<div style="margin-bottom:1.25rem;">' +
+          '<button type="button" class="btn btn-secondary btn-sm" id="nsb-pro-hub-logout">Log out</button>' +
+          '</div>' +
+          '<section class="section">' +
+          '<h2>Presets</h2>' +
+          '<div style="margin-bottom:.75rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;">' +
+          filterHtml +
+          '</div>' +
+          '<div id="nsb-preset-list"></div>' +
+          '<div class="btn-group" style="margin-top:1rem;">' +
+          '<button type="button" class="btn btn-secondary btn-sm" id="nsb-export-presets">Export all presets</button>' +
+          '<label class="btn btn-secondary btn-sm" style="cursor:pointer;" for="nsb-import-presets-input">Import presets<input type="file" id="nsb-import-presets-input" accept=".json,application/json" style="display:none;"></label>' +
+          '</div>' +
+          '<p id="nsb-import-result" class="small muted" style="margin-top:.5rem;" hidden></p>' +
+          '</section>';
+
+        var logoutBtn = document.getElementById("nsb-pro-hub-logout");
+        if (logoutBtn) logoutBtn.addEventListener("click", logOut);
+
+        var exportBtn = document.getElementById("nsb-export-presets");
+        if (exportBtn && store) {
+          exportBtn.addEventListener("click", function () {
+            store.exportPresets();
+          });
+        }
+
+        var importInput = document.getElementById("nsb-import-presets-input");
+        var importResult = document.getElementById("nsb-import-result");
+        if (importInput && store) {
+          importInput.addEventListener("change", function () {
+            var file = importInput.files && importInput.files[0];
+            if (!file) return;
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              var result = store.importPresets(e.target.result);
+              if (importResult) {
+                importResult.textContent = result.ok
+                  ? "Imported " + result.added + " preset(s). " + (result.skipped ? result.skipped + " skipped (duplicates or invalid)." : "")
+                  : "Import failed: " + (result.error || "Unknown error.");
+                importResult.hidden = false;
+              }
+              renderPresetList(getFilter());
+              importInput.value = "";
+            };
+            reader.readAsText(file);
+          });
+        }
+
+        var filterSel = document.getElementById("nsb-preset-filter");
+        if (filterSel) {
+          filterSel.addEventListener("change", function () {
+            renderPresetList(filterSel.value);
+          });
+        }
+
+        renderPresetList("");
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        var hub = document.getElementById("nsb-pro-hub");
+        if (!hub) return;
+
+        // Wait for NSB_PRO_STORE to be available (deferred scripts load order)
+        function tryRender(attempts) {
+          if (window.NSB_PRO_STORE) {
+            renderProHub(hub);
+            return;
+          }
+          if (attempts > 0) {
+            setTimeout(function () { tryRender(attempts - 1); }, 50);
+          } else {
+            renderProHub(hub);
+          }
+        }
+        tryRender(20);
+
+        window.addEventListener("nsb:pro-presets-changed", function () {
+          var listEl = document.getElementById("nsb-preset-list");
+          if (listEl && window.NSB_PRO_STORE) renderPresetList(getFilter());
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
