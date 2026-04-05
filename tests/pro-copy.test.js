@@ -25,13 +25,20 @@ test("formatPrice falls back to default when missing", async () => {
   assert.strictEqual(globalThis.window.NSB_PRO_COPY.formatPrice(), "$14.99/mo");
 });
 
-test("modalBenefits returns the two benefit bullets", async () => {
+test("modalBenefits returns three benefit bullets", async () => {
   await import(pathToFileURL(resolve(REPO_ROOT, "assets/js/pro-copy.js")).href);
   assert.ok(globalThis.window.NSB_PRO_COPY, "NSB_PRO_COPY should be defined after import");
   var bullets = globalThis.window.NSB_PRO_COPY.modalBenefits();
-  assert.strictEqual(bullets.length, 2);
-  assert.ok(bullets[0].indexOf("Pick up where you left off") >= 0);
-  assert.ok(bullets[1].indexOf("Export to CSV") >= 0);
+  assert.strictEqual(bullets.length, 3);
+  assert.ok(bullets[0].indexOf("daily") >= 0 || bullets[0].indexOf("generators") >= 0);
+  assert.ok(bullets[1].indexOf("presets") >= 0 || bullets[1].indexOf("Pro hub") >= 0);
+  assert.ok(bullets[2].indexOf("CSV") >= 0);
+});
+
+test("lifetimePitch returns one-time copy", async () => {
+  await import(pathToFileURL(resolve(REPO_ROOT, "assets/js/pro-copy.js")).href + "?v=lifetime");
+  assert.ok(globalThis.window.NSB_PRO_COPY.lifetimePitch(), "lifetimePitch should return string");
+  assert.ok(globalThis.window.NSB_PRO_COPY.lifetimePitch().indexOf("email") >= 0);
 });
 
 test("inlineLockText returns export variant for export context", async () => {
@@ -44,6 +51,11 @@ test("inlineLockText returns presets variant for presets context", async () => {
   await import(pathToFileURL(resolve(REPO_ROOT, "assets/js/pro-copy.js")).href);
   assert.ok(globalThis.window.NSB_PRO_COPY, "NSB_PRO_COPY should be defined after import");
   assert.strictEqual(globalThis.window.NSB_PRO_COPY.inlineLockText("presets"), "Save inputs for next time. Unlock Pro.");
+});
+
+test("inlineLockText returns import variant for import context", async () => {
+  await import(pathToFileURL(resolve(REPO_ROOT, "assets/js/pro-copy.js")).href + "?v=import");
+  assert.strictEqual(globalThis.window.NSB_PRO_COPY.inlineLockText("import"), "Import from CSV. Unlock Pro.");
 });
 
 test("bottomStripText returns headline and subtext with price", async () => {

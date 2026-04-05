@@ -181,13 +181,13 @@
     var adapter = getAdapter(toolSlug);
     if (!section) return;
     if (!isPro()) {
-      section.innerHTML = '<h3>Pro</h3><p>Presets and export.</p><button type="button" class="btn btn-pro" id="nsb-pro-section-upgrade">Upgrade</button>';
+      section.innerHTML = '<h3>Pro</h3><p>Save presets and move full results with CSV export and import on this calculator.</p><button type="button" class="btn btn-pro" id="nsb-pro-section-upgrade">Upgrade</button>';
       var up = document.getElementById("nsb-pro-section-upgrade");
       if (up) up.addEventListener("click", function () { if (window.NSB_OPEN_UPGRADE) window.NSB_OPEN_UPGRADE(); });
       return;
     }
     if (!store || !adapter) {
-      section.innerHTML = '<h3>Pro</h3><p>Presets and export.</p><a href="/pro/" class="btn btn-pro">Pro hub</a>';
+      section.innerHTML = '<h3>Pro</h3><p>Presets, CSV export, and CSV import on this calculator.</p><a href="/pro/" class="btn btn-pro">Pro hub</a>';
       return;
     }
     var presets = store.listPresets(toolSlug);
@@ -197,7 +197,7 @@
     section.innerHTML =
       '<h3>Presets</h3>' +
       listHtml +
-      '<p class="small muted" style="margin-top:.75rem;">Save preset and Export CSV appear above after you run the calculator.</p>';
+      '<p class="small muted" style="margin-top:.75rem;">Save preset, Export CSV, and Import CSV appear above after you run the calculator.</p>';
     section.querySelectorAll("[data-nsb-load-preset]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var id = btn.getAttribute("data-nsb-load-preset");

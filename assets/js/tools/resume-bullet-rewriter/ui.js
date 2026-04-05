@@ -15,14 +15,8 @@
       if (window.NSB_INCREMENT_GEN) window.NSB_INCREMENT_GEN();
       addRecent("resume-bullet-rewriter"); window.nsbAnalytics.track("tool_generate", { tool: "resume-bullet-rewriter" });
     }
-    const main = document.querySelector("main");
-    async function runWithThinking() {
-      window.NSB_UTILS.setBusy(main, true);
-      await window.NSB_UTILS.sleep(window.NSB_UTILS.randInt(450, 900));
-      try { run(); } finally { window.NSB_UTILS.setBusy(main, false); }
-    }
-    gen && gen.addEventListener("click", () => runWithThinking()); regen && regen.addEventListener("click", () => runWithThinking());
-    form && form.addEventListener("submit", e => { e.preventDefault(); runWithThinking(); });
+    gen && gen.addEventListener("click", () => run()); regen && regen.addEventListener("click", () => run());
+    form && form.addEventListener("submit", e => { e.preventDefault(); run(); });
     copyBtn && copyBtn.addEventListener("click", () => { const t = out.dataset.raw; if (t && window.NSB_UTILS.copyToClipboard(t)) { window.NSB_TOAST.show("Copied"); window.nsbAnalytics.track("tool_copy", { tool: "resume-bullet-rewriter" }); } });
     saveBtn && saveBtn.addEventListener("click", () => { const t = out.dataset.raw; if (t) { const s = window.NSB_UTILS.storage.get("nsb_saved",[]); s.push({tool:"resume-bullet-rewriter",text:t,at:new Date().toISOString()}); window.NSB_UTILS.storage.set("nsb_saved", s.slice(-20)); window.NSB_TOAST.show("Saved"); } });
     clearBtn && clearBtn.addEventListener("click", () => { out.textContent = ""; delete out.dataset.raw; });

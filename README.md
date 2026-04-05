@@ -108,6 +108,7 @@ Create `scripts/seo-targets.json` to set per-route min word counts and required/
 
 ## Structure
 
+- `/backlog/` - Internal product backlog: playbooks, tickets, agent charters (`backlog/instructions.mf`, `backlog/README.md`)
 - `/` - Home (tool directory, search, recently used)
 - `/categories/` - Category listing
 - `/categories/{category}/` - Category pages (social, writing, career, business, repurpose)

@@ -144,12 +144,59 @@
             return { month: row.month, cashStart: cashStart, revenue: row.revenue, expenses: row.expenses, netBurn: netBurn, cashEnd: row.cash };
           });
           var headers = ["month", "cashStart", "revenue", "expenses", "netBurn", "cashEnd"];
-          var csv = window.NSB_CSV.toCSV(rows, headers);
+          var inputRow = getParams();
+          var csv = window.NSB_CSV.buildToolExportCSV
+            ? window.NSB_CSV.buildToolExportCSV(inputRow, PARAM_KEYS, rows, headers)
+            : window.NSB_CSV.toCSV(rows, headers);
           window.NSB_CSV.downloadCSV("burn-rate-projection.csv", csv);
           if (window.NSB_TOAST) window.NSB_TOAST.show("Downloaded");
         });
       });
       exportWrap.appendChild(exportBtn);
+      var importInput = document.createElement("input");
+      importInput.type = "file";
+      importInput.accept = ".csv,text/csv";
+      importInput.id = "nsb-import-csv-input";
+      importInput.style.display = "none";
+      document.body.appendChild(importInput);
+      var importBtn = document.createElement("button");
+      importBtn.type = "button";
+      importBtn.className = "btn btn-secondary";
+      importBtn.id = "nsb-import-csv";
+      importBtn.setAttribute("data-nsb-lock-context", "import");
+      importBtn.textContent = "Import CSV";
+      importBtn.addEventListener("click", function () {
+        if (!window.NSB_PRO || typeof window.NSB_PRO.requirePro !== "function") return;
+        if (!window.NSB_PRO.isPro() && window.NSB_PRO_INLINE_LOCK && typeof window.NSB_PRO_INLINE_LOCK.show === "function") {
+          window.NSB_PRO_INLINE_LOCK.show(importBtn);
+        }
+        window.NSB_PRO.requirePro(function () { importInput.click(); });
+      });
+      importInput.addEventListener("change", function () {
+        var file = importInput.files && importInput.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var text = e.target.result;
+          var parsed = window.NSB_CSV && typeof window.NSB_CSV.parseToolExportWithInputs === "function"
+            ? window.NSB_CSV.parseToolExportWithInputs(text) : null;
+          var adapter = window.NSB_TOOL_ADAPTERS && window.NSB_TOOL_ADAPTERS.getAdapter(SLUG);
+          if (parsed && parsed.inputs && parsed.inputs.rows.length && adapter) {
+            adapter.applyInputs(parsed.inputs.rows[0]);
+            adapter.runIfAvailable();
+            if (window.NSB_TOAST) window.NSB_TOAST.show("Imported from CSV");
+          } else if (parsed && parsed.legacyScheduleOnly && parsed.scheduleTable && parsed.scheduleTable.rows.length) {
+            if (window.NSB_TOAST) {
+              window.NSB_TOAST.show("This CSV only has the schedule. Export again from this tool after calculating to get inputs plus schedule.");
+            }
+          } else {
+            if (window.NSB_TOAST) window.NSB_TOAST.show("Could not read that CSV.");
+          }
+          importInput.value = "";
+        };
+        reader.readAsText(file);
+      });
+      exportWrap.appendChild(importBtn);
       projEl.parentNode.insertBefore(exportWrap, projEl.nextSibling);
     }
 

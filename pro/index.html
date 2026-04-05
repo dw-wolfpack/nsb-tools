@@ -7,16 +7,16 @@
   <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
   <link rel="manifest" href="/assets/site.webmanifest">
   <title>NSB Tools Pro</title>
-  <meta name="description" content="Manage your NSB Tools Pro account and saved presets.">
+  <meta name="description" content="NSB Pro: higher generator limits, named presets, CSV on loan and runway calculators. Subscribe monthly or lifetime; unlock after Stripe and email verification.">
   <link rel="canonical" href="https://tools.nextstepsbeyond.online/pro/">
   <meta property="og:title" content="NSB Tools Pro">
-  <meta property="og:description" content="Manage your NSB Tools Pro account and saved presets.">
+  <meta property="og:description" content="Higher limits, presets, and CSV workflows. Monthly or lifetime; verify by email after Stripe.">
   <meta property="og:url" content="https://tools.nextstepsbeyond.online/pro/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NSB Tools Pro">
-  <meta name="twitter:description" content="Manage your NSB Tools Pro account and saved presets.">
+  <meta name="twitter:description" content="NSB Pro: limits, presets, CSV import/export on select calculators.">
   <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
   <link rel="stylesheet" href="/assets/css/styles.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"},{"@type":"ListItem","position":2,"name":"Pro","item":"https://tools.nextstepsbeyond.online/pro/"}]}</script>
@@ -178,15 +178,20 @@
         if (!pro) {
           hub.innerHTML =
             '<h1>NSB Tools Pro</h1>' +
-            '<p>Save presets, export results, and more.</p>' +
-            '<ul style="margin:.75rem 0 1rem 1.25rem;">' +
-            '<li>Save named presets for any tool</li>' +
-            '<li>Export results as CSV</li>' +
-            '<li>More Pro features coming</li>' +
+            '<p class="small muted">Everything on the site stays free to try. Pro is for people who hit daily caps or want preset and spreadsheet workflows without giving up client-side privacy.</p>' +
+            '<h2 style="font-size:1.1rem;margin-top:1.25rem;">What you get</h2>' +
+            '<ul style="margin:.5rem 0 1rem 1.25rem;">' +
+            '<li><strong>More generator runway</strong>: higher or unlimited use while your Pro access is active (so hooks, posts, and scripts keep flowing)</li>' +
+            '<li><strong>Named presets + backup</strong>: save scenarios inside tools, export/import JSON, and reopen them from this hub</li>' +
+            '<li><strong>CSV import &amp; export</strong>: full round-trip on the <a href="/tools/loan-debt-payoff-calculator/">loan / debt payoff</a> and <a href="/tools/burn-rate-runway-calculator/">burn rate / runway</a> calculators</li>' +
+            '<li><strong>Flexible billing</strong>: choose monthly subscription or one-time lifetime in the upgrade modal; both pass through Stripe</li>' +
             '</ul>' +
+            '<h2 style="font-size:1.1rem;">How unlocking works</h2>' +
+            '<p>Pay in Stripe, then verify with the same email you used at checkout. Pro unlocks in this browser via local storage. Your inputs still never hit our servers.</p>' +
+            '<p class="small muted">Already paid? Tap Log in to open the verification modal. Questions? Read the <a href="/faq/">FAQ</a>.</p>' +
             '<div class="btn-group">' +
             '<button type="button" class="btn btn-primary" id="nsb-pro-hub-upgrade">Upgrade to Pro</button>' +
-            '<button type="button" class="btn btn-secondary" id="nsb-pro-hub-login">Log in</button>' +
+            '<button type="button" class="btn btn-secondary" id="nsb-pro-hub-login">I already paid: verify email</button>' +
             '</div>';
 
           var upgradeBtn = document.getElementById("nsb-pro-hub-upgrade");

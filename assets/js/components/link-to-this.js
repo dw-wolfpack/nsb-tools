@@ -258,5 +258,7 @@
     };
   }
 
-  window.NSB_LINK_TO_THIS = { render: render };
+  var api = { render: render };
+  if (typeof window !== "undefined") window.NSB_LINK_TO_THIS = api;
+  if (typeof globalThis !== "undefined") globalThis.NSB_LINK_TO_THIS = api;
 })();

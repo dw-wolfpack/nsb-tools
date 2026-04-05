@@ -29,9 +29,37 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/social/">Social / Creator</a><span> / </span> Short-Form Script Writer</nav>
     <h1>Short-Form Script Writer</h1>
     <p>Generate a timed short-form script with beats + shot list + caption.</p>
-    <p class="small muted">Last updated: March 6th, 2026</p>
+    <p class="small muted">Last updated: April 4th, 2026</p>
+    <p class="tool-jump-guide"><a href="#tool-guide">How it works &amp; tips</a></p>
+    <div class="tool-workspace">
 
-    <section class="section">
+    <div class="card" style="margin-top: 1.5rem;">
+      <h2>Inputs</h2>
+      <form id="nsb-form">
+        <div class="form-group">
+          <label for="topic">Topic</label>
+          <input type="text" id="topic" name="topic" placeholder="productivity tips">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
+          <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
+        </div>
+      </form>
+    </div>
+    <div class="card" style="margin-top: 1rem;">
+      <h2>Output</h2>
+      <div id="nsb-output" class="output-area"></div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
+        <button type="button" class="btn btn-secondary" id="nsb-save">Save output</button>
+        <button type="button" class="btn btn-secondary" id="nsb-clear">Clear</button>
+        <button type="button" class="btn btn-secondary" id="nsb-share">Share link</button>
+      </div>
+    </div>
+    <section class="pro-section"><h3>NSB Pro</h3><p>Unlimited generator runs while Pro is active, calculator presets, and CSV import/export on supported tools. Pick monthly or lifetime in the upgrade modal.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </div>
+    <article id="tool-guide" class="tool-guide">
+<section class="section">
       <h2>What this tool does</h2>
       <p>Generates a 30-second short-form script with hook, problem, solution, CTA, shot list, and caption. Designed for Reels, TikToks, and Shorts. You enter a topic and get a full draft to edit and film.</p>
     </section>
@@ -47,7 +75,7 @@
     <section class="section">
       <h2>Inputs explained</h2>
       <ul>
-        <li><strong>Topic</strong> – What the video is about (e.g. productivity tips). Drives the script content.</li>
+        <li><strong>Topic</strong>: what the short should tackle. Specific beats a generic "tips" bucket.</li>
       </ul>
     </section>
     <section class="section">
@@ -116,31 +144,7 @@
       <h3>What is the shot list?</h3>
       <p>A simple list of visual shots to film for each beat.</p>
     </section>
-
-    <div class="card" style="margin-top: 1.5rem;">
-      <h2>Inputs</h2>
-      <form id="nsb-form">
-        <div class="form-group">
-          <label for="topic">Topic</label>
-          <input type="text" id="topic" name="topic" placeholder="productivity tips">
-        </div>
-        <div class="btn-group">
-          <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
-          <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
-        </div>
-      </form>
-    </div>
-    <div class="card" style="margin-top: 1rem;">
-      <h2>Output</h2>
-      <div id="nsb-output" class="output-area"></div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
-        <button type="button" class="btn btn-secondary" id="nsb-save">Save output</button>
-        <button type="button" class="btn btn-secondary" id="nsb-clear">Clear</button>
-        <button type="button" class="btn btn-secondary" id="nsb-share">Share link</button>
-      </div>
-    </div>
-    <section class="pro-section"><h3>Pro features (coming soon)</h3><p>Pro unlocks more beat templates.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </article>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>

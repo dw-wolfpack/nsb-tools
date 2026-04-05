@@ -90,15 +90,25 @@
       if (priceStr) upgradeLabel = "Upgrade (" + priceStr + ")";
     }
     var bulletsHtml = benefits.map(function (b) { return "<li>" + String(b).replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</li>"; }).join("");
+    var lifetimeLine = "";
+    if (window.NSB_PRO_COPY && typeof window.NSB_PRO_COPY.lifetimePitch === "function") {
+      lifetimeLine = '<p class="small muted" style="margin-top:.5rem;">' + String(window.NSB_PRO_COPY.lifetimePitch()).replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</p>";
+    }
     var subtextHtml = (window.NSB_PRO_COPY && benefits.length > 0)
-      ? '<p class="small muted" style="margin-top:.5rem;">Save time on repeat work. Cancel anytime.</p>'
-      : "";
+      ? '<p class="small muted" style="margin-top:.35rem;">Save time on repeat work. Monthly: cancel anytime.</p>' + lifetimeLine
+      : lifetimeLine;
+    var lifetimeLabel = "Lifetime Pro";
+    try {
+      var lp = window.NSB_CONFIG && window.NSB_CONFIG.LIFETIME_PRICE_TEXT;
+      if (lp) lifetimeLabel = "Lifetime (" + String(lp) + ")";
+    } catch (e2) {}
     var nonProContent =
       '<h2 id="nsb-modal-title">NSB Tools Pro</h2>' +
       '<ul class="modal-pro-list">' + bulletsHtml + "</ul>" +
       subtextHtml +
       '<div class="modal-actions">' +
       '<button type="button" class="btn btn-primary" id="nsb-pro-upgrade-btn">' + String(upgradeLabel).replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</button>' +
+      '<button type="button" class="btn btn-pro" id="nsb-pro-lifetime-btn">' + String(lifetimeLabel).replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</button>' +
       '<button type="button" class="btn btn-secondary" data-nsb-modal-close>Close</button>' +
       "</div>" +
       '<div class="modal-pro-already-row">' +
@@ -141,9 +151,23 @@
       upgradeBtn.addEventListener("click", function () {
         var checkoutUrl = window.NSB_CONFIG && window.NSB_CONFIG.PRO_CHECKOUT_URL;
         if (checkoutUrl) {
+          try { if (window.nsbAnalytics && typeof window.nsbAnalytics.track === "function") window.nsbAnalytics.track("checkout_click", { tier: "monthly" }); } catch (e3) {}
           window.open(checkoutUrl, "_blank", "noopener,noreferrer");
         } else {
           showToast("Checkout not configured.");
+        }
+      });
+    }
+
+    var lifetimeBtn = overlay.querySelector("#nsb-pro-lifetime-btn");
+    if (lifetimeBtn) {
+      lifetimeBtn.addEventListener("click", function () {
+        var u = window.NSB_CONFIG && window.NSB_CONFIG.LIFETIME_CHECKOUT_URL != null ? String(window.NSB_CONFIG.LIFETIME_CHECKOUT_URL).trim() : "";
+        if (u) {
+          try { if (window.nsbAnalytics && typeof window.nsbAnalytics.track === "function") window.nsbAnalytics.track("checkout_click", { tier: "lifetime" }); } catch (e4) {}
+          window.open(u, "_blank", "noopener,noreferrer");
+        } else {
+          showToast("Lifetime checkout is not configured yet.");
         }
       });
     }

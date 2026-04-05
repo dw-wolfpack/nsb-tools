@@ -14,7 +14,7 @@ async function loadAndRender(opts, renderOpts = {}) {
   globalThis.document = document;
   globalThis.window = window;
   await import(pathToFileURL(LINK_TO_THIS_PATH).href + "?v=" + Date.now());
-  const render = globalThis.window.NSB_LINK_TO_THIS?.render;
+  const render = globalThis.NSB_LINK_TO_THIS?.render ?? globalThis.window?.NSB_LINK_TO_THIS?.render;
   assert.ok(typeof render === "function", "NSB_LINK_TO_THIS.render not found");
   render(container, renderOpts);
   return container.innerHTML;

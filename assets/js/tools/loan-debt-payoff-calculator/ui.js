@@ -34,7 +34,7 @@
     var shareEl = document.getElementById("nsb-share-embed");
     var u = window.NSB_UTILS || {};
     var fmt = u.formatCurrency || function (n) { return "$" + Math.round(n).toLocaleString(); };
-    function moneyOrDash(v) { return Number.isFinite(v) ? fmt(v) : "—"; }
+    function moneyOrDash(v) { return Number.isFinite(v) ? fmt(v) : "-"; }
     var lastCopyable = "";
     var lastResult = null;
     window.NSB_LAST_RESULT = window.NSB_LAST_RESULT || {};
@@ -168,13 +168,62 @@
         }
         window.NSB_PRO.requirePro(function () {
           if (!lastResult || !lastResult.schedule || !lastResult.schedule.length || !window.NSB_CSV) return;
+          var inputKeys = ["principal", "interestRate", "monthlyPayment", "extraPayment"];
+          var inputRow = getParams();
           var headers = ["month", "payment", "principalPaid", "interestPaid", "endingBalance"];
-          var csv = window.NSB_CSV.toCSV(lastResult.schedule, headers);
+          var csv = window.NSB_CSV.buildToolExportCSV
+            ? window.NSB_CSV.buildToolExportCSV(inputRow, inputKeys, lastResult.schedule, headers)
+            : window.NSB_CSV.toCSV(lastResult.schedule, headers);
           window.NSB_CSV.downloadCSV("loan-payoff-schedule.csv", csv);
           if (window.NSB_TOAST) window.NSB_TOAST.show("Downloaded");
         });
       });
       btnGroup.appendChild(exportBtn);
+
+      var importInput = document.createElement("input");
+      importInput.type = "file";
+      importInput.accept = ".csv,text/csv";
+      importInput.id = "nsb-import-csv-input";
+      importInput.style.display = "none";
+      document.body.appendChild(importInput);
+      var importBtn = document.createElement("button");
+      importBtn.type = "button";
+      importBtn.className = "btn btn-secondary";
+      importBtn.id = "nsb-import-csv";
+      importBtn.setAttribute("data-nsb-lock-context", "import");
+      importBtn.textContent = "Import CSV";
+      importBtn.addEventListener("click", function () {
+        if (!window.NSB_PRO || typeof window.NSB_PRO.requirePro !== "function") return;
+        if (!window.NSB_PRO.isPro() && window.NSB_PRO_INLINE_LOCK && typeof window.NSB_PRO_INLINE_LOCK.show === "function") {
+          window.NSB_PRO_INLINE_LOCK.show(importBtn);
+        }
+        window.NSB_PRO.requirePro(function () { importInput.click(); });
+      });
+      importInput.addEventListener("change", function () {
+        var file = importInput.files && importInput.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var text = e.target.result;
+          var parsed = window.NSB_CSV && typeof window.NSB_CSV.parseToolExportWithInputs === "function"
+            ? window.NSB_CSV.parseToolExportWithInputs(text) : null;
+          var adapter = window.NSB_TOOL_ADAPTERS && window.NSB_TOOL_ADAPTERS.getAdapter(SLUG);
+          if (parsed && parsed.inputs && parsed.inputs.rows.length && adapter) {
+            adapter.applyInputs(parsed.inputs.rows[0]);
+            adapter.runIfAvailable();
+            if (window.NSB_TOAST) window.NSB_TOAST.show("Imported from CSV");
+          } else if (parsed && parsed.legacyScheduleOnly && parsed.scheduleTable && parsed.scheduleTable.rows.length) {
+            if (window.NSB_TOAST) {
+              window.NSB_TOAST.show("This CSV only has the schedule. Export again from this tool after calculating to get inputs plus schedule.");
+            }
+          } else {
+            if (window.NSB_TOAST) window.NSB_TOAST.show("Could not read that CSV.");
+          }
+          importInput.value = "";
+        };
+        reader.readAsText(file);
+      });
+      btnGroup.appendChild(importBtn);
     }
 
     if (u.decodeParams) {

@@ -94,6 +94,26 @@ test("show() with data-nsb-lock-context export uses export copy", async () => {
   assert.ok(insertedNodes[0].innerHTML.indexOf("Export to CSV") >= 0, "banner should show export copy");
 });
 
+test("show() with data-nsb-lock-context import uses import copy", async () => {
+  globalThis.localStorage = { getItem: function () { return null; } };
+  globalThis.window.NSB_PRO_COPY = {
+    inlineLockText: function (ctx) { return ctx === "import" ? "Import from CSV. Unlock Pro." : "Unlock Pro to continue."; },
+    formatPrice: function () { return "$14.99/mo"; },
+  };
+  var anchorAttrs = {};
+  var anchor = {
+    parentNode: { insertBefore: function (newEl) { insertedNodes.push(newEl); } },
+    nextSibling: null,
+    getAttribute: function (k) { return anchorAttrs[k] != null ? anchorAttrs[k] : null; },
+    setAttribute: function (k, v) { anchorAttrs[k] = v; },
+  };
+  anchor.setAttribute("data-nsb-lock-context", "import");
+  await import(pathToFileURL(resolve(REPO_ROOT, "assets/js/components/pro-inline-lock.js")).href);
+  globalThis.window.NSB_PRO_INLINE_LOCK.show(anchor);
+  assert.strictEqual(insertedNodes.length, 1);
+  assert.ok(insertedNodes[0].innerHTML.indexOf("Import from CSV") >= 0, "banner should show import copy");
+});
+
 test("show() with data-nsb-lock-context presets uses presets copy", async () => {
   globalThis.localStorage = { getItem: function () { return null; } };
   globalThis.window.NSB_PRO_COPY = {

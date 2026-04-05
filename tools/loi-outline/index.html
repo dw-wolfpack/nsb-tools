@@ -29,9 +29,49 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/business/">Business / Finance</a><span> / </span> Offer / LOI Outline Generator</nav>
     <h1>Offer / LOI Outline Generator</h1>
     <p>Generate LOI outline bullets based on asset + price + financing structure.</p>
-    <p class="small muted">Last updated: March 6th, 2026</p>
+    <p class="small muted">Last updated: April 4th, 2026</p>
+    <p class="tool-jump-guide"><a href="#tool-guide">How it works &amp; tips</a></p>
+    <div class="tool-workspace">
 
-    <section class="section">
+    <div class="card" style="margin-top: 1.5rem;">
+      <h2>Inputs</h2>
+      <form id="nsb-form">
+        <div class="form-group">
+          <label for="asset">Asset type / description</label>
+          <input type="text" id="asset" name="asset" placeholder="SaaS business, $2M ARR">
+        </div>
+        <div class="form-group">
+          <label for="price">Purchase price</label>
+          <input type="text" id="price" name="price" placeholder="$1.5M">
+        </div>
+        <div class="form-group">
+          <label for="financing">Financing structure</label>
+          <input type="text" id="financing" name="financing" placeholder="SBA 7a + seller note">
+        </div>
+        <div class="form-group">
+          <label for="count">Number of bullets</label>
+          <input type="number" id="count" name="count" value="6" min="4" max="10">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
+          <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
+        </div>
+      </form>
+    </div>
+    <div class="card" style="margin-top: 1rem;">
+      <h2>Output</h2>
+      <div id="nsb-output" class="output-area"></div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
+        <button type="button" class="btn btn-secondary" id="nsb-save">Save output</button>
+        <button type="button" class="btn btn-secondary" id="nsb-clear">Clear</button>
+        <button type="button" class="btn btn-secondary" id="nsb-share">Share link</button>
+      </div>
+    </div>
+    <section class="pro-section"><h3>NSB Pro</h3><p>Unlimited generator runs while Pro is active, calculator presets, and CSV import/export on supported tools. Pick monthly or lifetime in the upgrade modal.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </div>
+    <article id="tool-guide" class="tool-guide">
+<section class="section">
       <h2>What this tool does</h2>
       <p>Generates a bullet-point outline for a Letter of Intent (LOI) or offer. You enter asset type, purchase price, financing structure, and number of bullets. Fill in the placeholders with your specifics before submitting. Not legal advice. Not AI-powered.</p>
     </section>
@@ -46,10 +86,10 @@
     <section class="section">
       <h2>Inputs explained</h2>
       <ul>
-        <li><strong>Asset type / description</strong> – What you are buying (e.g. SaaS business, $2M ARR).</li>
-        <li><strong>Purchase price</strong> – Price or range (e.g. $1.5M).</li>
-        <li><strong>Financing structure</strong> – How you plan to pay (e.g. SBA 7a, cash, seller financing).</li>
-        <li><strong>Number of bullets</strong> – How many outline bullets to generate.</li>
+        <li><strong>Asset type / description</strong>: plain-language deal. "B2B SaaS, ~$2M ARR" beats "software company" for useful output.</li>
+        <li><strong>Purchase price</strong>: the number you are willing to anchor, or a tight range if you are still calibrating.</li>
+        <li><strong>Financing structure</strong>: SBA, mostly cash, seller note, earnout sketch, whatever belongs in a first-pass LOI.</li>
+        <li><strong>Number of bullets</strong>: more bullets mean more scaffolding; you can always trim.</li>
       </ul>
     </section>
     <section class="section">
@@ -102,43 +142,7 @@
       <h3>What bullets are included?</h3>
       <p>Asset, price, financing, earnest money, timeline, contingencies, diligence.</p>
     </section>
-
-    <div class="card" style="margin-top: 1.5rem;">
-      <h2>Inputs</h2>
-      <form id="nsb-form">
-        <div class="form-group">
-          <label for="asset">Asset type / description</label>
-          <input type="text" id="asset" name="asset" placeholder="SaaS business, $2M ARR">
-        </div>
-        <div class="form-group">
-          <label for="price">Purchase price</label>
-          <input type="text" id="price" name="price" placeholder="$1.5M">
-        </div>
-        <div class="form-group">
-          <label for="financing">Financing structure</label>
-          <input type="text" id="financing" name="financing" placeholder="SBA 7a + seller note">
-        </div>
-        <div class="form-group">
-          <label for="count">Number of bullets</label>
-          <input type="number" id="count" name="count" value="6" min="4" max="10">
-        </div>
-        <div class="btn-group">
-          <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
-          <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
-        </div>
-      </form>
-    </div>
-    <div class="card" style="margin-top: 1rem;">
-      <h2>Output</h2>
-      <div id="nsb-output" class="output-area"></div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
-        <button type="button" class="btn btn-secondary" id="nsb-save">Save output</button>
-        <button type="button" class="btn btn-secondary" id="nsb-clear">Clear</button>
-        <button type="button" class="btn btn-secondary" id="nsb-share">Share link</button>
-      </div>
-    </div>
-    <section class="pro-section"><h3>Pro features (coming soon)</h3><p>Pro unlocks more bullet templates.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </article>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>

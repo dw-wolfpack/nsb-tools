@@ -73,3 +73,13 @@ test("resolveEnvConfig includes THANK_YOU_URL for dev and prod", () => {
   assert.ok(dev.THANK_YOU_URL.includes("thank-you"), "dev THANK_YOU_URL should point to thank-you");
   assert.ok(prod.THANK_YOU_URL.includes("thank-you"), "prod THANK_YOU_URL should point to thank-you");
 });
+
+test("resolveEnvConfig includes LIFETIME_CHECKOUT_URL (string) and LIFETIME_PRICE_TEXT", () => {
+  const dev = resolveEnvConfig("localhost");
+  const prod = resolveEnvConfig("tools.nextstepsbeyond.online");
+  assert.strictEqual(typeof dev.LIFETIME_CHECKOUT_URL, "string");
+  assert.strictEqual(typeof prod.LIFETIME_CHECKOUT_URL, "string");
+  assert.strictEqual(typeof dev.LIFETIME_PRICE_TEXT, "string");
+  assert.strictEqual(typeof prod.LIFETIME_PRICE_TEXT, "string");
+  assert.ok(dev.LIFETIME_PRICE_TEXT.length > 0);
+});

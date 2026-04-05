@@ -63,10 +63,11 @@
   function showUpgradeModal() {
     const base = getBasePath();
     const content = `
-      <h2 id="nsb-modal-title">Pro is coming soon</h2>
-      <p>Pro will remove daily limits and unlock batch exports and presets. <a href="${base}updates/">Get updates</a> for first access.</p>
+      <h2 id="nsb-modal-title">NSB Pro</h2>
+      <p>Pro lifts daily generator caps and adds presets plus CSV export/import on supported calculators. If checkout did not load, open the <a href="${base}pro/">Pro hub</a> or <a href="${base}updates/">updates</a>.</p>
       <div class="modal-actions">
-        <a href="${base}updates/" class="btn btn-primary">Get updates</a>
+        <a href="${base}pro/" class="btn btn-primary">Pro hub</a>
+        <a href="${base}updates/" class="btn btn-secondary">Updates</a>
         <button type="button" class="btn btn-secondary" data-nsb-modal-close>Close</button>
       </div>
     `;

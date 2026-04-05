@@ -8,16 +8,16 @@
   <link rel="icon" href="/assets/img/og-default.png" type="image/png" sizes="32x32">
   <link rel="manifest" href="/assets/site.webmanifest">
   <title>NSB Tools | Free Creator, Writing, Career, and Business Tools</title>
-  <meta name="description" content="Fast, client-side tools for creators, writers, and professionals. Username generator, hooks, scripts, LinkedIn posts, resume help, and more. No signup required.">
+  <meta name="description" content="Fast client-side tools for creators, writers, and professionals. Free tier; NSB Pro adds limits, presets, CSV on key calculators. No signup.">
   <link rel="canonical" href="https://tools.nextstepsbeyond.online/">
   <meta property="og:title" content="NSB Tools | Free Creator, Writing, Career, and Business Tools">
-  <meta property="og:description" content="Fast, client-side tools for creators, writers, and professionals. No signup required.">
+  <meta property="og:description" content="Fast, client-side tools for creators, writers, and professionals. Free tier plus optional Pro for power users. No signup required.">
   <meta property="og:url" content="https://tools.nextstepsbeyond.online/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NSB Tools | Free Creator, Writing, Career, and Business Tools">
-  <meta name="twitter:description" content="Fast, client-side tools for creators, writers, and professionals. No signup required.">
+  <meta name="twitter:description" content="Fast, client-side tools for creators, writers, and professionals. Free tier plus optional Pro. No signup required.">
   <meta name="twitter:image" content="https://tools.nextstepsbeyond.online/assets/img/og-default.png">
   <link rel="stylesheet" href="/assets/css/styles.css">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tools.nextstepsbeyond.online/"}]}</script>
@@ -32,8 +32,8 @@
       <section class="hero">
         <div class="hero-inner">
           <h1 class="hero-title"><span class="hero-title-brand">NSB</span> <span class="hero-title-highlight">Tools</span></h1>
-          <p class="hero-subtitle">Fast client-side tools for creators, writers, and operators. No signup. Just output.</p>
-          <p class="small muted">Last updated: March 6th, 2026</p>
+          <p class="hero-subtitle">Fast client-side tools for creators, writers, and operators. Everything is free to start; <a href="/pro/">NSB Pro</a> adds higher limits, named presets, and CSV workflows on select finance tools. No signup for the free tier: just open a tool and run it.</p>
+          <p class="small muted">Last updated: April 4th, 2026</p>
           <div class="chip-row" role="group" aria-label="Filter by category">
             <button type="button" class="chip" data-category="" aria-pressed="true">All</button>
             <button type="button" class="chip" data-category="social" aria-pressed="false">Social</button>
@@ -46,7 +46,7 @@
           </div>
           <section class="section section--tight" style="margin-top: 1rem;">
             <h2>What this page is</h2>
-            <p>NSB Tools is a free, client-side tool hub. Everything runs in your browser. No signup, no tracking. Generate copy, run calculators, and share results via URL.</p>
+            <p>NSB Tools is a free, client-side tool hub. Everything runs in your browser. No signup for the free tier, no tracking. Generate copy, run calculators, and share results via URL. If you hit daily limits or want presets and CSV import/export on the loan payoff and burn/runway calculators, <a href="/pro/">NSB Pro</a> is an optional upgrade.</p>
             <h2>Who it is for</h2>
             <p>Creators, writers, job seekers, founders, and operators who want fast drafts and numbers without creating an account.</p>
             <h2>How to use it in 5 minutes</h2>
@@ -120,6 +120,15 @@
           </div>
         </section>
 
+        <section class="section section--tight home-pro-teaser" aria-labelledby="home-pro-teaser-title">
+          <h2 id="home-pro-teaser-title">Free first. Pro when you need the extra runway.</h2>
+          <p>Every tool stays usable without an account. Pro unlocks while your subscription or lifetime access is active: higher generator limits, named presets you can export and re-import, and full CSV round-trip on the <a href="/tools/loan-debt-payoff-calculator/">loan / debt payoff</a> and <a href="/tools/burn-rate-runway-calculator/">burn rate / runway</a> calculators. Checkout is handled by Stripe; you verify with the same email to turn Pro on in this browser.</p>
+          <div class="btn-group" style="flex-wrap: wrap; gap: 0.5rem;">
+            <a href="/pro/" class="btn btn-secondary">What you get</a>
+            <button type="button" class="btn btn-primary" id="nsb-home-open-upgrade">Upgrade</button>
+          </div>
+        </section>
+
         <section class="section section--tight">
           <h2>Featured Tools</h2>
           <div id="nsb-featured" class="tool-grid tool-grid--featured skeleton-grid">
@@ -140,7 +149,7 @@
           </div>
         </section>
 
-        <div id="nsb-pro-hub-home" style="display:none; margin-bottom:1rem;"></div>
+        <div id="nsb-pro-hub-home" style="display:none; margin-bottom:1rem;" aria-live="polite"></div>
 
         <section class="section section--tight">
           <div class="section-header-row">
@@ -195,6 +204,7 @@
         </section>
         <section class="section section--tight home-cta">
           <p class="muted">Get new tools + playbooks. <a href="/updates/">Get updates</a></p>
+          <p class="muted">Want higher limits and preset workflows? <a href="/pro/">NSB Pro overview</a>.</p>
         </section>
       </div>
     </div>
@@ -395,7 +405,7 @@
         if (proHubHome) {
           try {
             if (localStorage.getItem("nsb_pro") === "true") {
-              proHubHome.innerHTML = '<a href="/pro/" class="tool-card" style="display:block;padding:1rem;text-decoration:none;color:inherit;">Pro hub: presets and exports</a>';
+              proHubHome.innerHTML = '<a href="/pro/" class="tool-card" style="display:block;padding:1rem;text-decoration:none;color:inherit;">Pro hub: open saved presets and import/export</a>';
               proHubHome.style.display = "";
             } else {
               proHubHome.innerHTML = "";
@@ -404,6 +414,13 @@
           } catch (e) {
             proHubHome.style.display = "none";
           }
+        }
+
+        var homeUpgradeBtn = document.getElementById("nsb-home-open-upgrade");
+        if (homeUpgradeBtn) {
+          homeUpgradeBtn.addEventListener("click", function() {
+            if (typeof window.NSB_OPEN_UPGRADE === "function") window.NSB_OPEN_UPGRADE();
+          });
         }
 
         window.NSB_ON_SEARCH = function() { applyFilters(R); };
@@ -501,7 +518,7 @@
           "@type": "WebSite",
           "name": "NSB Tools",
           "url": base + "/",
-          "description": "Fast, client-side tools for creators, writers, and professionals.",
+          "description": "Fast, client-side tools for creators, writers, and professionals. Free tier with optional NSB Pro for higher limits and presets.",
           "potentialAction": { "@type": "SearchAction", "target": base + "/?q={search_term_string}", "query-input": "required name=search_term_string" }
         };
         var ldScript = document.createElement("script");

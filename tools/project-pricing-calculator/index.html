@@ -29,9 +29,55 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/career/">Career</a><span> / </span> Project Pricing Calculator</nav>
     <h1>Project Pricing Calculator</h1>
     <p>Get recommended quote ranges with complexity and risk buffer.</p>
-    <p class="small muted">Last updated: March 6th, 2026</p>
+    <p class="small muted">Last updated: April 4th, 2026</p>
+    <p class="tool-jump-guide"><a href="#tool-guide">How it works &amp; tips</a></p>
+    <div class="tool-workspace">
 
-    <section class="section">
+    <div class="card" style="margin-top: 1.5rem;">
+      <h2>Inputs</h2>
+      <form id="nsb-form">
+        <div class="form-group">
+          <label for="estimatedHours">Estimated hours</label>
+          <input type="number" id="estimatedHours" name="estimatedHours" placeholder="40" min="0" step="1">
+        </div>
+        <div class="form-group">
+          <label for="hourlyRate">Hourly rate $</label>
+          <input type="number" id="hourlyRate" name="hourlyRate" placeholder="100" min="0" step="1">
+        </div>
+        <div class="form-group">
+          <label for="complexityMultiplier"><span title="0.8 simple, 1.0 standard, 1.2-1.5 complex">Complexity multiplier</span> (0.8-1.5)</label>
+          <input type="number" id="complexityMultiplier" name="complexityMultiplier" value="1.0" min="0.8" max="1.5" step="0.1">
+        </div>
+        <div class="form-group">
+          <label for="riskBufferPercent">Risk buffer <button type="button" class="tip-btn" data-tooltip-key="buffer" aria-label="What is buffer?">?</button> %</label>
+          <input type="number" id="riskBufferPercent" name="riskBufferPercent" value="20" min="0" max="50" step="5">
+        </div>
+        <div class="form-group">
+          <label for="expenses">Expenses $</label>
+          <input type="number" id="expenses" name="expenses" placeholder="0" min="0" step="100">
+        </div>
+        <div class="form-group">
+          <label for="hoursPerWeek">Hours per week (timeline)</label>
+          <input type="number" id="hoursPerWeek" name="hoursPerWeek" placeholder="20" min="1" max="80">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="nsb-generate">Calculate</button>
+        </div>
+      </form>
+    </div>
+    <div class="card" style="margin-top: 1rem;">
+      <h2>Output</h2>
+      <p class="output-hint">Shows quote range and suggested deposit <button type="button" class="tip-btn" data-tooltip-key="deposit" aria-label="What is deposit?">?</button>.</p>
+      <div id="nsb-output" class="output-area"></div>
+      <div id="nsb-benchmarks" class="benchmarks"></div>
+    </div>
+    <div id="nsb-scenarios"></div>
+    <div id="nsb-share-embed"></div>
+    <div id="nsb-related-guides"></div>
+    <section class="pro-section"><h3>NSB Pro</h3><p>Unlimited generator runs while Pro is active, calculator presets, and CSV import/export on supported tools. Pick monthly or lifetime in the upgrade modal.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </div>
+    <article id="tool-guide" class="tool-guide">
+<section class="section">
       <h2>What this tool does</h2>
       <p>Recommends project quote ranges (low, target, high) based on estimated hours, hourly rate, complexity multiplier, risk <a href="/glossary/#buffer">buffer</a>, and expenses. Includes <a href="/glossary/#deposit">deposit</a> and timeline suggestions. Not AI-powered. Not financial advice.</p>
     </section>
@@ -46,11 +92,11 @@
     <section class="section">
       <h2>Inputs explained</h2>
       <ul>
-        <li><strong>Estimated hours</strong> – Your best estimate of effort.</li>
-        <li><strong>Hourly rate</strong> – Your baseline rate.</li>
-        <li><strong>Complexity multiplier</strong> – 0.8 to 1.5. Simple projects lower; complex higher.</li>
-        <li><strong>Risk buffer %</strong> – Cushion for scope creep and revisions. See <a href="/glossary/#buffer">buffer</a>.</li>
-        <li><strong>Expenses</strong> – Any out-of-pocket to add to the quote.</li>
+        <li><strong>Estimated hours</strong>: your honest effort guess, not the fairy-tale version.</li>
+        <li><strong>Hourly rate</strong>: the number you actually want to bill before multipliers.</li>
+        <li><strong>Complexity multiplier</strong>: usually 0.8-1.5. Simple work sits low, nasty integrations sit high.</li>
+        <li><strong>Risk buffer %</strong>: pad for revisions and scope that slides. See <a href="/glossary/#buffer">buffer</a>.</li>
+        <li><strong>Expenses</strong>: hard costs you will pass through (stock, travel, licenses).</li>
       </ul>
     </section>
     <section class="section">
@@ -116,49 +162,7 @@
       <h3>How do I handle scope changes?</h3>
       <p>Add scope control bullets: change requests, revision limits, clear deliverables.</p>
     </section>
-
-    <div class="card" style="margin-top: 1.5rem;">
-      <h2>Inputs</h2>
-      <form id="nsb-form">
-        <div class="form-group">
-          <label for="estimatedHours">Estimated hours</label>
-          <input type="number" id="estimatedHours" name="estimatedHours" placeholder="40" min="0" step="1">
-        </div>
-        <div class="form-group">
-          <label for="hourlyRate">Hourly rate $</label>
-          <input type="number" id="hourlyRate" name="hourlyRate" placeholder="100" min="0" step="1">
-        </div>
-        <div class="form-group">
-          <label for="complexityMultiplier"><span title="0.8 simple, 1.0 standard, 1.2-1.5 complex">Complexity multiplier</span> (0.8-1.5)</label>
-          <input type="number" id="complexityMultiplier" name="complexityMultiplier" value="1.0" min="0.8" max="1.5" step="0.1">
-        </div>
-        <div class="form-group">
-          <label for="riskBufferPercent">Risk buffer <button type="button" class="tip-btn" data-tooltip-key="buffer" aria-label="What is buffer?">?</button> %</label>
-          <input type="number" id="riskBufferPercent" name="riskBufferPercent" value="20" min="0" max="50" step="5">
-        </div>
-        <div class="form-group">
-          <label for="expenses">Expenses $</label>
-          <input type="number" id="expenses" name="expenses" placeholder="0" min="0" step="100">
-        </div>
-        <div class="form-group">
-          <label for="hoursPerWeek">Hours per week (timeline)</label>
-          <input type="number" id="hoursPerWeek" name="hoursPerWeek" placeholder="20" min="1" max="80">
-        </div>
-        <div class="btn-group">
-          <button type="submit" class="btn btn-primary" id="nsb-generate">Calculate</button>
-        </div>
-      </form>
-    </div>
-    <div class="card" style="margin-top: 1rem;">
-      <h2>Output</h2>
-      <p class="output-hint">Shows quote range and suggested deposit <button type="button" class="tip-btn" data-tooltip-key="deposit" aria-label="What is deposit?">?</button>.</p>
-      <div id="nsb-output" class="output-area"></div>
-      <div id="nsb-benchmarks" class="benchmarks"></div>
-    </div>
-    <div id="nsb-scenarios"></div>
-    <div id="nsb-share-embed"></div>
-    <div id="nsb-related-guides"></div>
-    <section class="pro-section"><h3>Pro features (coming soon)</h3><p>Pro unlocks unlimited scenarios.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </article>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>

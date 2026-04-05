@@ -29,9 +29,52 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/business/">Business / Finance</a><span> / </span> Loan Debt Payoff Calculator</nav>
     <h1>Loan / Debt Payoff Calculator</h1>
     <p>Calculate payoff timeline, total interest, and savings with extra payments.</p>
-    <p class="small muted">Last updated: March 6th, 2026</p>
+    <p class="small muted">Last updated: April 4th, 2026</p>
+    <p class="tool-jump-guide"><a href="#tool-guide">How it works &amp; tips</a></p>
+    <div class="tool-workspace">
 
-    <section class="section">
+    <div class="card" style="margin-top: 1.5rem;">
+      <h2>Inputs</h2>
+      <form id="nsb-form">
+        <div class="form-group">
+          <label for="principal">Principal <button type="button" class="tip-btn" data-tooltip-key="principal" aria-label="What is principal?">?</button> $</label>
+          <input type="number" id="principal" name="principal" placeholder="30000" min="0" step="100">
+        </div>
+        <div class="form-group">
+          <label for="interestRate">Interest rate <button type="button" class="tip-btn" data-tooltip-key="interest-rate" aria-label="What is interest rate?">?</button> %</label>
+          <input type="number" id="interestRate" name="interestRate" placeholder="6" min="0" max="30" step="0.1">
+        </div>
+        <div class="form-group">
+          <label for="monthlyPayment">Monthly payment $</label>
+          <input type="number" id="monthlyPayment" name="monthlyPayment" placeholder="350" min="0" step="10">
+        </div>
+        <div class="form-group">
+          <label for="extraPayment">Extra payment $ (optional)</label>
+          <input type="number" id="extraPayment" name="extraPayment" placeholder="0" min="0" step="10">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="nsb-generate">Calculate</button>
+        </div>
+      </form>
+    </div>
+    <div class="card" style="margin-top: 1rem;">
+      <h2>Output</h2>
+      <div id="nsb-output" class="output-area"></div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
+      </div>
+      <p class="output-hint">Amortization schedule <button type="button" class="tip-btn" data-tooltip-key="amortization" aria-label="What is amortization?">?</button></p>
+      <div id="nsb-amort" class="amort-table"></div>
+      <div id="nsb-benchmarks" class="benchmarks"></div>
+      <p class="disclaimer">Educational only. Not financial advice.</p>
+    </div>
+    <div id="nsb-scenarios" aria-hidden="true"></div>
+    <div id="nsb-share-embed"></div>
+    <div id="nsb-related-guides"></div>
+    <section id="nsb-pro-section" class="pro-section" data-nsb-presets-tool="loan-debt-payoff-calculator"><h3>Pro</h3><p>Save presets, export or import full CSV schedules (new exports include your inputs). Unlimited calculator use. Monthly or lifetime in the modal.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </div>
+    <article id="tool-guide" class="tool-guide">
+<section class="section">
       <h2>What this tool does</h2>
       <p>Calculates months to payoff, total interest, and an <a href="/glossary/#amortization">amortization</a> table for a loan. You enter <a href="/glossary/#principal">principal</a>, <a href="/glossary/#interest-rate">interest rate</a>, and monthly payment; optionally add extra payment to see interest savings. Educational only; not financial advice. Not AI-powered.</p>
     </section>
@@ -46,10 +89,10 @@
     <section class="section">
       <h2>Inputs explained</h2>
       <ul>
-        <li><strong>Principal</strong> – Amount borrowed or current balance. See <a href="/glossary/#principal">principal</a>.</li>
-        <li><strong>Interest rate %</strong> – Annual rate. See <a href="/glossary/#interest-rate">interest rate</a>.</li>
-        <li><strong>Monthly payment</strong> – Fixed payment per month.</li>
-        <li><strong>Extra payment</strong> – (Optional) Additional amount applied to principal each month.</li>
+        <li><strong>Principal</strong>: starting amount or whatever you owe today. See <a href="/glossary/#principal">principal</a>.</li>
+        <li><strong>Interest rate %</strong>: APR style annual rate. See <a href="/glossary/#interest-rate">interest rate</a>.</li>
+        <li><strong>Monthly payment</strong>: the check you actually send each month.</li>
+        <li><strong>Extra payment</strong>: optional add-on that shaves principal monthly.</li>
       </ul>
     </section>
     <section class="section">
@@ -114,46 +157,7 @@
       <h3>Is this financial advice?</h3>
       <p>No. Educational only. Consult a financial advisor.</p>
     </section>
-
-    <div class="card" style="margin-top: 1.5rem;">
-      <h2>Inputs</h2>
-      <form id="nsb-form">
-        <div class="form-group">
-          <label for="principal">Principal <button type="button" class="tip-btn" data-tooltip-key="principal" aria-label="What is principal?">?</button> $</label>
-          <input type="number" id="principal" name="principal" placeholder="30000" min="0" step="100">
-        </div>
-        <div class="form-group">
-          <label for="interestRate">Interest rate <button type="button" class="tip-btn" data-tooltip-key="interest-rate" aria-label="What is interest rate?">?</button> %</label>
-          <input type="number" id="interestRate" name="interestRate" placeholder="6" min="0" max="30" step="0.1">
-        </div>
-        <div class="form-group">
-          <label for="monthlyPayment">Monthly payment $</label>
-          <input type="number" id="monthlyPayment" name="monthlyPayment" placeholder="350" min="0" step="10">
-        </div>
-        <div class="form-group">
-          <label for="extraPayment">Extra payment $ (optional)</label>
-          <input type="number" id="extraPayment" name="extraPayment" placeholder="0" min="0" step="10">
-        </div>
-        <div class="btn-group">
-          <button type="submit" class="btn btn-primary" id="nsb-generate">Calculate</button>
-        </div>
-      </form>
-    </div>
-    <div class="card" style="margin-top: 1rem;">
-      <h2>Output</h2>
-      <div id="nsb-output" class="output-area"></div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
-      </div>
-      <p class="output-hint">Amortization schedule <button type="button" class="tip-btn" data-tooltip-key="amortization" aria-label="What is amortization?">?</button></p>
-      <div id="nsb-amort" class="amort-table"></div>
-      <div id="nsb-benchmarks" class="benchmarks"></div>
-      <p class="disclaimer">Educational only. Not financial advice.</p>
-    </div>
-    <div id="nsb-scenarios" aria-hidden="true"></div>
-    <div id="nsb-share-embed"></div>
-    <div id="nsb-related-guides"></div>
-    <section id="nsb-pro-section" class="pro-section" data-nsb-presets-tool="loan-debt-payoff-calculator"><h3>Pro</h3><p>Presets and export.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </article>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>

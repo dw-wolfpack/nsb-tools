@@ -29,9 +29,38 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/repurpose/">Repurpose</a><span> / </span> Content Calendar Generator</nav>
     <h1>Content Calendar Generator</h1>
     <p>Generate a 1-week calendar table with post types/angles; export CSV.</p>
-    <p class="small muted">Last updated: March 6th, 2026</p>
+    <p class="small muted">Last updated: April 4th, 2026</p>
+    <p class="tool-jump-guide"><a href="#tool-guide">How it works &amp; tips</a></p>
+    <div class="tool-workspace">
 
-    <section class="section">
+    <div class="card" style="margin-top: 1.5rem;">
+      <h2>Inputs</h2>
+      <form id="nsb-form">
+        <div class="form-group">
+          <label for="niche">Niche / theme</label>
+          <input type="text" id="niche" name="niche" placeholder="productivity">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
+          <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
+        </div>
+      </form>
+    </div>
+    <div class="card" style="margin-top: 1rem;">
+      <h2>Output</h2>
+      <div id="nsb-output" class="output-area"></div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
+        <button type="button" class="btn btn-secondary" id="nsb-csv">Export CSV</button>
+        <button type="button" class="btn btn-secondary" id="nsb-save">Save output</button>
+        <button type="button" class="btn btn-secondary" id="nsb-clear">Clear</button>
+        <button type="button" class="btn btn-secondary" id="nsb-share">Share link</button>
+      </div>
+    </div>
+    <section class="pro-section"><h3>NSB Pro</h3><p>Unlimited generator runs while Pro is active, calculator presets, and CSV import/export on supported tools. Pick monthly or lifetime in the upgrade modal.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </div>
+    <article id="tool-guide" class="tool-guide">
+<section class="section">
       <h2>What this tool does</h2>
       <p>Generates a 7-day content calendar with post type and angle per day. You enter niche or theme and get a week of ideas. Export to CSV for use in spreadsheets or planning tools. Not AI-powered.</p>
     </section>
@@ -46,7 +75,7 @@
     <section class="section">
       <h2>Inputs explained</h2>
       <ul>
-        <li><strong>Niche / theme</strong> – Your content focus (e.g. productivity). Drives the angles and types.</li>
+        <li><strong>Niche / theme</strong>: the lane you publish in (productivity, indie dev, etc.). Shapes angles and formats.</li>
       </ul>
     </section>
     <section class="section">
@@ -99,32 +128,7 @@
       <h3>What post types are used?</h3>
       <p>Educational, behind the scenes, tip, story, Q&A, repost.</p>
     </section>
-
-    <div class="card" style="margin-top: 1.5rem;">
-      <h2>Inputs</h2>
-      <form id="nsb-form">
-        <div class="form-group">
-          <label for="niche">Niche / theme</label>
-          <input type="text" id="niche" name="niche" placeholder="productivity">
-        </div>
-        <div class="btn-group">
-          <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
-          <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
-        </div>
-      </form>
-    </div>
-    <div class="card" style="margin-top: 1rem;">
-      <h2>Output</h2>
-      <div id="nsb-output" class="output-area"></div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
-        <button type="button" class="btn btn-secondary" id="nsb-csv">Export CSV</button>
-        <button type="button" class="btn btn-secondary" id="nsb-save">Save output</button>
-        <button type="button" class="btn btn-secondary" id="nsb-clear">Clear</button>
-        <button type="button" class="btn btn-secondary" id="nsb-share">Share link</button>
-      </div>
-    </div>
-    <section class="pro-section"><h3>Pro features (coming soon)</h3><p>Pro unlocks 2-week and monthly calendars.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </article>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>

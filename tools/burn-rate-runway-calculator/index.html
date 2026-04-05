@@ -29,9 +29,49 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/business/">Business / Finance</a><span> / </span> Burn Rate Runway Calculator</nav>
     <h1>Burn Rate / Runway Calculator</h1>
     <p>Calculate net burn, runway, and 12-month projection.</p>
-    <p class="small muted">Last updated: March 6th, 2026</p>
+    <p class="small muted">Last updated: April 4th, 2026</p>
+    <p class="tool-jump-guide"><a href="#tool-guide">How it works &amp; tips</a></p>
+    <div class="tool-workspace">
 
-    <section class="section">
+    <div class="card" style="margin-top: 1.5rem;">
+      <h2>Inputs</h2>
+      <form id="nsb-form">
+        <div class="form-group">
+          <label for="cashOnHand">Cash on hand $</label>
+          <input type="number" id="cashOnHand" name="cashOnHand" placeholder="100000" min="0" step="1000">
+        </div>
+        <div class="form-group">
+          <label for="monthlyRevenue">Monthly revenue $</label>
+          <input type="number" id="monthlyRevenue" name="monthlyRevenue" placeholder="5000" min="0" step="100">
+        </div>
+        <div class="form-group">
+          <label for="monthlyExpenses">Monthly expenses $</label>
+          <input type="number" id="monthlyExpenses" name="monthlyExpenses" placeholder="15000" min="0" step="100">
+        </div>
+        <div class="form-group">
+          <label for="revenueGrowthRate">Revenue growth % (monthly, optional)</label>
+          <input type="number" id="revenueGrowthRate" name="revenueGrowthRate" placeholder="0" min="0" max="50" step="0.5">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="nsb-generate">Calculate</button>
+        </div>
+      </form>
+    </div>
+    <div class="card" style="margin-top: 1rem;">
+      <h2>Output</h2>
+      <p class="output-hint">Shows net burn <button type="button" class="tip-btn" data-tooltip-key="burn-rate" aria-label="What is burn rate?">?</button> and runway <button type="button" class="tip-btn" data-tooltip-key="runway" aria-label="What is runway?">?</button>.</p>
+      <div id="nsb-output" class="output-area"></div>
+      <div id="nsb-projection" class="projection-table"></div>
+      <div id="nsb-benchmarks" class="benchmarks"></div>
+      <p class="disclaimer">Educational only.</p>
+    </div>
+    <div id="nsb-scenarios" aria-hidden="true"></div>
+    <div id="nsb-share-embed"></div>
+    <div id="nsb-related-guides"></div>
+    <section id="nsb-pro-section" class="pro-section" data-nsb-presets-tool="burn-rate-runway-calculator"><h3>Pro</h3><p>Save presets, export or import full CSV schedules (new exports include your inputs). Unlimited calculator use. Monthly or lifetime in the modal.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </div>
+    <article id="tool-guide" class="tool-guide">
+<section class="section">
       <h2>What this tool does</h2>
       <p>Calculates <a href="/glossary/#burn-rate">burn rate</a> (expenses minus revenue), <a href="/glossary/#runway">runway</a> in months, and a 12-month cash projection. Optional revenue growth rate. Educational only; not financial advice. Not AI-powered.</p>
     </section>
@@ -46,9 +86,9 @@
     <section class="section">
       <h2>Inputs explained</h2>
       <ul>
-        <li><strong>Cash on hand</strong> – Current cash balance.</li>
-        <li><strong>Monthly revenue, monthly expenses</strong> – Current run rate.</li>
-        <li><strong>Monthly revenue growth %</strong> – (Optional) Growth applied to revenue each month in the projection.</li>
+        <li><strong>Cash on hand</strong>: what's in the bank right now.</li>
+        <li><strong>Monthly revenue, monthly expenses</strong>: rough monthly in and out. Runway is only as honest as these numbers.</li>
+        <li><strong>Monthly revenue growth %</strong>: optional. Each month bumps revenue by this percent in the forward projection.</li>
       </ul>
     </section>
     <section class="section">
@@ -114,43 +154,7 @@
       <h3>Is this financial advice?</h3>
       <p>No. Educational only.</p>
     </section>
-
-    <div class="card" style="margin-top: 1.5rem;">
-      <h2>Inputs</h2>
-      <form id="nsb-form">
-        <div class="form-group">
-          <label for="cashOnHand">Cash on hand $</label>
-          <input type="number" id="cashOnHand" name="cashOnHand" placeholder="100000" min="0" step="1000">
-        </div>
-        <div class="form-group">
-          <label for="monthlyRevenue">Monthly revenue $</label>
-          <input type="number" id="monthlyRevenue" name="monthlyRevenue" placeholder="5000" min="0" step="100">
-        </div>
-        <div class="form-group">
-          <label for="monthlyExpenses">Monthly expenses $</label>
-          <input type="number" id="monthlyExpenses" name="monthlyExpenses" placeholder="15000" min="0" step="100">
-        </div>
-        <div class="form-group">
-          <label for="revenueGrowthRate">Revenue growth % (monthly, optional)</label>
-          <input type="number" id="revenueGrowthRate" name="revenueGrowthRate" placeholder="0" min="0" max="50" step="0.5">
-        </div>
-        <div class="btn-group">
-          <button type="submit" class="btn btn-primary" id="nsb-generate">Calculate</button>
-        </div>
-      </form>
-    </div>
-    <div class="card" style="margin-top: 1rem;">
-      <h2>Output</h2>
-      <p class="output-hint">Shows net burn <button type="button" class="tip-btn" data-tooltip-key="burn-rate" aria-label="What is burn rate?">?</button> and runway <button type="button" class="tip-btn" data-tooltip-key="runway" aria-label="What is runway?">?</button>.</p>
-      <div id="nsb-output" class="output-area"></div>
-      <div id="nsb-projection" class="projection-table"></div>
-      <div id="nsb-benchmarks" class="benchmarks"></div>
-      <p class="disclaimer">Educational only.</p>
-    </div>
-    <div id="nsb-scenarios" aria-hidden="true"></div>
-    <div id="nsb-share-embed"></div>
-    <div id="nsb-related-guides"></div>
-    <section id="nsb-pro-section" class="pro-section" data-nsb-presets-tool="burn-rate-runway-calculator"><h3>Pro</h3><p>Presets and export.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </article>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>

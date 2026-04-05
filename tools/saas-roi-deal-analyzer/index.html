@@ -29,9 +29,48 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/business/">Business / Finance</a><span> / </span> SaaS ROI Deal Analyzer</nav>
     <h1>SaaS ROI Deal Analyzer</h1>
     <p>LTV, CAC payback, ROI. Sensitivity on CAC, ARPA, churn. Not financial advice.</p>
-    <p class="small muted">Last updated: March 6th, 2026</p>
+    <p class="small muted">Last updated: April 4th, 2026</p>
+    <p class="tool-jump-guide"><a href="#tool-guide">How it works &amp; tips</a></p>
+    <div class="tool-workspace">
 
-    <section class="section">
+    <div class="card" style="margin-top: 1.5rem;">
+      <h2>Inputs</h2>
+      <form id="nsb-form">
+        <div class="form-group">
+          <label for="cac">CAC <button type="button" class="tip-btn" data-tooltip-key="cac" aria-label="What is CAC?">?</button> $</label>
+          <input type="number" id="cac" name="cac" placeholder="500" min="0" step="1">
+        </div>
+        <div class="form-group">
+          <label for="arpa">ARPA <button type="button" class="tip-btn" data-tooltip-key="arpa" aria-label="What is ARPA?">?</button> $/month</label>
+          <input type="number" id="arpa" name="arpa" placeholder="50" min="0" step="0.01">
+        </div>
+        <div class="form-group">
+          <label for="grossMargin">Gross margin <button type="button" class="tip-btn" data-tooltip-key="gross-margin" aria-label="What is gross margin?">?</button> %</label>
+          <input type="number" id="grossMargin" name="grossMargin" value="80" min="1" max="100" step="1">
+        </div>
+        <div class="form-group">
+          <label for="monthlyChurn">Monthly churn <button type="button" class="tip-btn" data-tooltip-key="churn" aria-label="What is churn?">?</button> %</label>
+          <input type="number" id="monthlyChurn" name="monthlyChurn" value="5" min="0.1" max="50" step="0.5">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="nsb-generate">Calculate</button>
+        </div>
+      </form>
+    </div>
+    <div class="card" style="margin-top: 1rem;">
+      <h2>Output</h2>
+      <div id="nsb-output" class="output-area"></div>
+      <div id="nsb-sensitivity" class="sensitivity-section"></div>
+      <div id="nsb-benchmarks" class="benchmarks"></div>
+      <p class="disclaimer">Not financial advice.</p>
+    </div>
+    <div id="nsb-scenarios"></div>
+    <div id="nsb-share-embed"></div>
+    <div id="nsb-related-guides"></div>
+    <section class="pro-section"><h3>NSB Pro</h3><p>Unlimited generator runs while Pro is active, calculator presets, and CSV import/export on supported tools. Pick monthly or lifetime in the upgrade modal.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </div>
+    <article id="tool-guide" class="tool-guide">
+<section class="section">
       <h2>What this tool does</h2>
       <p>Calculates <a href="/glossary/#ltv">LTV</a>, <a href="/glossary/#payback">CAC payback</a> months, and <a href="/glossary/#roi">ROI</a> for SaaS. You enter <a href="/glossary/#cac">CAC</a>, <a href="/glossary/#arpa">ARPA</a>, <a href="/glossary/#gross-margin">gross margin</a>, and <a href="/glossary/#churn">churn</a>. Sensitivity shows impact of changing CAC, ARPA, or churn. If payback is over 6 months, fix CAC, raise ARPA, or reduce churn. Not financial advice. Not AI-powered.</p>
     </section>
@@ -46,10 +85,10 @@
     <section class="section">
       <h2>Inputs explained</h2>
       <ul>
-        <li><strong>CAC</strong> – Customer acquisition cost. See <a href="/glossary/#cac">CAC</a>.</li>
-        <li><strong>ARPA</strong> – Average revenue per account per month. See <a href="/glossary/#arpa">ARPA</a>.</li>
-        <li><strong>Gross margin %</strong> – Revenue minus direct costs. See <a href="/glossary/#gross-margin">gross margin</a>.</li>
-        <li><strong>Churn %</strong> – Monthly churn. See <a href="/glossary/#churn">churn</a>.</li>
+        <li><strong>CAC</strong>: what you spend to land a customer. <a href="/glossary/#cac">CAC</a> in the glossary.</li>
+        <li><strong>ARPA</strong>: average revenue per account per month. <a href="/glossary/#arpa">ARPA</a> in the glossary.</li>
+        <li><strong>Gross margin %</strong>: revenue after direct costs, as a share of revenue. See <a href="/glossary/#gross-margin">gross margin</a>.</li>
+        <li><strong>Churn %</strong>: how much of the base you lose each month. See <a href="/glossary/#churn">churn</a>.</li>
       </ul>
     </section>
     <section class="section">
@@ -105,42 +144,7 @@
       <h3>Is this financial advice?</h3>
       <p>No. Use for directional analysis.</p>
     </section>
-
-    <div class="card" style="margin-top: 1.5rem;">
-      <h2>Inputs</h2>
-      <form id="nsb-form">
-        <div class="form-group">
-          <label for="cac">CAC <button type="button" class="tip-btn" data-tooltip-key="cac" aria-label="What is CAC?">?</button> $</label>
-          <input type="number" id="cac" name="cac" placeholder="500" min="0" step="1">
-        </div>
-        <div class="form-group">
-          <label for="arpa">ARPA <button type="button" class="tip-btn" data-tooltip-key="arpa" aria-label="What is ARPA?">?</button> $/month</label>
-          <input type="number" id="arpa" name="arpa" placeholder="50" min="0" step="0.01">
-        </div>
-        <div class="form-group">
-          <label for="grossMargin">Gross margin <button type="button" class="tip-btn" data-tooltip-key="gross-margin" aria-label="What is gross margin?">?</button> %</label>
-          <input type="number" id="grossMargin" name="grossMargin" value="80" min="1" max="100" step="1">
-        </div>
-        <div class="form-group">
-          <label for="monthlyChurn">Monthly churn <button type="button" class="tip-btn" data-tooltip-key="churn" aria-label="What is churn?">?</button> %</label>
-          <input type="number" id="monthlyChurn" name="monthlyChurn" value="5" min="0.1" max="50" step="0.5">
-        </div>
-        <div class="btn-group">
-          <button type="submit" class="btn btn-primary" id="nsb-generate">Calculate</button>
-        </div>
-      </form>
-    </div>
-    <div class="card" style="margin-top: 1rem;">
-      <h2>Output</h2>
-      <div id="nsb-output" class="output-area"></div>
-      <div id="nsb-sensitivity" class="sensitivity-section"></div>
-      <div id="nsb-benchmarks" class="benchmarks"></div>
-      <p class="disclaimer">Not financial advice.</p>
-    </div>
-    <div id="nsb-scenarios"></div>
-    <div id="nsb-share-embed"></div>
-    <div id="nsb-related-guides"></div>
-    <section class="pro-section"><h3>Pro features (coming soon)</h3><p>Pro unlocks unlimited scenarios.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </article>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>

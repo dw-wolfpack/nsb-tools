@@ -1,21 +1,23 @@
 {
-  "generated": "2026-03-15T23:12:36.357Z",
+  "generated": "2026-04-05T00:31:19.748Z",
   "pages": [
     {
       "route": "/",
       "filePath": "index.html",
-      "wordCountBody": 369,
+      "wordCountBody": 509,
       "h1Text": "NSB Tools",
       "titleText": "NSB Tools | Free Creator, Writing, Career, and Business Tools",
-      "metaDescriptionLength": 160,
-      "internalLinksTotal": 17,
-      "internalLinksUnique": 15,
+      "metaDescriptionLength": 140,
+      "internalLinksTotal": 21,
+      "internalLinksUnique": 16,
       "aiLinksCount": 4,
-      "toolLinksCount": 5,
-      "glossaryLinksCount": 1,
-      "inBodyLinksCount": 17,
+      "toolLinksCount": 6,
+      "glossaryLinksCount": 0,
+      "inBodyLinksCount": 21,
       "hiddenToolLinksFound": [],
-      "brokenLinks": [],
+      "brokenLinks": [
+        "/pro/"
+      ],
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
@@ -30,18 +32,20 @@
     {
       "route": "/categories/business/",
       "filePath": "categories/business/index.html",
-      "wordCountBody": 351,
+      "wordCountBody": 383,
       "h1Text": "Business / Finance",
       "titleText": "Business / Finance Tools | NSB Tools",
       "metaDescriptionLength": 108,
-      "internalLinksTotal": 9,
-      "internalLinksUnique": 8,
+      "internalLinksTotal": 11,
+      "internalLinksUnique": 9,
       "aiLinksCount": 2,
-      "toolLinksCount": 5,
+      "toolLinksCount": 6,
       "glossaryLinksCount": 0,
-      "inBodyLinksCount": 9,
+      "inBodyLinksCount": 11,
       "hiddenToolLinksFound": [],
-      "brokenLinks": [],
+      "brokenLinks": [
+        "/pro/"
+      ],
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
@@ -56,23 +60,25 @@
     {
       "route": "/categories/career/",
       "filePath": "categories/career/index.html",
-      "wordCountBody": 186,
+      "wordCountBody": 218,
       "h1Text": "Career",
       "titleText": "Career Tools | NSB Tools",
       "metaDescriptionLength": 108,
-      "internalLinksTotal": 6,
-      "internalLinksUnique": 6,
+      "internalLinksTotal": 7,
+      "internalLinksUnique": 7,
       "aiLinksCount": 2,
       "toolLinksCount": 3,
       "glossaryLinksCount": 0,
-      "inBodyLinksCount": 6,
+      "inBodyLinksCount": 7,
       "hiddenToolLinksFound": [],
-      "brokenLinks": [],
+      "brokenLinks": [
+        "/pro/"
+      ],
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (186/350)"
+        "below target words (218/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -84,18 +90,20 @@
     {
       "route": "/categories/repurpose/",
       "filePath": "categories/repurpose/index.html",
-      "wordCountBody": 351,
+      "wordCountBody": 389,
       "h1Text": "Repurpose",
       "titleText": "Repurpose Tools | NSB Tools",
       "metaDescriptionLength": 121,
-      "internalLinksTotal": 9,
-      "internalLinksUnique": 8,
+      "internalLinksTotal": 10,
+      "internalLinksUnique": 9,
       "aiLinksCount": 2,
       "toolLinksCount": 4,
       "glossaryLinksCount": 0,
-      "inBodyLinksCount": 9,
+      "inBodyLinksCount": 10,
       "hiddenToolLinksFound": [],
-      "brokenLinks": [],
+      "brokenLinks": [
+        "/pro/"
+      ],
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
@@ -110,18 +118,20 @@
     {
       "route": "/categories/social/",
       "filePath": "categories/social/index.html",
-      "wordCountBody": 351,
+      "wordCountBody": 378,
       "h1Text": "Social / Creator",
       "titleText": "Social / Creator Tools | NSB Tools",
       "metaDescriptionLength": 131,
-      "internalLinksTotal": 9,
-      "internalLinksUnique": 8,
+      "internalLinksTotal": 10,
+      "internalLinksUnique": 9,
       "aiLinksCount": 2,
       "toolLinksCount": 6,
       "glossaryLinksCount": 0,
-      "inBodyLinksCount": 9,
+      "inBodyLinksCount": 10,
       "hiddenToolLinksFound": [],
-      "brokenLinks": [],
+      "brokenLinks": [
+        "/pro/"
+      ],
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
@@ -136,18 +146,20 @@
     {
       "route": "/categories/writing/",
       "filePath": "categories/writing/index.html",
-      "wordCountBody": 351,
+      "wordCountBody": 377,
       "h1Text": "Writing",
       "titleText": "Writing Tools | NSB Tools",
       "metaDescriptionLength": 111,
-      "internalLinksTotal": 9,
-      "internalLinksUnique": 9,
+      "internalLinksTotal": 10,
+      "internalLinksUnique": 10,
       "aiLinksCount": 2,
       "toolLinksCount": 5,
       "glossaryLinksCount": 0,
-      "inBodyLinksCount": 9,
+      "inBodyLinksCount": 10,
       "hiddenToolLinksFound": [],
-      "brokenLinks": [],
+      "brokenLinks": [
+        "/pro/"
+      ],
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
@@ -162,23 +174,25 @@
     {
       "route": "/categories/",
       "filePath": "categories/index.html",
-      "wordCountBody": 183,
+      "wordCountBody": 241,
       "h1Text": "Categories",
       "titleText": "Categories | NSB Tools",
       "metaDescriptionLength": 75,
       "internalLinksTotal": 9,
       "internalLinksUnique": 9,
-      "aiLinksCount": 3,
+      "aiLinksCount": 2,
       "toolLinksCount": 2,
       "glossaryLinksCount": 0,
       "inBodyLinksCount": 9,
       "hiddenToolLinksFound": [],
-      "brokenLinks": [],
+      "brokenLinks": [
+        "/pro/"
+      ],
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (183/350)"
+        "below target words (241/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -190,7 +204,7 @@
     {
       "route": "/tools/break-even-calculator/",
       "filePath": "tools/break-even-calculator/index.html",
-      "wordCountBody": 529,
+      "wordCountBody": 561,
       "h1Text": "Break-even Calculator",
       "titleText": "Break-even Calculator | NSB Tools",
       "metaDescriptionLength": 87,
@@ -216,7 +230,7 @@
     {
       "route": "/tools/break-even-calculator/ecommerce/",
       "filePath": "tools/break-even-calculator/ecommerce/index.html",
-      "wordCountBody": 281,
+      "wordCountBody": 298,
       "h1Text": "Break-even Calculator for Ecommerce",
       "titleText": "Break-even Calculator for Ecommerce | NSB Tools",
       "metaDescriptionLength": 91,
@@ -232,7 +246,7 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (281/350)"
+        "below target words (298/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -244,7 +258,7 @@
     {
       "route": "/tools/break-even-calculator/saas/",
       "filePath": "tools/break-even-calculator/saas/index.html",
-      "wordCountBody": 312,
+      "wordCountBody": 334,
       "h1Text": "Break-even Calculator for SaaS",
       "titleText": "Break-even Calculator for SaaS | NSB Tools",
       "metaDescriptionLength": 84,
@@ -260,7 +274,7 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (312/350)"
+        "below target words (334/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -272,7 +286,7 @@
     {
       "route": "/tools/break-even-calculator/service-business/",
       "filePath": "tools/break-even-calculator/service-business/index.html",
-      "wordCountBody": 340,
+      "wordCountBody": 354,
       "h1Text": "Break-even Calculator for Service Businesses",
       "titleText": "Break-even Calculator for Service Businesses | NSB Tools",
       "metaDescriptionLength": 100,
@@ -288,12 +302,11 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (340/350)",
         "internalLinksUnique < 6"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
-      "isBelowTargetWords": true,
+      "isBelowTargetWords": false,
       "requiredKeywordsMissing": [],
       "optionalKeywordsPresent": [],
       "optionalKeywordsTotal": 0
@@ -301,7 +314,7 @@
     {
       "route": "/tools/burn-rate-runway-calculator/",
       "filePath": "tools/burn-rate-runway-calculator/index.html",
-      "wordCountBody": 367,
+      "wordCountBody": 406,
       "h1Text": "Burn Rate / Runway Calculator",
       "titleText": "Burn Rate Runway Calculator | NSB Tools",
       "metaDescriptionLength": 77,
@@ -327,7 +340,7 @@
     {
       "route": "/tools/caption-generator/",
       "filePath": "tools/caption-generator/index.html",
-      "wordCountBody": 346,
+      "wordCountBody": 380,
       "h1Text": "Caption Generator",
       "titleText": "Caption Generator | NSB Tools",
       "metaDescriptionLength": 82,
@@ -342,12 +355,10 @@
       "hasLastUpdated": true,
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
-      "flags": [
-        "below target words (346/350)"
-      ],
+      "flags": [],
       "isAiPage": false,
       "targetsMinWords": 350,
-      "isBelowTargetWords": true,
+      "isBelowTargetWords": false,
       "requiredKeywordsMissing": [],
       "optionalKeywordsPresent": [],
       "optionalKeywordsTotal": 0
@@ -355,7 +366,7 @@
     {
       "route": "/tools/cold-outreach-email/",
       "filePath": "tools/cold-outreach-email/index.html",
-      "wordCountBody": 329,
+      "wordCountBody": 357,
       "h1Text": "Cold Outreach Email Draft",
       "titleText": "Cold Outreach Email Draft | NSB Tools",
       "metaDescriptionLength": 98,
@@ -370,12 +381,10 @@
       "hasLastUpdated": true,
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
-      "flags": [
-        "below target words (329/350)"
-      ],
+      "flags": [],
       "isAiPage": false,
       "targetsMinWords": 350,
-      "isBelowTargetWords": true,
+      "isBelowTargetWords": false,
       "requiredKeywordsMissing": [],
       "optionalKeywordsPresent": [],
       "optionalKeywordsTotal": 0
@@ -383,7 +392,7 @@
     {
       "route": "/tools/content-calendar/",
       "filePath": "tools/content-calendar/index.html",
-      "wordCountBody": 315,
+      "wordCountBody": 338,
       "h1Text": "Content Calendar Generator",
       "titleText": "Content Calendar Generator | NSB Tools",
       "metaDescriptionLength": 88,
@@ -399,7 +408,7 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (315/350)",
+        "below target words (338/350)",
         "internalLinksUnique < 6"
       ],
       "isAiPage": false,
@@ -412,7 +421,7 @@
     {
       "route": "/tools/content-ideas/",
       "filePath": "tools/content-ideas/index.html",
-      "wordCountBody": 330,
+      "wordCountBody": 358,
       "h1Text": "Content Ideas Generator",
       "titleText": "Content Ideas Generator | NSB Tools",
       "metaDescriptionLength": 85,
@@ -427,12 +436,10 @@
       "hasLastUpdated": true,
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
-      "flags": [
-        "below target words (330/350)"
-      ],
+      "flags": [],
       "isAiPage": false,
       "targetsMinWords": 350,
-      "isBelowTargetWords": true,
+      "isBelowTargetWords": false,
       "requiredKeywordsMissing": [],
       "optionalKeywordsPresent": [],
       "optionalKeywordsTotal": 0
@@ -440,7 +447,7 @@
     {
       "route": "/tools/deal-teaser-analyzer/",
       "filePath": "tools/deal-teaser-analyzer/index.html",
-      "wordCountBody": 360,
+      "wordCountBody": 384,
       "h1Text": "Deal Teaser Analyzer",
       "titleText": "Deal Teaser Analyzer | NSB Tools",
       "metaDescriptionLength": 95,
@@ -466,7 +473,7 @@
     {
       "route": "/tools/employee-vs-contractor-calculator/",
       "filePath": "tools/employee-vs-contractor-calculator/index.html",
-      "wordCountBody": 380,
+      "wordCountBody": 406,
       "h1Text": "Employee vs Contractor Cost Calculator",
       "titleText": "Employee vs Contractor Cost Calculator | NSB Tools",
       "metaDescriptionLength": 92,
@@ -492,7 +499,7 @@
     {
       "route": "/tools/freelance-rate-calculator/",
       "filePath": "tools/freelance-rate-calculator/index.html",
-      "wordCountBody": 430,
+      "wordCountBody": 464,
       "h1Text": "Freelance Rate Calculator",
       "titleText": "Freelance Rate Calculator | NSB Tools",
       "metaDescriptionLength": 106,
@@ -518,7 +525,7 @@
     {
       "route": "/tools/freelance-rate-calculator/data-engineer/",
       "filePath": "tools/freelance-rate-calculator/data-engineer/index.html",
-      "wordCountBody": 287,
+      "wordCountBody": 293,
       "h1Text": "Freelance Rate Calculator for Data Engineers",
       "titleText": "Freelance Rate Calculator for Data Engineers | NSB Tools",
       "metaDescriptionLength": 91,
@@ -534,7 +541,7 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (287/350)"
+        "below target words (293/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -546,7 +553,7 @@
     {
       "route": "/tools/freelance-rate-calculator/designer/",
       "filePath": "tools/freelance-rate-calculator/designer/index.html",
-      "wordCountBody": 297,
+      "wordCountBody": 306,
       "h1Text": "Freelance Rate Calculator for Designers",
       "titleText": "Freelance Rate Calculator for Designers | NSB Tools",
       "metaDescriptionLength": 86,
@@ -562,7 +569,7 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (297/350)"
+        "below target words (306/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -574,7 +581,7 @@
     {
       "route": "/tools/freelance-rate-calculator/software-engineer/",
       "filePath": "tools/freelance-rate-calculator/software-engineer/index.html",
-      "wordCountBody": 315,
+      "wordCountBody": 327,
       "h1Text": "Freelance Rate Calculator for Software Engineers",
       "titleText": "Freelance Rate Calculator for Software Engineers | NSB Tools",
       "metaDescriptionLength": 111,
@@ -590,7 +597,7 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (315/350)"
+        "below target words (327/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -602,7 +609,7 @@
     {
       "route": "/tools/hashtag-generator/",
       "filePath": "tools/hashtag-generator/index.html",
-      "wordCountBody": 333,
+      "wordCountBody": 366,
       "h1Text": "Hashtag Generator",
       "titleText": "Hashtag Generator | NSB Tools",
       "metaDescriptionLength": 84,
@@ -617,12 +624,10 @@
       "hasLastUpdated": true,
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
-      "flags": [
-        "below target words (333/350)"
-      ],
+      "flags": [],
       "isAiPage": false,
       "targetsMinWords": 350,
-      "isBelowTargetWords": true,
+      "isBelowTargetWords": false,
       "requiredKeywordsMissing": [],
       "optionalKeywordsPresent": [],
       "optionalKeywordsTotal": 0
@@ -630,7 +635,7 @@
     {
       "route": "/tools/hook-generator/",
       "filePath": "tools/hook-generator/index.html",
-      "wordCountBody": 378,
+      "wordCountBody": 399,
       "h1Text": "Hook Generator",
       "titleText": "Hook Generator | NSB Tools",
       "metaDescriptionLength": 99,
@@ -656,7 +661,7 @@
     {
       "route": "/tools/linkedin-post-builder/",
       "filePath": "tools/linkedin-post-builder/index.html",
-      "wordCountBody": 445,
+      "wordCountBody": 490,
       "h1Text": "LinkedIn Post Builder",
       "titleText": "LinkedIn Post Builder | NSB Tools",
       "metaDescriptionLength": 91,
@@ -682,7 +687,7 @@
     {
       "route": "/tools/loan-debt-payoff-calculator/",
       "filePath": "tools/loan-debt-payoff-calculator/index.html",
-      "wordCountBody": 402,
+      "wordCountBody": 431,
       "h1Text": "Loan / Debt Payoff Calculator",
       "titleText": "Loan Debt Payoff Calculator | NSB Tools",
       "metaDescriptionLength": 94,
@@ -708,7 +713,7 @@
     {
       "route": "/tools/loan-debt-payoff-calculator/business-loan/",
       "filePath": "tools/loan-debt-payoff-calculator/business-loan/index.html",
-      "wordCountBody": 307,
+      "wordCountBody": 314,
       "h1Text": "Loan Payoff Calculator for Business Loans",
       "titleText": "Loan Payoff Calculator for Business Loans | NSB Tools",
       "metaDescriptionLength": 92,
@@ -724,7 +729,7 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (307/350)"
+        "below target words (314/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -736,7 +741,7 @@
     {
       "route": "/tools/loan-debt-payoff-calculator/credit-card/",
       "filePath": "tools/loan-debt-payoff-calculator/credit-card/index.html",
-      "wordCountBody": 290,
+      "wordCountBody": 305,
       "h1Text": "Loan Payoff Calculator for Credit Card Debt",
       "titleText": "Loan Payoff Calculator for Credit Card Debt | NSB Tools",
       "metaDescriptionLength": 82,
@@ -752,7 +757,7 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (290/350)"
+        "below target words (305/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -764,7 +769,7 @@
     {
       "route": "/tools/loan-debt-payoff-calculator/student-loan/",
       "filePath": "tools/loan-debt-payoff-calculator/student-loan/index.html",
-      "wordCountBody": 302,
+      "wordCountBody": 312,
       "h1Text": "Loan Payoff Calculator for Student Loans",
       "titleText": "Loan Payoff Calculator for Student Loans | NSB Tools",
       "metaDescriptionLength": 94,
@@ -780,7 +785,7 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (302/350)"
+        "below target words (312/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -792,7 +797,7 @@
     {
       "route": "/tools/loi-outline/",
       "filePath": "tools/loi-outline/index.html",
-      "wordCountBody": 370,
+      "wordCountBody": 410,
       "h1Text": "Offer / LOI Outline Generator",
       "titleText": "Offer / LOI Outline Generator | NSB Tools",
       "metaDescriptionLength": 91,
@@ -818,7 +823,7 @@
     {
       "route": "/tools/newsletter-outline/",
       "filePath": "tools/newsletter-outline/index.html",
-      "wordCountBody": 314,
+      "wordCountBody": 347,
       "h1Text": "Newsletter Outline Generator",
       "titleText": "Newsletter Outline Generator | NSB Tools",
       "metaDescriptionLength": 87,
@@ -834,7 +839,7 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (314/350)",
+        "below target words (347/350)",
         "internalLinksUnique < 6"
       ],
       "isAiPage": false,
@@ -847,7 +852,7 @@
     {
       "route": "/tools/project-pricing-calculator/",
       "filePath": "tools/project-pricing-calculator/index.html",
-      "wordCountBody": 401,
+      "wordCountBody": 437,
       "h1Text": "Project Pricing Calculator",
       "titleText": "Project Pricing Calculator | NSB Tools",
       "metaDescriptionLength": 101,
@@ -873,7 +878,7 @@
     {
       "route": "/tools/repurpose-pack/",
       "filePath": "tools/repurpose-pack/index.html",
-      "wordCountBody": 340,
+      "wordCountBody": 361,
       "h1Text": "Repurpose Pack Generator",
       "titleText": "Repurpose Pack Generator | NSB Tools",
       "metaDescriptionLength": 99,
@@ -889,12 +894,11 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (340/350)",
         "internalLinksUnique < 6"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
-      "isBelowTargetWords": true,
+      "isBelowTargetWords": false,
       "requiredKeywordsMissing": [],
       "optionalKeywordsPresent": [],
       "optionalKeywordsTotal": 0
@@ -902,7 +906,7 @@
     {
       "route": "/tools/resume-bullet-rewriter/",
       "filePath": "tools/resume-bullet-rewriter/index.html",
-      "wordCountBody": 405,
+      "wordCountBody": 476,
       "h1Text": "Resume Bullet Rewriter",
       "titleText": "Resume Bullet Rewriter | NSB Tools",
       "metaDescriptionLength": 89,
@@ -928,7 +932,7 @@
     {
       "route": "/tools/saas-roi-deal-analyzer/",
       "filePath": "tools/saas-roi-deal-analyzer/index.html",
-      "wordCountBody": 394,
+      "wordCountBody": 434,
       "h1Text": "SaaS ROI Deal Analyzer",
       "titleText": "SaaS ROI Deal Analyzer | NSB Tools",
       "metaDescriptionLength": 89,
@@ -954,7 +958,7 @@
     {
       "route": "/tools/salary-vs-freelance-comparator/",
       "filePath": "tools/salary-vs-freelance-comparator/index.html",
-      "wordCountBody": 396,
+      "wordCountBody": 437,
       "h1Text": "Salary vs Freelance Comparator",
       "titleText": "Salary vs Freelance Comparator | NSB Tools",
       "metaDescriptionLength": 90,
@@ -980,7 +984,7 @@
     {
       "route": "/tools/sba-payment-estimator/",
       "filePath": "tools/sba-payment-estimator/index.html",
-      "wordCountBody": 359,
+      "wordCountBody": 395,
       "h1Text": "Simple SBA Payment Estimator",
       "titleText": "Simple SBA Payment Estimator | NSB Tools",
       "metaDescriptionLength": 86,
@@ -1006,7 +1010,7 @@
     {
       "route": "/tools/short-script-writer/",
       "filePath": "tools/short-script-writer/index.html",
-      "wordCountBody": 380,
+      "wordCountBody": 400,
       "h1Text": "Short-Form Script Writer",
       "titleText": "Short-Form Script Writer | NSB Tools",
       "metaDescriptionLength": 94,
@@ -1032,7 +1036,7 @@
     {
       "route": "/tools/star-stories/",
       "filePath": "tools/star-stories/index.html",
-      "wordCountBody": 350,
+      "wordCountBody": 378,
       "h1Text": "Interview Stories (STAR) Generator",
       "titleText": "Interview Stories (STAR) Generator | NSB Tools",
       "metaDescriptionLength": 87,
@@ -1058,7 +1062,7 @@
     {
       "route": "/tools/title-headline-generator/",
       "filePath": "tools/title-headline-generator/index.html",
-      "wordCountBody": 315,
+      "wordCountBody": 347,
       "h1Text": "Title + Headline Generator",
       "titleText": "Title + Headline Generator | NSB Tools",
       "metaDescriptionLength": 92,
@@ -1074,7 +1078,7 @@
       "hasFAQSection": true,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (315/350)"
+        "below target words (347/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -1086,7 +1090,7 @@
     {
       "route": "/tools/username-generator/",
       "filePath": "tools/username-generator/index.html",
-      "wordCountBody": 427,
+      "wordCountBody": 460,
       "h1Text": "Username Generator",
       "titleText": "Username Generator | NSB Tools",
       "metaDescriptionLength": 105,
@@ -1143,7 +1147,7 @@
     {
       "route": "/ai/checklists/",
       "filePath": "ai/checklists/index.html",
-      "wordCountBody": 352,
+      "wordCountBody": 336,
       "h1Text": "AI Checklists",
       "titleText": "AI Checklists | NSB Tools",
       "metaDescriptionLength": 117,
@@ -1158,10 +1162,12 @@
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
-      "flags": [],
+      "flags": [
+        "below target words (336/350)"
+      ],
       "isAiPage": true,
       "targetsMinWords": 350,
-      "isBelowTargetWords": false,
+      "isBelowTargetWords": true,
       "requiredKeywordsMissing": [],
       "optionalKeywordsPresent": [],
       "optionalKeywordsTotal": 0
@@ -1290,7 +1296,7 @@
     {
       "route": "/ai/playbooks/",
       "filePath": "ai/playbooks/index.html",
-      "wordCountBody": 350,
+      "wordCountBody": 363,
       "h1Text": "AI Playbooks",
       "titleText": "AI Playbooks | NSB Tools",
       "metaDescriptionLength": 122,
@@ -1442,10 +1448,10 @@
     {
       "route": "/ai/toolkit/",
       "filePath": "ai/toolkit/index.html",
-      "wordCountBody": 598,
+      "wordCountBody": 665,
       "h1Text": "AI Toolkit",
       "titleText": "AI Toolkit | NSB Tools",
-      "metaDescriptionLength": 121,
+      "metaDescriptionLength": 112,
       "internalLinksTotal": 28,
       "internalLinksUnique": 14,
       "aiLinksCount": 11,
@@ -1457,12 +1463,10 @@
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
-      "flags": [
-        "below target words (598/650)"
-      ],
+      "flags": [],
       "isAiPage": true,
       "targetsMinWords": 650,
-      "isBelowTargetWords": true,
+      "isBelowTargetWords": false,
       "requiredKeywordsMissing": [],
       "optionalKeywordsPresent": [
         "job seekers",
@@ -1505,28 +1509,29 @@
     {
       "route": "/faq/",
       "filePath": "faq/index.html",
-      "wordCountBody": 237,
+      "wordCountBody": 455,
       "h1Text": "FAQ",
       "titleText": "FAQ | NSB Tools",
-      "metaDescriptionLength": 68,
-      "internalLinksTotal": 5,
-      "internalLinksUnique": 4,
-      "aiLinksCount": 1,
-      "toolLinksCount": 0,
+      "metaDescriptionLength": 115,
+      "internalLinksTotal": 8,
+      "internalLinksUnique": 5,
+      "aiLinksCount": 0,
+      "toolLinksCount": 1,
       "glossaryLinksCount": 1,
-      "inBodyLinksCount": 5,
+      "inBodyLinksCount": 8,
       "hiddenToolLinksFound": [],
-      "brokenLinks": [],
+      "brokenLinks": [
+        "/pro/"
+      ],
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (237/350)",
         "internalLinksUnique < 6"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
-      "isBelowTargetWords": true,
+      "isBelowTargetWords": false,
       "requiredKeywordsMissing": [],
       "optionalKeywordsPresent": [],
       "optionalKeywordsTotal": 0
@@ -1534,23 +1539,23 @@
     {
       "route": "/updates/",
       "filePath": "updates/index.html",
-      "wordCountBody": 113,
+      "wordCountBody": 215,
       "h1Text": "Get updates",
       "titleText": "Get updates | NSB Tools",
-      "metaDescriptionLength": 74,
-      "internalLinksTotal": 5,
+      "metaDescriptionLength": 118,
+      "internalLinksTotal": 6,
       "internalLinksUnique": 3,
       "aiLinksCount": 1,
       "toolLinksCount": 0,
       "glossaryLinksCount": 0,
-      "inBodyLinksCount": 5,
+      "inBodyLinksCount": 6,
       "hiddenToolLinksFound": [],
       "brokenLinks": [],
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (113/350)",
+        "below target words (215/350)",
         "internalLinksUnique < 6"
       ],
       "isAiPage": false,
@@ -1563,23 +1568,25 @@
     {
       "route": "/about/",
       "filePath": "about/index.html",
-      "wordCountBody": 181,
+      "wordCountBody": 312,
       "h1Text": "About NSB Tools",
       "titleText": "About NSB Tools",
       "metaDescriptionLength": 118,
-      "internalLinksTotal": 7,
-      "internalLinksUnique": 6,
+      "internalLinksTotal": 9,
+      "internalLinksUnique": 8,
       "aiLinksCount": 1,
       "toolLinksCount": 2,
       "glossaryLinksCount": 1,
-      "inBodyLinksCount": 7,
+      "inBodyLinksCount": 9,
       "hiddenToolLinksFound": [],
-      "brokenLinks": [],
+      "brokenLinks": [
+        "/pro/"
+      ],
       "hasLastUpdated": true,
       "hasFAQSection": false,
       "canonicalEndsWithSlash": true,
       "flags": [
-        "below target words (181/350)"
+        "below target words (312/350)"
       ],
       "isAiPage": false,
       "targetsMinWords": 350,
@@ -1649,16 +1656,16 @@
     {
       "route": "/changelog/",
       "filePath": "changelog/index.html",
-      "wordCountBody": 475,
+      "wordCountBody": 592,
       "h1Text": "Changelog",
       "titleText": "Changelog | NSB Tools",
       "metaDescriptionLength": 59,
-      "internalLinksTotal": 7,
+      "internalLinksTotal": 8,
       "internalLinksUnique": 4,
       "aiLinksCount": 1,
       "toolLinksCount": 0,
       "glossaryLinksCount": 0,
-      "inBodyLinksCount": 7,
+      "inBodyLinksCount": 8,
       "hiddenToolLinksFound": [],
       "brokenLinks": [],
       "hasLastUpdated": true,
@@ -1678,47 +1685,51 @@
   "topInternalLinkTargets": [
     [
       "/glossary/",
-      262
+      261
     ],
     [
       "/ai/toolkit/",
-      53
+      52
     ],
     [
       "/tools/freelance-rate-calculator/",
-      31
-    ],
-    [
-      "/tools/salary-vs-freelance-comparator/",
-      20
+      32
     ],
     [
       "/ai/checklists/vendor-eval-scorecard/",
-      20
+      21
     ],
     [
       "/tools/burn-rate-runway-calculator/",
       19
     ],
     [
-      "/tools/break-even-calculator/",
+      "/tools/salary-vs-freelance-comparator/",
+      19
+    ],
+    [
+      "/tools/loan-debt-payoff-calculator/",
       18
     ],
     [
-      "/ai/playbooks/job-search-ai-workflow/",
-      16
+      "/tools/break-even-calculator/",
+      17
     ],
     [
       "/tools/employee-vs-contractor-calculator/",
       15
     ],
     [
-      "/tools/loan-debt-payoff-calculator/",
+      "/ai/playbooks/job-search-ai-workflow/",
       15
     ],
     [
+      "/pro/",
+      14
+    ],
+    [
       "/ai/",
-      15
+      14
     ],
     [
       "/ai/playbooks/small-business-ai-adoption/",
@@ -1726,15 +1737,11 @@
     ],
     [
       "/tools/linkedin-post-builder/",
-      11
-    ],
-    [
-      "/ai/checklists/llm-safety-review/",
-      9
+      12
     ],
     [
       "/ai/checklists/resume-ats-checklist/",
-      9
+      10
     ]
   ]
 }

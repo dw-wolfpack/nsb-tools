@@ -1,0 +1,20 @@
+{
+  "charter_manifest_version": "1.2",
+  "last_updated": "2026-04-04",
+  "root_key": "NSBAgentCharter",
+  "psychology_reference_md": "psychology-reference.md",
+  "psychology_source_url": "https://growth.design/psychology",
+  "note": "Parallel to soul-contract style: one top-level object per file. Behavioral charters align to Growth.Design's four-phase decision cycle.",
+  "charters": [
+    { "id": "nsb-analytics-v1", "file": "analytics.json", "prompt_md": "prompts/analytics.md" },
+    { "id": "nsb-entitlements-v1", "file": "entitlements.json", "prompt_md": "prompts/entitlements.md" },
+    { "id": "nsb-seo-v1", "file": "seo.json", "prompt_md": "prompts/seo.md" },
+    { "id": "nsb-conversion-v1", "file": "conversion.json", "prompt_md": "prompts/conversion.md" },
+    { "id": "nsb-ux-polish-v1", "file": "ux-polish.json", "prompt_md": "prompts/ux-polish.md" },
+    { "id": "nsb-psychology-perception-meaning-v1", "file": "psychology-perception-meaning.json", "prompt_md": "prompts/psychology-perception-meaning.md" },
+    { "id": "nsb-psychology-action-memory-v1", "file": "psychology-action-memory.json", "prompt_md": "prompts/psychology-action-memory.md" },
+    { "id": "nsb-psychology-ethics-review-v1", "file": "psychology-ethics-review.json", "prompt_md": "prompts/psychology-ethics-review.md" },
+    { "id": "nsb-ops-v1", "file": "ops.json", "prompt_md": "prompts/ops.md" },
+    { "id": "nsb-product-pm-v1", "file": "product-pm.json", "prompt_md": "prompts/product-pm.md" }
+  ]
+}

@@ -29,9 +29,51 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/social/">Social / Creator</a><span> / </span> Username Generator</nav>
     <h1>Username Generator</h1>
     <p>Generate platform-safe usernames based on niche, tone, keywords, and name.</p>
-    <p class="small muted">Last updated: March 6th, 2026</p>
+    <p class="small muted">Last updated: April 4th, 2026</p>
+    <p class="tool-jump-guide"><a href="#tool-guide">How it works &amp; tips</a></p>
+    <div class="tool-workspace">
 
-    <section class="section">
+    <div class="card" style="margin-top: 1.5rem;">
+      <h2>Inputs</h2>
+      <form id="nsb-form">
+        <div class="form-group">
+          <label for="niche">Niche (e.g. fitness, tech)</label>
+          <input type="text" id="niche" name="niche" placeholder="fitness">
+        </div>
+        <div class="form-group">
+          <label for="keywords">Keywords (optional)</label>
+          <input type="text" id="keywords" name="keywords" placeholder="coach, training">
+        </div>
+        <div class="form-group">
+          <label for="name">Name (optional)</label>
+          <input type="text" id="name" name="name" placeholder="alex">
+        </div>
+        <div class="form-group">
+          <label for="count">Number of usernames</label>
+          <input type="number" id="count" name="count" value="8" min="3" max="20">
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
+          <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card" style="margin-top: 1rem;">
+      <h2>Output</h2>
+      <div id="nsb-output" class="output-area" aria-live="polite"></div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
+        <button type="button" class="btn btn-secondary" id="nsb-save">Save output</button>
+        <button type="button" class="btn btn-secondary" id="nsb-clear">Clear</button>
+        <button type="button" class="btn btn-secondary" id="nsb-share">Share link</button>
+      </div>
+    </div>
+
+    <section class="pro-section"><h3>NSB Pro</h3><p>Unlimited generator runs while Pro is active, calculator presets, and CSV import/export on supported tools. Pick monthly or lifetime in the upgrade modal.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </div>
+    <article id="tool-guide" class="tool-guide">
+<section class="section">
       <h2>What this tool does</h2>
       <p>This tool generates platform-safe usernames (letters, numbers, underscores only) from your niche, optional keywords, and name. Outputs work on Instagram, TikTok, Twitter, and similar platforms. You get 3 to 20 options per run and can regenerate for more.</p>
     </section>
@@ -47,10 +89,10 @@
     <section class="section">
       <h2>Inputs explained</h2>
       <ul>
-        <li><strong>Niche</strong> – Your topic or focus (e.g. fitness, tech). Drives the word patterns.</li>
-        <li><strong>Keywords</strong> – Optional. Comma-separated words to narrow results (e.g. coach, training).</li>
-        <li><strong>Name</strong> – Optional. Part of your name to blend into usernames.</li>
-        <li><strong>Number of usernames</strong> – How many to generate (3 to 20).</li>
+        <li><strong>Niche:</strong> what the account is about (fitness, indie dev, etc.). The generator uses it to pick word bits.</li>
+        <li><strong>Keywords:</strong> optional comma list if you want handles that lean toward certain words.</li>
+        <li><strong>Name:</strong> optional slice of your real name if you want it baked into the handle.</li>
+        <li><strong>Number of usernames:</strong> anywhere from 3 up to 20; regenerate if the first batch feels meh.</li>
       </ul>
     </section>
     <section class="section">
@@ -107,50 +149,7 @@
       <h3>How many can I generate at once?</h3>
       <p>The default is 8; you can request 3 to 20 per run.</p>
     </section>
-
-    <div class="card" style="margin-top: 1.5rem;">
-      <h2>Inputs</h2>
-      <form id="nsb-form">
-        <div class="form-group">
-          <label for="niche">Niche (e.g. fitness, tech)</label>
-          <input type="text" id="niche" name="niche" placeholder="fitness">
-        </div>
-        <div class="form-group">
-          <label for="keywords">Keywords (optional)</label>
-          <input type="text" id="keywords" name="keywords" placeholder="coach, training">
-        </div>
-        <div class="form-group">
-          <label for="name">Name (optional)</label>
-          <input type="text" id="name" name="name" placeholder="alex">
-        </div>
-        <div class="form-group">
-          <label for="count">Number of usernames</label>
-          <input type="number" id="count" name="count" value="8" min="3" max="20">
-        </div>
-        <div class="btn-group">
-          <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
-          <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
-        </div>
-      </form>
-    </div>
-
-    <div class="card" style="margin-top: 1rem;">
-      <h2>Output</h2>
-      <div id="nsb-output" class="output-area" aria-live="polite"></div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
-        <button type="button" class="btn btn-secondary" id="nsb-save">Save output</button>
-        <button type="button" class="btn btn-secondary" id="nsb-clear">Clear</button>
-        <button type="button" class="btn btn-secondary" id="nsb-share">Share link</button>
-      </div>
-    </div>
-
-    <section class="pro-section">
-      <h3>Pro features (coming soon)</h3>
-      <p>Pro will unlock custom wordlists and higher daily limits.</p>
-      <button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button>
-    </section>
-
+    </article>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>

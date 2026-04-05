@@ -52,3 +52,58 @@ test("downloadCSV does not throw when document stubbed", () => {
     globalThis.window.NSB_CSV.downloadCSV("test.csv", "a,b\n1,2");
   });
 });
+
+test("parseCSVText: simple header and one row", () => {
+  var p = globalThis.window.NSB_CSV.parseCSVText("a,b\n1,2");
+  assert.deepStrictEqual(p.headers, ["a", "b"]);
+  assert.strictEqual(p.rows.length, 1);
+  assert.deepStrictEqual(p.rows[0], { a: "1", b: "2" });
+});
+
+test("parseCSVText: commas in quoted field", () => {
+  var p = globalThis.window.NSB_CSV.parseCSVText('x,y\n"a,b","c"');
+  assert.deepStrictEqual(p.rows[0], { x: "a,b", y: "c" });
+});
+
+test("parseCSVText: doubled quotes inside field", () => {
+  var p = globalThis.window.NSB_CSV.parseCSVText('x\n"a""b"');
+  assert.strictEqual(p.rows[0].x, 'a"b');
+});
+
+test("parseCSVText: newline inside quoted field", () => {
+  var p = globalThis.window.NSB_CSV.parseCSVText('col1,col2\n"a\nb",c');
+  assert.strictEqual(p.rows.length, 1);
+  assert.strictEqual(p.rows[0].col1, "a\nb");
+  assert.strictEqual(p.rows[0].col2, "c");
+});
+
+test("parseCSVText: header only", () => {
+  var p = globalThis.window.NSB_CSV.parseCSVText("h1,h2\n");
+  assert.deepStrictEqual(p.headers, ["h1", "h2"]);
+  assert.strictEqual(p.rows.length, 0);
+});
+
+test("buildToolExportCSV and parseToolExportWithInputs round-trip inputs", () => {
+  var inputs = { principal: "1000", interestRate: "5", monthlyPayment: "50", extraPayment: "0" };
+  var keys = ["principal", "interestRate", "monthlyPayment", "extraPayment"];
+  var sched = [{ month: "1", payment: "50", principalPaid: "10", interestPaid: "40", endingBalance: "990" }];
+  var sh = ["month", "payment", "principalPaid", "interestPaid", "endingBalance"];
+  var combined = globalThis.window.NSB_CSV.buildToolExportCSV(inputs, keys, sched, sh);
+  var parsed = globalThis.window.NSB_CSV.parseToolExportWithInputs(combined);
+  assert.ok(parsed.inputs);
+  assert.strictEqual(parsed.inputs.rows[0].principal, "1000");
+  assert.strictEqual(parsed.scheduleTable.rows.length, 1);
+  assert.strictEqual(parsed.scheduleTable.rows[0].month, "1");
+});
+
+test("buildToolExportCSV burn-style keys round-trip", () => {
+  var inputs = { cashOnHand: "100000", monthlyRevenue: "5000", monthlyExpenses: "15000", revenueGrowthRate: "0" };
+  var keys = ["cashOnHand", "monthlyRevenue", "monthlyExpenses", "revenueGrowthRate"];
+  var sched = [{ month: "1", cashStart: "100000", revenue: "5000", expenses: "15000", netBurn: "10000", cashEnd: "90000" }];
+  var sh = ["month", "cashStart", "revenue", "expenses", "netBurn", "cashEnd"];
+  var combined = globalThis.window.NSB_CSV.buildToolExportCSV(inputs, keys, sched, sh);
+  var parsed = globalThis.window.NSB_CSV.parseToolExportWithInputs(combined);
+  assert.ok(parsed.inputs);
+  assert.strictEqual(parsed.inputs.rows[0].cashOnHand, "100000");
+  assert.strictEqual(parsed.scheduleTable.rows[0].cashEnd, "90000");
+});

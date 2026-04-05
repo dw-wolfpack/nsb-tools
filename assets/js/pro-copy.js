@@ -17,15 +17,22 @@
 
   function modalBenefits() {
     return [
-      "Pick up where you left off. Saved inputs, no re-typing.",
-      "Export to CSV for spreadsheets and decks.",
+      "No daily caps on generators: run tools as much as you need while Pro is active.",
+      "Save and load calculator presets (loan payoff & burn/runway) from the Pro hub.",
+      "Export full CSVs and re-import saved files on supported calculators.",
     ];
+  }
+
+  function lifetimePitch() {
+    return "Pay once, lifetime access. Unlock with the same email you use at checkout.";
   }
 
   function inlineLockText(context) {
     switch (context) {
       case "export":
         return "Export to CSV. Unlock Pro.";
+      case "import":
+        return "Import from CSV. Unlock Pro.";
       case "presets":
       case "save":
       case "load":
@@ -48,6 +55,7 @@
   window.NSB_PRO_COPY = {
     formatPrice: formatPrice,
     modalBenefits: modalBenefits,
+    lifetimePitch: lifetimePitch,
     inlineLockText: inlineLockText,
     bottomStripText: bottomStripText,
   };

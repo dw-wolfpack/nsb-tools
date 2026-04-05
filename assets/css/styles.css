@@ -108,6 +108,37 @@ a:hover {
   max-width: 42rem;
 }
 
+/* Tool pages: interactive area first, long guide below */
+.tool-workspace {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xl);
+  padding: var(--space-md) 0;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+.tool-workspace > .card:first-of-type {
+  margin-top: 0;
+}
+
+.tool-guide {
+  margin-top: var(--space-2xl);
+  scroll-margin-top: 4.5rem;
+}
+
+.tool-jump-guide {
+  display: inline-block;
+  margin: var(--space-sm) 0 0;
+  font-size: 0.875rem;
+  color: var(--color-accent);
+}
+
+.tool-jump-guide:hover {
+  color: var(--color-accent-hover);
+}
+
 /* Home layout: hero, sidebar (recent), main */
 .home-layout {
   display: grid;
@@ -686,7 +717,7 @@ a:hover {
   align-items: stretch;
 }
 
-/* Cards: no explicit width—the grid column controls it */
+/* Cards: no explicit width; the grid column controls it */
 .tool-grid--scroll-2rows:not(.is-expanded) .shelf-inner > .tool-card-wrapper {
   min-height: 150px;
   box-sizing: border-box;
@@ -1052,13 +1083,32 @@ a:hover {
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
-  font-size: 0.875rem;
+  padding: 0.65rem 1.15rem;
+  min-height: 2.75rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   border-radius: var(--radius-md);
   border: 1px solid transparent;
   cursor: pointer;
   transition: background var(--transition), border-color var(--transition);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
 }
 
 .btn:disabled {

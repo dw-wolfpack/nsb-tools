@@ -29,9 +29,45 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/categories/social/">Social / Creator</a><span> / </span> Caption Generator</nav>
     <h1>Caption Generator</h1>
     <p>Generate captions + ethical comment prompts based on platform + tone + CTA.</p>
-    <p class="small muted">Last updated: March 6th, 2026</p>
+    <p class="small muted">Last updated: April 4th, 2026</p>
+    <p class="tool-jump-guide"><a href="#tool-guide">How it works &amp; tips</a></p>
+    <div class="tool-workspace">
 
-    <section class="section">
+    <div class="card" style="margin-top: 1.5rem;">
+      <h2>Inputs</h2>
+      <form id="nsb-form">
+        <div class="form-group">
+          <label for="topic">Topic</label>
+          <input type="text" id="topic" name="topic" placeholder="morning routine">
+        </div>
+        <div class="form-group">
+          <label for="platform">Platform</label>
+          <select id="platform" name="platform">
+            <option value="instagram">Instagram</option>
+            <option value="tiktok">TikTok</option>
+            <option value="linkedin">LinkedIn</option>
+          </select>
+        </div>
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
+          <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
+        </div>
+      </form>
+    </div>
+    <div class="card" style="margin-top: 1rem;">
+      <h2>Output</h2>
+      <div id="nsb-output" class="output-area"></div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
+        <button type="button" class="btn btn-secondary" id="nsb-save">Save output</button>
+        <button type="button" class="btn btn-secondary" id="nsb-clear">Clear</button>
+        <button type="button" class="btn btn-secondary" id="nsb-share">Share link</button>
+      </div>
+    </div>
+    <section class="pro-section"><h3>NSB Pro</h3><p>Unlimited generator runs while Pro is active, calculator presets, and CSV import/export on supported tools. Pick monthly or lifetime in the upgrade modal.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </div>
+    <article id="tool-guide" class="tool-guide">
+<section class="section">
       <h2>What this tool does</h2>
       <p>Generates caption drafts and ethical comment prompts to encourage genuine engagement. You choose topic, platform (Instagram, TikTok, LinkedIn), and get a caption plus a prompt you can use in the post or first comment to invite real replies. Not AI-powered.</p>
     </section>
@@ -46,8 +82,8 @@
     <section class="section">
       <h2>Inputs explained</h2>
       <ul>
-        <li><strong>Topic</strong> – What the post is about (e.g. morning routine).</li>
-        <li><strong>Platform</strong> – Instagram, TikTok, or LinkedIn. Affects tone and length.</li>
+        <li><strong>Topic</strong>: what you are actually posting about. "Morning routine" is fine; "5 a.m. routine without the hustle flex" is better.</li>
+        <li><strong>Platform</strong>: Instagram, TikTok, or LinkedIn. Length and voice shift a lot per channel.</li>
       </ul>
     </section>
     <section class="section">
@@ -101,39 +137,7 @@
       <h3>How do I improve engagement?</h3>
       <p>Use the comment prompt in your caption or first comment to guide replies.</p>
     </section>
-
-    <div class="card" style="margin-top: 1.5rem;">
-      <h2>Inputs</h2>
-      <form id="nsb-form">
-        <div class="form-group">
-          <label for="topic">Topic</label>
-          <input type="text" id="topic" name="topic" placeholder="morning routine">
-        </div>
-        <div class="form-group">
-          <label for="platform">Platform</label>
-          <select id="platform" name="platform">
-            <option value="instagram">Instagram</option>
-            <option value="tiktok">TikTok</option>
-            <option value="linkedin">LinkedIn</option>
-          </select>
-        </div>
-        <div class="btn-group">
-          <button type="submit" class="btn btn-primary" id="nsb-generate">Generate</button>
-          <button type="button" class="btn btn-secondary" id="nsb-regen">Regenerate</button>
-        </div>
-      </form>
-    </div>
-    <div class="card" style="margin-top: 1rem;">
-      <h2>Output</h2>
-      <div id="nsb-output" class="output-area"></div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary" id="nsb-copy">Copy all</button>
-        <button type="button" class="btn btn-secondary" id="nsb-save">Save output</button>
-        <button type="button" class="btn btn-secondary" id="nsb-clear">Clear</button>
-        <button type="button" class="btn btn-secondary" id="nsb-share">Share link</button>
-      </div>
-    </div>
-    <section class="pro-section"><h3>Pro features (coming soon)</h3><p>Pro unlocks more CTA and tone options.</p><button type="button" class="btn btn-pro" onclick="window.NSB_OPEN_UPGRADE && window.NSB_OPEN_UPGRADE()">Upgrade</button></section>
+    </article>
     <div id="nsb-tool-sections"></div>
   </main>
   <footer id="nsb-footer"></footer>
